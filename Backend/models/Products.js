@@ -18,13 +18,13 @@ class Products{
       }
 
       fetchProduct(req, res) {
-      ; // Get the product ID from the request parameter
+      ; 
         const query = `
             SELECT prodID, prodName, categoryID, price, prodUrl
             FROM Products
             WHERE prodID = ${req.params.id}
         `;
-        db.query(query, (err, results) => { // Pass prodID as a parameter
+        db.query(query, (err, results) => { 
             if (err) throw err;
             res.json({
                 status: res.statusCode,

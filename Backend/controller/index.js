@@ -7,7 +7,8 @@ const routes = express.Router()
 
 //Export all objects
 
-const {users, categories, orders, products} = require('../models')
+const {users, products, categories, orders} = require('../models')
+
 
 
 //======user's router====
@@ -57,48 +58,48 @@ bodyParser.json(), (req, res)=>{
 
 
 routes.get('/categories', (req, res)=>{
-    Categories.fetchCategories(req, res)
+    categories.fetchCategories(req, res)
 })
 routes.get('/category/:id',(req, res)=>{
-    Categories.fetchCategory(req, res)
+    categories.fetchCategory(req, res)
 })
 routes.post('/AddNewCategory',(req, res)=>{
-    Categories.addCategory(req, res)
+    categories.addCategory(req, res)
 })
 
 routes.patch('/category/:id', bodyParser.json(),(req, res)=>{
-    Categories.updateCategory(req, res)
+    categories.addCategory(req, res)
 })
 routes.put('/category/:id',bodyParser.json(),(req, res)=>{
-    Categories.updateCategory(req, res)
+    categories.updateCategory(req, res)
 })
 routes.delete('/category/:id', (req,res)=>{
-    Categories.deleteCategory(req, res)
+    categories.deleteCategory(req, res)
 })
 
 
 // =========PRODUCTS ROUTES=============
 
+routes.get('/products', (req, res) => {
+    products.fetchProducts(req, res);
+});
+routes.get('/product/:id', (req, res) => {
+    products.fetchProduct(req, res);
+});
+routes.post('/AddNewProduct', (req, res) => {
+    products.addProduct(req, res);
+});
 
-routes.get('/products', (req, res)=>{
-    products.fetchProducts(req, res)
-})
-routes.get('/product/:id',(req, res)=>{
-    products.fetchProduct(req, res)
-})
-routes.post('/AddNewProduct',(req, res)=>{
-    products.addProduct(req, res)
-})
+routes.patch('/product/:id', bodyParser.json(), (req, res) => {
+    products.updateProduct(req, res);
+});
+routes.put('/product/:id', bodyParser.json(), (req, res) => {
+    products.updateProduct(req, res);
+});
+routes.delete('/product/:id', (req, res) => {
+    products.deleteProduct(req, res);
+});
 
-routes.patch('/product/:id', bodyParser.json(),(req, res)=>{
-    products.updateProduct(req, res)
-})
-routes.put('/product/:id',bodyParser.json(),(req, res)=>{
-    products.updateProduct(req, res)
-})
-routes.delete('/product/:id', (req,res)=>{
-    orders.deleteProduct(req, res)
-})
 
 
 // =========ORDERS=============
@@ -125,8 +126,23 @@ routes.delete('/order/:id', (req,res)=>{
 })
 
 
+// =========CATEGORIES ROUTES BY NAME=============
 
 
+routes.get('/products/category/beauty', (req, res) => {
+  categories.fetchProductsInBeautyCategory(req, res)
+});
+
+
+routes.get('/products/category/perfumes', (req, res) => {
+    categories.fetchProductsInPerfumesCategory(req, res)
+
+});
+
+routes.get('/products/category/accessories', (req, res) => {
+    categories.fetchProductsAccessoriesCategory(req, res)
+
+});
 
 module.exports = {
     express,

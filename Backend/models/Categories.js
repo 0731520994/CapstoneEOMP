@@ -1,4 +1,4 @@
-// query for user
+const db = require('../config');
 
 
 
@@ -7,8 +7,9 @@ class Categories{
        
         const query = ` 
             SELECT categoryID, category
+            FROM Categories
             `;
-        dbConfig.query(query, (err, results) => {
+        db.query(query, (err, results) => {
           if (err) throw err;
           res.json({
             status: res.statusCode,
@@ -18,13 +19,13 @@ class Categories{
       }
 
       fetchCategory(req, res) {
-        const categoryID = req.params.id; // Get the product ID from the request parameter
+       
         const query = `
             SELECT categoryID,category
             FROM Categories
-            WHERE categoryID = ?
+            WHERE categoryID = ${req.params.categoryID}
         `;
-        dbConfig.query(query, [categoryID], (err, results) => { // Pass prodID as a parameter
+        db.query(query, (err, results) => { // Pass prodID as a parameter
             if (err) throw err;
             res.json({
                 status: res.statusCode,
@@ -35,10 +36,10 @@ class Categories{
     
     addCategory(req, res) {
       const query = `
-              INSERT INTO CATEGORIES
+              INSERT INTO Categories
               SET ?
           `;
-      dbConfig.query(query, [req.body], (err) => {
+      db.query(query, [req.body], (err) => {
         if (!err) {
           res.json({
             status: res.statusCode,
@@ -54,17 +55,37 @@ class Categories{
       });
     }
   
-
+    updateCategory(req, res) {
+      const query = `
+              UPDATE Categories
+              SET ? 
+              WHERE categoryID = ${req.params.categoryID};
+          `;
+      db.query(query, [req.body], (err) => {
+        if (!err) {
+          res.json({
+            status: res.statusCode,
+            msg: "Category Updated! ",
+          });
+        } else {
+          res.json({
+            status: res.statusCode,
+            msg: "An error occured",
+            err:err
+          });
+        }
+      });
+    }
   
     
 
 
       deleteCategory(req, res) {
         const query = `
-            DELETE FROM Products
-            WHERE prodID = ${req.params.id}
+            DELETE FROM Categories
+            WHERE categoryID = ${req.params.categoryID}
             `;
-        dbConfig.query(query, (err) => {
+        db.query(query, (err) => {
           if (err) throw err;
           res.json({
             status: res.statusCode,
@@ -72,6 +93,77 @@ class Categories{
           });
         });
       }
-}
 
-module.exports = Categories;
+
+      fetchProductsInBeautyCategory(req, res) {
+        const categoryName = 'Beauty'; 
+    
+        const query = `
+          SELECT P.prodID, P.prodName, P.price, P.prodUrl, C.categoryID, C.category
+          FROM Products P
+          JOIN Categories C ON P.categoryID = C.categoryID
+          WHERE C.category = ?;
+        `;
+    
+        db.query(query, [categoryName], (err, results) => {
+          if (err) throw err;
+          res.json({
+            status: res.statusCode,
+            results: results,
+          });
+        });
+      }
+    
+
+
+      fetchProductsInPerfumesCategory(req, res) {
+        const categoryName = 'Perfumes'; 
+    
+        const query = `
+          SELECT P.prodID, P.prodName, P.price, P.prodUrl, C.categoryID, C.category
+          FROM Products P
+          JOIN Categories C ON P.categoryID = C.categoryID
+          WHERE C.category = ?;
+        `;
+    
+        db.query(query, [categoryName], (err, results) => {
+          if (err) throw err;
+          res.json({
+            status: res.statusCode,
+            results: results,
+          });
+        });
+      }
+    
+
+      fetchProductsAccessoriesCategory(req, res) {
+        const categoryName = 'Accessories'; 
+    
+        const query = `
+          SELECT P.prodID, P.prodName, P.price, P.prodUrl, C.categoryID, C.category
+          FROM Products P
+          JOIN Categories C ON P.categoryID = C.categoryID
+          WHERE C.category = ?;
+        `;
+    
+        db.query(query, [categoryName], (err, results) => {
+          if (err) throw err;
+          res.json({
+            status: res.statusCode,
+            results: results,
+          });
+        });
+      }
+    
+}
+    
+   
+
+    
+    
+    
+  
+
+
+
+module.exports = Categories

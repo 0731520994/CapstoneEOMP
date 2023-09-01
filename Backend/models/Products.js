@@ -1,17 +1,14 @@
-// query for user
-
-
-
+const db = require('../config');
 
 
 class Products{
     fetchProducts(req, res) {
        
         const query = ` 
-            SELECT prodID, prodName, categoryID,price, prodUrl
+            SELECT prodID, prodName, categoryID, price, prodUrl
             FROM Products
             `;
-        dbConfig.query(query, (err, results) => {
+        db.query(query, (err, results) => {
           if (err) throw err;
           res.json({
             status: res.statusCode,
@@ -20,14 +17,14 @@ class Products{
         });
       }
 
-      fetchProducts(req, res) {
-        const prodID = req.params.id; // Get the product ID from the request parameter
+      fetchProduct(req, res) {
+      ; // Get the product ID from the request parameter
         const query = `
-            SELECT prodID, prodName, ,categoryID, price, prodUrl
+            SELECT prodID, prodName, categoryID, price, prodUrl
             FROM Products
-            WHERE prodID = ?
+            WHERE prodID = ${req.params.id}
         `;
-        dbConfig.query(query, [prodID], (err, results) => { // Pass prodID as a parameter
+        db.query(query, (err, results) => { // Pass prodID as a parameter
             if (err) throw err;
             res.json({
                 status: res.statusCode,
@@ -36,12 +33,12 @@ class Products{
         });
     }
     
-    addProducts(req, res) {
+    addProduct(req, res) {
       const query = `
               INSERT INTO Products 
               SET ?
           `;
-      dbConfig.query(query, [req.body], (err) => {
+      db.query(query, [req.body], (err) => {
         if (!err) {
           res.json({
             status: res.statusCode,
@@ -50,7 +47,7 @@ class Products{
         } else {
           res.json({
             status: res.statusCode,
-            msg: "An error occ",
+            msg: "An error occured",
             err:err
           });
         }
@@ -59,13 +56,13 @@ class Products{
   
 
    
-      updateProducts(req, res) {
+      updateProduct(req, res) {
         const query = `
                 UPDATE Products
                 SET ? 
                 WHERE prodID = ${req.params.prodID};
             `;
-        dbConfig.query(query, [req.body], (err) => {
+        db.query(query, [req.body], (err) => {
           if (!err) {
             res.json({
               status: res.statusCode,
@@ -74,23 +71,20 @@ class Products{
           } else {
             res.json({
               status: res.statusCode,
-              msg: "An error occ",
+              msg: "An error occured",
               err:err
             });
           }
         });
       }
     
-      
 
-
-
-      deleteProducts(req, res) {
+      deleteProduct(req, res) {
         const query = `
             DELETE FROM Products
-            WHERE prodID = ${req.params.id}
+            WHERE prodID = ${req.params.prodID}
             `;
-        dbConfig.query(query, (err) => {
+        db.query(query, (err) => {
           if (err) throw err;
           res.json({
             status: res.statusCode,

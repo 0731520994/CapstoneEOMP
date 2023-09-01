@@ -3,9 +3,7 @@
     <h1>Contact Us</h1>
     <div class="box container-fluid">
       <div class="contact-us">
-        <form class="callBox" 
-          action="https://formspree.io/f/mwkdbpeq"
-          method="POST">
+        <form class="callBox">
           <div class="row mb-3">
             <label for="inputName3" class="col-sm-2 col-form-label">Name</label>
             <div class="col-sm-10">
@@ -27,14 +25,15 @@
           <div class="row mb-3">
             <label for="inputMessage3" class="col-sm-2 col-form-label">Message</label>
             <div class="col-sm-10">
-              <textarea class="form-control" id="inputMessage3"  name="message" rows="8"></textarea>
+              <textarea class="form-control" id="inputMessage3" rows="8"></textarea>
             </div>
           </div>
-          <button type="submit" class="submit">Send</button>
+          <button type="submit" class="submit">Submit</button>
         </form>
       </div>
     </div>
-    </div>
+  </div>
+
 
 </template>
 

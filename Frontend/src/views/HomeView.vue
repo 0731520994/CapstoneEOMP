@@ -1,5 +1,5 @@
 <template>
-<div>
+ 
  <div class="Container-fluid">
   <div class="front">
     <h1>Latest Spring Collection</h1>
@@ -17,7 +17,7 @@
         <div class="carousel-item active">
           <div class="carousel-text">
           </div>
-          <img src=""  class="d-block w-100" style="height: 12rem" alt="Testimonial 1"/>
+          <img src="" id ="" class="d-block w-100" style="height: 12rem" alt="Testimonial 1"/>
         </div>
         <div class="carousel-item">
           <div class="carousel-text">
@@ -50,7 +50,7 @@
       </button>
     </div>
 
-  </div>
+
     
            
 </template>

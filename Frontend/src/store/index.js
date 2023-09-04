@@ -7,7 +7,7 @@ export default createStore({
   state: {
     users: null,
     user: null,
-    products: null,
+    products: [],
     product: null,
     orders: null,
     order: null,
@@ -138,14 +138,16 @@ export default createStore({
       }
     },
 
-    async fetchCategories(context) {
+    async fetchProductsByCategory(context, categoryName) {
       try {
-        const { data } = await axios.get(`${cUrl}categories`);
-        context.commit('setCategories', data.results);
-      } catch (error) {
-        context.commit('setMsg', 'Error fetching categories');
+        const { data } = await axios.get(`${capstoneeompUrl}/products/category/${categoryName}`);
+        context.commit('setProducts', data.results);
+      } catch (err) {
+        console.log(err);
+        context.commit('setMsg', 'Error occurred while fetching products by category');
       }
     },
+    
 
 
 

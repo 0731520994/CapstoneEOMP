@@ -15,27 +15,53 @@
     </nav>
 
     <div class="scrollspy-example bg-body-tertiary p-3 rounded-2" tabindex="0">
-      <h4 v-if="activeSection === 'Perfumes'">Perfumes</h4>
-      <div class="row row-cols-1 row-cols-md-3 g-4" v-if="activeSection === 'Perfumes'">
-        <div class="col" v-for="product in filteredProducts('Perfumes')" :key="product.prodID">
-          <!-- Product card template -->
-          <ProductCard :product="product" />
+      <div v-if="activeSection === 'Perfumes'">
+        <h4>Perfumes</h4>
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+          <div class="col" v-for="product in filteredProducts('Perfumes')" :key="product.prodID">
+            <div class="card">
+              <img :src="product.prodUrl" class="card-img-top" :alt="product.prodName">
+              <div class="card-body">
+                <h5 class="card-title">{{ product.prodName }}</h5>
+                <p class="card-text">{{ product.category }}</p>
+                <p class="card-text">R{{ product.price }}</p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
-      <h4 v-if="activeSection === 'Accessories'">Accessories</h4>
-      <div class="row row-cols-1 row-cols-md-3 g-4" v-if="activeSection === 'Accessories'">
-        <div class="col" v-for="product in filteredProducts('Accessories')" :key="product.prodID">
-          <!-- Product card template -->
-          <ProductCard :product="product" />
+    
+      <div v-if="activeSection === 'Accessories'">
+        <h4>Accessories</h4>
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+          <div class="col" v-for="product in filteredProducts('Accessories')" :key="product.prodID">
+            <div class="card">
+              <img :src="product.prodUrl" class="card-img-top" :alt="product.prodName">
+              <div class="card-body">
+                <h5 class="card-title">{{ product.prodName }}</h5>
+                <p class="card-text">{{ product.category }}</p>
+                <p class="card-text">R{{ product.price }}</p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
-      <h4 v-if="activeSection === 'Beauty'">Beauty</h4>
-      <div class="row row-cols-1 row-cols-md-3 g-4" v-if="activeSection === 'Beauty'">
-        <div class="col" v-for="product in filteredProducts('Beauty')" :key="product.prodID">
-          <!-- Product card template -->
-          <ProductCard :product="product" />
+   
+      <div v-if="activeSection === 'Beauty'">
+        <h4>Beauty</h4>
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+          <div class="col" v-for="product in filteredProducts('Beauty')" :key="product.prodID">
+            <div class="card">
+              <img :src="product.prodUrl" class="card-img-top" :alt="product.prodName">
+              <div class="card-body">
+                <h5 class="card-title">{{ product.prodName }}</h5>
+                <p class="card-text">{{ product.category }}</p>
+                <p class="card-text">R{{ product.price }}</p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -43,28 +69,22 @@
 </template>
 
 <script>
-; // Import the ProductCard component
-
 export default {
-  name: 'CategoriesView',
-  components: {
-    ProductCard, // Register the ProductCard component
-  },
   data() {
     return {
-      activeSection: 'Perfumes', // Set the initial active section
+      activeSection: 'Perfumes',
     };
   },
   computed: {
-    filteredProducts() {
-      return (category) => {
-        // Filter products based on the active category
-        return this.$store.state.products.filter(
-          (product) => product.category === category
-        );
-      };
-    },
+  filteredProducts() {
+    return (categoryName) => {
+      return this.$store.state.products.filter(
+        (product) => product.category === categoryName
+      );
+    };
   },
+},
+
   methods: {
     showSection(section) {
       this.activeSection = section;
@@ -74,5 +94,5 @@ export default {
 </script>
 
 <style>
-/* Your styles here */
+
 </style>

@@ -13,11 +13,12 @@
  
  
  
- 
+
  <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
       <div class="carousel-inner">
         <div class="carousel-item active">
           <div class="carousel-text">
+            <h3>Sam Due</h3>
             <p class="corouselp">This is a good gift shop, very nice collection. Price , I find very reasonable. All the items are displayed in good order. It is really a pleasure to visit this shop</p>
           </div>
           <img src="" id ="" class="d-block w-100" style="height: 12rem" alt="Testimonial 1"/>
@@ -95,10 +96,8 @@
         </div>
       </div>
     </div>
+  </div>
 
-
-
-</div>
 
 
 
@@ -356,5 +355,13 @@ text-decoration: solid;
   text-align: center;
   font-size: 2rem;
 }
+
+/*Testimonials*/
+
+
+  
+
+  
+
 
 </style>

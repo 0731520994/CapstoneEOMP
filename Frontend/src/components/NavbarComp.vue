@@ -85,6 +85,7 @@ width: fit-content;
 .nav-link:hover{
   background-color: purple;
   border-radius: 50%;
+  color: white;
  
 }
 

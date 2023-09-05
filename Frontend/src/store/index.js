@@ -63,10 +63,10 @@ export default createStore({
   actions: {
     async fetchUsers(context) {
       try {
-        const { data } = await axios.get(`${cUrl}users`);
+        const { data } = await axios.get(`${capstoneeompUrl}users`);
         context.commit('setUsers', data.results);
       } catch (e) {
-        context.commit('setMsg', 'error occ');
+        context.commit('setMsg', 'error occured');
       }
     },
 
@@ -93,15 +93,9 @@ export default createStore({
       }
     },
 
-    async fetchProducts(context) {
-      try {
-        const { data } = await axios.get(`${capstoneeompUrl}/products`); 
-        context.commit('setProducts', data.results);
-      } catch (err) {
-        console.log(err);
-        context.commit('setMsg', 'error occurred');
-      }
-    },
+
+
+
     
 
     async fetchProduct(context, id) {

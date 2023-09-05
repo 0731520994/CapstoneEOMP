@@ -1,3 +1,7 @@
+<template>
+  
+</template>
+
 <script>
 import FooterComp from '../components/FooterComp.vue';
 import NavBarComp from '../components/NavbarComp.vue';

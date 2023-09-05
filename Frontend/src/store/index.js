@@ -63,12 +63,16 @@ export default createStore({
   actions: {
     async fetchUsers(context) {
       try {
-        const { data } = await axios.get(`${capstoneeompUrl}users`);
+        const { data } = await axios.get(`${capstoneeompUrl}/users`);
         context.commit('setUsers', data.results);
       } catch (e) {
         context.commit('setMsg', 'error occured');
       }
     },
+
+
+
+
 
     async updateUser(context, updatedUser) {
       try {
@@ -82,9 +86,8 @@ export default createStore({
       }
     },
 
-    async getUsers(context) {
+    async getUser(context) {
       try {
-        context.commit('setSpinner', true);
         const response = await axios.get(`${cUrl}users`);
         context.commit('setUsers', response.data.results);
         context.commit('setSpinner', false);
@@ -93,9 +96,15 @@ export default createStore({
       }
     },
 
-
-
-
+    async fetchProducts(context) {
+      try {
+        const { data } = await axios.get(`${capstoneeompUrl}/products`); 
+        context.commit('setProducts', data.results);
+      } catch (err) {
+        console.log(err);
+        context.commit('setMsg', 'error occurred');
+      }
+    },
     
 
     async fetchProduct(context, id) {

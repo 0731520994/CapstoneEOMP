@@ -12,6 +12,7 @@
             </div>
             <div class="card-footer">
               <div class="card-footer-buttons">
+                <router-link :to="{name:'single', params: {id: product?.prodID}  }" class="btn btn-primary">See more</router-link>
                 <button type="button" class="allbtn">Add to cart</button>
                 <button type="button" class="allbtn">See more</button>
               </div>
@@ -24,6 +25,10 @@
 </template>
 
 <script>
+
+
+import SingleView from '@/components/SingleView.vue';
+
 export default {
   computed: {
     products() {
@@ -33,6 +38,9 @@ export default {
   mounted() {
     this.$store.dispatch('fetchProducts');
   },
+  components: {
+      SingleView,
+    },
 };
 </script>
 

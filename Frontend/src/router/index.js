@@ -47,7 +47,13 @@ const routes = [
   name: 'contact',
  
   component: () => import('../views/ContactView.vue')
-}
+},
+{
+  path: '/single/:id',
+  name: 'single',
+ 
+  component: () => import('../components/SingleView.vue')
+},
 ];
   
   

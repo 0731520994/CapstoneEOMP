@@ -12,9 +12,8 @@
             </div>
             <div class="card-footer">
               <div class="card-footer-buttons">
-                <router-link :to="{name:'single', params: {id: product?.prodID}  }" class="btn btn-primary">See more</router-link>
-                <button type="button" class="allbtn">Add to cart</button>
-                <button type="button" class="allbtn">See more</button>
+                <button @click="single(product?.prodID)" class="allbtn">See more</button>
+                <button @click="addToCart(product?.prodID)" class="allbtn">Add to cart</button>
               </div>
             </div>
           </div>
@@ -23,10 +22,11 @@
     </div>
   </div>
 </template>
+<!-- :to="{name:'single', params: {id: product?.prodID}  } -->
 
 <script>
 
-
+import CheckoutComp from '@/components/CheckoutComp.vue';
 import SingleView from '@/components/SingleView.vue';
 
 export default {
@@ -38,10 +38,33 @@ export default {
   mounted() {
     this.$store.dispatch('fetchProducts');
   },
+  methods: {
+  single(prodID) {
+    const viewProd= this.products.find(
+      (products)=> products.prodID===prodID
+    );
+    this.$store.commit("setViewItem", viewProd)
+    this.$router.push({ name:"single",params:{prodID:prodID}
+    })
+  }
+  },
+
+  addToCart(prodID) {
+    const addedProduct = this.products.find(
+      (Products) => product.prodID === prodID
+    );
+    this.$store.commit("setAddToCart", addedProduct)
+    this.$store.push({ name: this.addToCart, params:{prodID:prodID}
+  })
+  },
   components: {
       SingleView,
-    },
+      CheckoutComp,
+}
 };
+
+
+
 </script>
 
 <style>

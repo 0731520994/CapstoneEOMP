@@ -12,6 +12,8 @@ export default createStore({
     orders: null,
     order: null,
     categories: null,
+    addToCart: [],
+    ViewItem: null,
     category: null,
     spinner: false,
     token: null,
@@ -59,7 +61,17 @@ export default createStore({
     setMsg(state, msg) {
       state.msg = msg;
     },
+    setViewItem(state, ViewItem) {
+      state.ViewItem = ViewItem;
+    },
+    setAddToCart(state, product) {
+      if (!state.cart) {
+        state.cart = [];
+      }
+      state.cart.push(product);
+    },
   },
+  
   actions: {
     async fetchUsers(context) {
       try {

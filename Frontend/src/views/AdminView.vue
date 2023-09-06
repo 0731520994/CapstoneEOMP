@@ -114,13 +114,33 @@
   export default {
     computed: {
       ...mapState(['products', 'users']),
+
+      sortedProducts() {
+      const sorted = [...this.product];
+
+      sorted.sort((a, b) => {
+        if (this.sortKey === "prodName") {
+          return this.ascending
+            ? a.prodName.localeCompare(b.prodName)
+            : b.prodName.localeCompare(a.prodName);
+        } else if (this.sortKey === "amount") {
+          return this.ascending ? a.price - b.price : b.price - a.price;
+        }
+        return 0;
+      });
+
+      return sorted;
     },
+  },
+
+    
     mounted() {
       this.fetchProducts();
       this.fetchUsers();
     },
     methods: {
       ...mapActions(['fetchProducts', 'fetchUsers']),
+      
     },
   };
   </script>

@@ -1,6 +1,5 @@
 <template>
-    <div class="evety">
-
+    <div class="single_card">
     <div class="cardSingle mb-3" style="max-width: 70%;">
         <div class="row g-0">
           <div class="col-md-4">
@@ -23,7 +22,7 @@
 export default {
     computed: {
         product(){
-            return this.$store.state.product
+            return this.$store.state.ViewItem
         }
     },
     created(){
@@ -34,7 +33,11 @@ export default {
 </script>
 
 <style >
-
+.single_card{
+  background-color: white;
+  width: 60rem;
+  margin: 10%;
+}
 
 
 </style>

@@ -39,30 +39,23 @@
         <form class="d-flex" role="search">
           <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" >
         </form>
-        <button class="btn btn-outline-purple" type="button" @click="toggleLoginForm">
-        Login
-      </button>
+        <button class="btn btn-outline-purple" type="button" >Login</button>
       </div>
     </div>
   </nav>
 </template>
 
 <script>
+
+import LoginView from '@/views/LoginView.vue';
+
 export default {
-  data() {
-    return {
-      isNavbarOpen: false,
-      isMultiCollapseOpen: false
-    };
-  },
   methods: {
-    toggleNavbar() {
-      this.isNavbarOpen = !this.isNavbarOpen;
+    openLoginModal() {
+      // Toggle the Bootstrap modal using jQuery
+      $('#loginModal').modal('show');
     },
-    toggleMultiCollapse() {
-      this.isMultiCollapseOpen = !this.isMultiCollapseOpen;
-    }
-  }
+  },
 };
 </script>
 

@@ -7,7 +7,7 @@ const routes = express.Router()
 
 //Export all objects
 
-const {users, products, categories, orders} = require('../models')
+const {users, products, categories, orders, cart} = require('../models')
 
 
 
@@ -143,6 +143,25 @@ routes.get('/products/category/accessories', (req, res) => {
     categories.fetchProductsAccessoriesCategory(req, res)
 
 });
+
+
+
+// =========CART ROUTES=============
+
+routes.get('/cart/:id',(req, res)=>{
+    cart.fetchCart(req, res)
+})
+routes.post('/AddNewCart',(req, res)=>{
+    cart.addCart(req, res)
+});
+
+routes.put('/order/:id',bodyParser.json(),(req, res)=>{
+    cart.updateCart(req, res)
+})
+routes.delete('/order/:id', (req,res)=>{
+    cart.deleteCart(req, res)
+})
+
 
 module.exports = {
     express,

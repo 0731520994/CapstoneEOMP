@@ -1,50 +1,87 @@
 <template>
-    <div>
-        <div class="modal-body">
-            <h2 class="fs-5">Tooltips in a modal</h2>
-            <form>
-                <div class="mb-3">
-                  <label for="exampleInputEmail1" class="form-label">Email address</label>
-                  <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                  <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
-                </div>
-                <div class="mb-3">
-                  <label for="exampleInputPassword1" class="form-label">Password</label>
-                  <input type="password" class="form-control" id="exampleInputPassword1">
-                </div>
-                <div class="mb-3 form-check">
-                  <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                  <label class="form-check-label" for="exampleCheck1">Check me out</label>
-                </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
-              </form>
-       
+  <div class="container d-flex p-4">
+    <div class="col-6">
+      <img
+        src=""
+        alt=""
+      />
+    </div>
+    <div class="col-6">
+      
+      <h1>WELCOME BACK !</h1>
 
-            <p><a href="#" data-bs-toggle="tooltip" title="Tooltip">This link</a> and <a href="#" data-bs-toggle="tooltip" title="Tooltip">that link</a> have tooltips on hover.</p>
-            <hr>
-            <h2 class="fs-5">Popover in a modal</h2>
-            <p>This <button class="btn btn-secondary" data-bs-toggle="popover" title="Popover title" data-bs-content="Popover body content is set in this attribute.">button</button> triggers a popover on click.</p>
-          
-        </div>
-</div>
+      <form @submit.prevent="userLogin">
+        <label for="email" class="text-start">ENTER YOUR EMAIL</label>
+        <br />
+        <input
+          type="email"
+          name="email"
+          v-model="emailAdd"
+          placeholder="Enter your email"
+        />
+        <br />
+        <label for="password" class="text-start">PASSWORD</label>
+        <br />
+        <input type="password" v-model="userPass" name="password" />
 
-
-
-
-
-
-       
+        <button type="submit">Log In</button>
+        <p>
+          Don't have an account?
+          <router-link
+            to="/register"
+            class="register-link text-decoration-none text-white"
+            >Register</router-link
+          >
+        </p>
+      </form>
+    </div>
+    <br />
+  </div>
+  <br />
+  <br />
 </template>
 
 <script>
- export default {
-        name: 'LoginModal',
-        components: {
-  
-  }
-      }
-</script>
 
-<style >
-  
-</style>
+export default {
+  data() {
+    return {
+      emailAdd: "",
+      userPass: "",
+    };
+  },
+  beforeCreate() {
+    this.$store.dispatch("cookieCheck");
+  },
+  methods: {
+    async userLogin() {
+      console.log("Reached");
+      try {
+        const payload = {
+          emailAdd: this.emailAdd,
+          userPass: this.userPass,
+        };
+        const resp = await this.$store.dispatch("login", payload);
+        console.log("Login Response:", resp);
+        if (resp.success && resp.token) {
+          await Swal.fire({
+            icon: "success",
+            title: "Logged in Successfully",
+            text: "You are now logged in!",
+          });
+          this.$router.push("/");
+        } else {
+          const errMsg = resp.error || "Unexpected error";
+          await Swal.fire({
+            icon: "error",
+            title: "Login failed",
+            text: errMsg,
+          });
+        }
+      } catch (e) {
+        console.error("Error while logging in: ", e);
+      }
+    },
+  },
+};
+</script>

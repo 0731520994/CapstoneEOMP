@@ -37,8 +37,8 @@
     </div>
     <br />
   </div>
-  <br />
-  <br />
+
+
 </template>
 
 <script>

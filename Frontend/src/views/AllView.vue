@@ -13,7 +13,7 @@
             <div class="card-footer">
               <div class="card-footer-buttons">
                 <button @click="single(product?.prodID)" class="allbtn">See more</button>
-                <button @click="addToCart(product?.prodID)" class="allbtn">Add to cart</button>
+                <button @click="Cart(product?.prodID)" class="allbtn">Add to cart</button>
               </div>
             </div>
           </div>
@@ -26,7 +26,7 @@
 
 <script>
 
-import CheckoutComp from '@/components/CheckoutComp.vue';
+import CheckoutView from '@/components/CheckoutView.vue';
 import SingleView from '@/components/SingleView.vue';
 
 export default {
@@ -46,23 +46,38 @@ export default {
     this.$store.commit("setViewItem", viewProd)
     this.$router.push({ name:"single",params:{prodID:prodID}
     })
-  }
   },
+  addToCart(prodID) {
+  const addedProduct = this.products.find(
+    (product) => product.prodID === prodID
+  );
 
+  if (addedProduct) {
+    this.$store.commit("setAddToCart", addedProduct);
+    // Optionally, you can display a message to indicate that the product was added to the cart.
+    alert('Product added to cart!');
+  } else {
+    alert('Product not found.'); // Handle the case where the product is not found.
+  }
+},
   addToCart(prodID) {
     const addedProduct = this.products.find(
-      (Products) => product.prodID === prodID
+      (addedProduct) => products.prodID===prodID
     );
+    
     this.$store.commit("setAddToCart", addedProduct)
-    this.$store.push({ name: this.addToCart, params:{prodID:prodID}
-  })
-  },
+    this.$router.push({ name: Cart});
+  }
+  ,
+  
+
+
   components: {
       SingleView,
-      CheckoutComp,
-}
+      CheckoutView,
+  }
+  }
 };
-
 
 
 </script>

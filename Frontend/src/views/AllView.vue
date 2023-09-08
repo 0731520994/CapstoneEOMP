@@ -26,7 +26,7 @@
 
 <script>
 
-import CheckoutView from '@/components/CheckoutView.vue';
+
 import SingleView from '@/components/SingleView.vue';
 
 export default {
@@ -47,34 +47,14 @@ export default {
     this.$router.push({ name:"single",params:{prodID:prodID}
     })
   },
-  addToCart(prodID) {
-  const addedProduct = this.products.find(
-    (product) => product.prodID === prodID
-  );
-
-  if (addedProduct) {
-    this.$store.commit("setAddToCart", addedProduct);
-    // Optionally, you can display a message to indicate that the product was added to the cart.
-    alert('Product added to cart!');
-  } else {
-    alert('Product not found.'); // Handle the case where the product is not found.
-  }
-},
-  addToCart(prodID) {
-    const addedProduct = this.products.find(
-      (addedProduct) => products.prodID===prodID
-    );
-    
-    this.$store.commit("setAddToCart", addedProduct)
-    this.$router.push({ name: Cart});
-  }
-  ,
+ 
+  
   
 
 
   components: {
       SingleView,
-      CheckoutView,
+     
   }
   }
 };

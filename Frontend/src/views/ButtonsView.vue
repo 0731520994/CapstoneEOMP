@@ -43,7 +43,6 @@
           :class="{ 'active-btn': selectedFilter === 'Accessories' }"
           @click="selectFilter('Accessories')"
         >
-          Beverages
         </button>
       </div>
     </div>
@@ -111,6 +110,8 @@
       });
     },
   
-    components: { CardComp, SpinnerComp },
+    components: { 
+      CardComp, 
+      SpinnerComp },
   };
   </script>

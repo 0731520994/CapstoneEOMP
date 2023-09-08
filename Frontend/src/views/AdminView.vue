@@ -1,12 +1,17 @@
 <template>
 <div>
+
         
             <h1 style="text-decoration:underline">Products</h1>
        
       <div class="sortBtns">
+        <button class="addbtn" @click="add">Add</button>
         <button class="btnOne" @click="sortByProductName">Sort by Product Name</button>
         <button class="btnTwo " @click="sortByPrice">Sort by Price</button>
       </div>
+
+  
+   
   
       <div class="admin_container ">
          <table class="table table-bordered ">
@@ -80,14 +85,8 @@
                   <td>
                     <div class="btnGroupUser">
                       <div>
-                        <button
-                          type="button"
-                          class="btn btn-primary"
-                          data-bs-toggle="modal"
-                          data-bs-target="#editUserModal"
-                        >
-                          EDIT
-                        </button>
+                        <button @click="editProduct(product?.prodID)" class="allbtn">Edit</button>
+
                       </div>
                       <button class="btn btn-danger">Delete</button>
                     </div>
@@ -99,17 +98,15 @@
 </div>
 
 
-
-   
-
-
-
-
  
   </template>
   
   <script>
   import { mapState, mapActions } from 'vuex';
+  import AddUserComp from '@/components/AddUserComp.vue'
+  import AddProductComp from '@/components/AddProductComp.vue';
+
+ 
   
   export default {
     computed: {
@@ -142,13 +139,21 @@
       ...mapActions(['fetchProducts', 'fetchUsers']),
       
     },
+
+    components: {
+      AddProductComp,
+      AddUserComp,
+      
+    }
   };
   </script>
-  
+
+
   <style>
 
-.sortBtns{
-margin: 3rem;
+.addbtn{
+margin-right: 90rem;
+margin-left: 5rem;
 }
 
 

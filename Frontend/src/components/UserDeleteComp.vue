@@ -3,12 +3,11 @@
       <th class="table-head text-white">{{ user.userID }}</th>
       <td class="text-white">{{ user.firstName }}</td>
       <td class="text-white">{{ user.lastName }}</td>
-      <td class="text-white">{{ user.userAge }}</td>
-      <!-- <td class="text-white">{{ user.Gender }}</td> -->
-      <td class="text-white">{{ user.userRole }}</td>
+      <td class="text-white">{{ user.Gender }}</td> 
       <td class="text-white emailAdd">{{ user.emailAdd }}</td>
       <td class="text-white password w-25">{{ user.userPass }}</td>
-      <!-- <td><img :src="user.userProfile" alt="" class="prodImg" /></td> -->
+      <td class="text-white">{{ user.userRole }}</td>
+      <td><img :src="user.userUrl" alt="" class="prodUrl" /></td>
   
       <td class="second-table-data">
         <div class="action">
@@ -33,7 +32,7 @@
     methods: {
       async deleteUser(id) {
         try {
-          await axios.delete(`https://nodejseomp.onrender.com/users/${id}`);
+          await axios.delete(`https://capstoneconnection.onrender.com/users/${id}`);
           this.$store.dispatch("getUsers");
           alert("User has been deleted");
         } catch (err) {

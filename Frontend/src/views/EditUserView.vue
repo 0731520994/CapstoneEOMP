@@ -1,8 +1,5 @@
 <template>
-    <br />
-    <br />
-    <br />
-    <UserEditComp :id="product.prodID" />
+  
   </template>
   
   <script>

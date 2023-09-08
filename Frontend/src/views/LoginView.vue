@@ -1,11 +1,6 @@
 <template>
   <div class="container d-flex p-4">
-    <div class="col-6">
-      <img
-        src=""
-        alt=""
-      />
-    </div>
+    
     <div class="col-6">
       
       <h1>WELCOME BACK !</h1>

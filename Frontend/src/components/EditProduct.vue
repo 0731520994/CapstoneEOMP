@@ -18,7 +18,7 @@
       <label>Image</label>
       <input type="text"  placeholder="prodUrl" v-model="prodUrl"/>
 
-      <button @click="addProduct" class="btn-submit">Submit</button>
+      <button @click="editProduct" class="btn-submit">Submit</button>
     </div>
   </div>
 </template>
@@ -36,7 +36,7 @@ export default {
     };
   },
   methods: {
-    async addProduct() {
+    async updateProduct() {
       try {
         await axios.post("https://capstoneconnection.onrender.com/products", {
           prodID: this.prodID,
@@ -54,7 +54,7 @@ export default {
        
 
         this.$router.push("/admin");
-        alert("Product added successfully");
+        alert("Product updated successfully");
       } catch (err) {
         alert(err);
       }

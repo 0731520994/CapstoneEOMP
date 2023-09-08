@@ -1,87 +1,91 @@
 <template>
     <div class="container d-flex p-4">
-      <div class="col-6">
-        <img
-          src="https://i.postimg.cc/YCJbkvPZ/c9bl-removebg-preview.png"
-          alt=""
-        />
-      </div>
-      <div class="col-6">
-    
-  
-        <form class="row d-flex" @submit.prevent="register">
+     
+        <form class="row d-flex" @submit.prevent="registerUser">
           <div class="col-6">
+            <!-- <label for="firstName" class="text-start">UserID:</label>
+            <input
+              type="text"
+              v-model="firstName"
+              required
+            /> -->
+            <!-- fname -->
             <label for="firstName" class="text-start">First Name:</label>
             <input
               type="text"
               placeholder="Enter your name"
-              v-model="firstName"
+              v-model="info.firstName"
               required
             />
-            <label for="lastname" class="text-start">Surname:</label>
+            <br>
+            <!-- lastname -->
+            <label for="lastname" class="text-start">Last Name:</label>
             <input
               type="text"
-              placeholder="Enter your surname"
-              v-model="lastName"
+              placeholder="Enter your lastName"
+              v-model="info.lastName"
               required
             />
-            <label for="role" class="text-start">Role:</label>
+            <br>
+            <!-- gender -->
+            <label for="role" class="text-start">Gender:</label>
             <input
               type="text"
-              placeholder="Enter your role"
-              v-model="userRole"
+              placeholder="Enter your gender"
+              v-model="info.gender"
               required
+
             />
-            <label for="text" class="text-start">userUrl</label>
-  
-            <input
-              type="text"
-              placeholder=""
-              v-model="userProfile"
-              required
-            />
-          </div>
-          <div class="col-6">
-            <label for="gender" class="text-start">Gender:</label>
-            <input
-              type="gender"
-              placeholder="Enter you gender"
-              v-model="gender"
-              required
-            />
-            <label for="email" class="text-start">EMAIL:</label>
+            <br>
+            <!-- email -->
+            <label for="email" class="text-start">Email:</label>
   
             <input
               type="email"
               placeholder="Enter your email"
-              v-model="emailAdd"
+              v-model="info.emailAdd"
               required
             />
+            <br>
+<!-- passwword -->
+           <label for="password" class="text-start">Password</label>
+            
+            <input type="password" v-model="info.userPass" required />
+        
+           
+            <br>
+        <div class="col-6">
+          <!-- <label for="role" class="text-start">Role:</label>
+          <input
+            type="role"
+            placeholder="Enter your role"
+            required
+        /> -->
+
+            <label for="text" class="text-start">profileUrl</label>
   
-            <label for="age" class="text-start">Age:</label>
             <input
-              type="number"
-              placeholder="Enter your age"
-              v-model="userAge"
+              type="text"
+              placeholder=" "
+              v-model="info.profileUrl"
               required
             />
-            <label for="password" class="text-start">PASSWORD</label>
-  
-            <input type="password" v-model="userPass" required />
-          </div>
+           
+
           <button class="submit">Sign Up</button>
+</div>
+          </div>
         </form>
-  
+
         <p>
           Have an account?
-          <router-link
-            to="/login"
-            class="register-link text-decoration-none text-white"
-            >Log in</router-link
-          >
+          <button type="submit"  class="register-link text-decoration-none text-white" >Log in </button>
+    
         </p>
-      </div>
-    </div>
+        </div>
+  
+      
+ 
   </template>
   
   <script>
@@ -90,47 +94,20 @@
   export default {
     data() {
       return {
-        firstName: "",
-        lastName: "",
-        userAge: "",
-        gender: "",
-        userRole: "",
-        emailAdd: "",
-        userPass: "",
-        userProfile: "",
+        info:{
+      profileUrl:"",
+      firstName: " ",
+      lastName: " ",
+      gender: " ",
+      emailAdd: " ",
+      userPass: " "
+        }
       };
     },
     methods: {
-      async register() {
-        try {
-          const resp = await this.$store.dispatch("register", {
-            firstName: this.firstName,
-            lastName: this.lastName,
-            userAge: this.userAge,
-            gender: this.gender,
-            userRole: this.userRole,
-            emailAdd: this.emailAdd,
-            userPass: this.userPass,
-            userProfile: this.userProfile,
-          });
-          if (resp.success) {
-            await Swal.fire({
-              icon: "success",
-              title: "Registration successful",
-              text: "CONGRATULATIONS ,YOU ARE NOW REGISTERED ! Please Login",
-            });
-          } else {
-            await Swal.fire({
-              icon: "error",
-              title: "Registration failed",
-              text: resp.error || "Unexpected error",
-            });
-          }
-          this.$router.push("/login");
-        } catch (e) {
-          console.error("Registration error: ", e);
-        }
-      },
+      registerUser(){
+        this.$store.dispatch('register', this.info)
+      } 
     },
   };
   </script>

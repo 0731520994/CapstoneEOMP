@@ -14,7 +14,7 @@
             <router-link id="linkName" class="nav-link active" aria-current="page" to="/about">About</router-link>
           </li>
           <li class="nav-item">
-            <router-link id="linkName" class="nav-link active" aria-current="page" to="/admin">Admin</router-link>
+            <router-link id="linkName" class="nav-link active"  aria-current="page" to="/admin">Admin</router-link>
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -184,11 +184,26 @@
 </template>
 
 <script>
-
+import { useCookies } from 'vue3-cookies'
+const {cookies} = useCookies();
 import LoginView from '@/views/LoginView.vue';
-import registerView from '@/views/RegisterView.vue';
+
 
 export default {
+
+  computed: {
+          user() {
+            return this.$store.state.user ||
+            cookies.get('LegitUser')
+          },
+          result() {
+          return this.user?.result
+        },
+        isAdmin() {
+          return this.result?.userRole?.toLowerCase() === "admin"
+        }
+        },
+    
   methods: {
     openLoginModal() {
       // Toggle the Bootstrap modal using jQuery

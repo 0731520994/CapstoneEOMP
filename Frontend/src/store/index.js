@@ -1,7 +1,7 @@
 import { createStore } from 'vuex';
 import axios from 'axios';
 
-const capstoneeompUrl = "https://capstoneeomp-zsz7.onrender.com"
+const capstoneeompUrl = "https://capstoneconnection.onrender.com"
 
 export default createStore({
   state: {
@@ -163,7 +163,17 @@ export default createStore({
       }
     },
     
+    addToCart(product) {
+      axios.post('http://your-api-url/cart/add', { product }).then((response) => {
+        this.$store.commit('addToCart', product);
+      });
+    },
 
+    removeFromCart(productId) {
+      axios.delete(`http://your-api-url/cart/remove/${productId}`).then(() => {
+        this.$store.commit('removeFromCart', productId);
+      });
+    },
 
 
   },

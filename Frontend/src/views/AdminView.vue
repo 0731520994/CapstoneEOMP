@@ -7,7 +7,11 @@
         <button class="btnOne" @click="sortByProductName">Sort by Product Name</button>
         <button class="btnTwo " @click="sortByPrice">Sort by Price</button>
       </div>
-  
+    
+      <div></div>
+
+
+
       <div class="admin_container ">
          <table class="table table-bordered ">
               <thead>
@@ -110,6 +114,10 @@
   
   <script>
   import { mapState, mapActions } from 'vuex';
+  import AddProductComp from '@/components/AddProductComp.vue';
+  import AddUserComp from '@/components/AddUserComp.vue';
+  import EditProductComp from '@/components/EditProductComp.vue';
+  import EditUserComp from '@/components/EditUserComp.vue';
   
   export default {
     computed: {
@@ -142,6 +150,13 @@
       ...mapActions(['fetchProducts', 'fetchUsers']),
       
     },
+
+    components: {
+      AddProductComp,
+      AddUserComp,
+      EditProductComp,
+      EditUserComp,
+    }
   };
   </script>
   

@@ -79,7 +79,7 @@ export default {
           });
         }
       } catch (e) {
-        console.error("Error while logging in: ", e);
+        console.error("Error logging in: ", e);
       }
     },
   },

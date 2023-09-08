@@ -104,7 +104,7 @@ class Users{
                 msg: "You are now registered"
             })
         })
-    },
+    };
     updateUser(req, res) {
         const data = req.body
         if (data.userPass) {

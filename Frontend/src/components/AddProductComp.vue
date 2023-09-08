@@ -1,55 +1,22 @@
 <template>
     <div>
       <div class="container flex-container">
+        <label>ID</label>
+        <input type="text"  placeholder="prodName" v-model="prodID"/>
+
         <label>Name</label>
-        <input
-          type="text"
-          autocomplete="off"
-          required
-          name="prodName"
-          v-model="prodName"
-        />
-        <label>Quantity</label>
-        <input
-          type="text"
-          autocomplete="off"
-          required
-          name="quantity"
-          v-model="quantity"
-        />
+        <input type="text"  placeholder="prodName" v-model="prodName"/>
+
+        
+        <label>categoryID</label>
+        <input type="text"  placeholder="categoryID" v-model="categoryID"/>
+        
         <label>Price</label>
-        <input
-          type="number"
-          autocomplete="off"
-          required
-          name="amount"
-          v-model="amount"
-        />
-        <label>Category</label>
-        <input
-          type="text"
-          autocomplete="off"
-          required
-          name="category"
-          v-model="category"
-        />
+        <input type="number"  placeholder="price" v-model="price"/>
+        
+        
         <label>Image</label>
-        <input
-          type="text"
-          autocomplete="off"
-          required
-          name="prodURL"
-          v-model="prodURL"
-        />
-        <label>Description</label>
-  
-        <input
-          type="text"
-          autocomplete="off"
-          required
-          name="description"
-          v-model="description"
-        />
+        <input type="text"  placeholder="prodUrl" v-model="prodUrl"/>
   
         <button @click="addProduct" class="btn-submit">Submit</button>
       </div>
@@ -60,35 +27,34 @@
   export default {
     data() {
       return {
+        prodID: "",
         prodName: "",
-        quantity: "",
-        amount: "",
-        category: "",
-        prodURL: "",
-        description: "",
+        categoryID: "",
+        price: "",
+        prodUrl: "",
+      
       };
     },
     methods: {
       async addProduct() {
         try {
-          await axios.post("https://capstone-2z3t.onrender.com/products/", {
+          await axios.post("https://capstoneconnection.onrender.com/products", {
+            prodID: this.prodID,
             prodName: this.prodName,
-            quantity: this.quantity,
-            amount: this.amount,
-            category: this.category,
-            prodURL: this.prodURL,
-            description: this.description,
+            categoryID: this.categoryID,
+            price: this.price,
+            prodUrl: this.prodUrl,
           });
-  
+
+          this.prodID = "";
           this.productName = "";
-          this.quantity = "";
-          this.amount = "";
-          this.category = "";
-          this.prodURL = "";
-          this.description = "";
+          this.categorIDy = "";
+          this.price = "";
+          this.prodUrl = "";
+         
   
           this.$router.push("/admin");
-          alert("Product has been created");
+          alert("Product added successfully");
         } catch (err) {
           alert(err);
         }

@@ -1,14 +1,16 @@
 
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
-import LoginView from '../views/LoginView.vue'
+
 
 
 const routes = [
   {
     path: '/',
     name: 'home',
-    component: HomeView
+    component: HomeView,
+  
+
   },
   {
     
@@ -41,7 +43,12 @@ const routes = [
   path: '/checkout',
   name: 'checkout',
  
-  component: () => import('../views/CheckoutView.vue')
+  component: () => import('../views/CheckoutView.vue'),
+  beforeEnter() {
+    if(!cookies.get('LegitUser')) {
+      router.push({name: 'login'})
+    }
+  }
 },
 {
   path: '/contact',
@@ -60,6 +67,12 @@ const routes = [
   name: 'login',
  
   component: () => import('../views/LoginView.vue')
+},
+{
+  path: '/register',
+  name: 'register',
+ 
+  component: () => import('../views/RegisterView.vue')
 },
 ];
   

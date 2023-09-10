@@ -1,7 +1,7 @@
 import { createStore } from 'vuex';
 import axios from 'axios';
-import sweet from 'sweetalert2'; // Import sweetalert2 or any other library you're using
-import cookies from 'js-cookie'; // Import js-cookie or any other library for cookies
+import sweet from 'sweetalert2'; 
+import cookies from 'js-cookie'; 
 
 const capstoneeompUrl = "https://capstoneconnection.onrender.com"
 

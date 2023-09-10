@@ -22,17 +22,7 @@
         v-model="payload.lastName"
         required
       />
-    </div>
-    <div class="mb-3">
-      <label for="exampleInputuserAge1" class="form-label">userAge</label>
-      <input
-        type="userAge"
-        class="form-control"
-        id="exampleInputuserAge1"
-        aria-describedby="emailHelp"
-        v-model="payload.userAge"
-        required
-      />
+    
     </div>
     <div class="mb-3">
       <label for="exampleInputgender1" class="form-label">gender</label>
@@ -89,11 +79,10 @@
     payload: {
   firstName: "",
   lastName: "",
-  userAge: "",
   Gender: "",
   emailAdd: "",
   userPass: "",
-  userProfile: ""
+  profileUrl: ""
         }
       }
 },

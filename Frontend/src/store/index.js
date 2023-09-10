@@ -1,5 +1,7 @@
 import { createStore } from 'vuex';
 import axios from 'axios';
+import sweet from 'sweetalert2'; // Import sweetalert2 or any other library you're using
+import cookies from 'js-cookie'; // Import js-cookie or any other library for cookies
 
 const capstoneeompUrl = "https://capstoneconnection.onrender.com"
 
@@ -9,6 +11,13 @@ export default createStore({
     user: null,
     products: [],
     product: null,
+    newProduct: {
+      prodID: '',
+      prodName: '',
+      categoryID: '',
+      price: '',
+      prodUrl: '',
+    },
     orders: null,
     order: null,
     categories: null,
@@ -49,7 +58,7 @@ export default createStore({
     setCategories(state, categories){
       state.categories = categories;
     },
-    setCategory(state, setCategory){
+    setCategory(state, category) {
       state.category = category;
     },
     setSpinner(state, value) {
@@ -70,18 +79,77 @@ export default createStore({
       }
       state.cart.push(product);
     },
+      addProduct(state, newProduct) {
+    state.products.push(newProduct);
+  },
+
   },
   
   actions: {
-    async fetchUsers(context) {
-      try {
-        const { data } = await axios.get(`${capstoneeompUrl}/users`);
-        context.commit('setUsers', data.results);
-      } catch (e) {
-        context.commit('setMsg', 'error occured');
-      }
-    },
 
+
+    async register(context, payload) {
+      try {
+        const {msg}  = (await axios.post (`${capstoneeompUrl}user`, payload)).data
+          if (msg) {
+            sweet({
+              title: "Registering",
+              text: msg,
+              icon: "success",
+              timer: 2000,
+            });
+
+            context.dispatch("fetchUsers"); 
+            router.push({ name: "login" });
+          } else {
+            sweet({
+              title: "Error",
+              text: msg,
+              icon: "error",
+              timer: 2000,
+            });
+          }
+        } catch (e) {
+          context.commit("setMsg", "An error has occured, please try again");
+        }
+  },
+
+
+async login(context, payload) {
+  try {
+    const { msg, token, result } = (await axios.post(`${caps}login`, payload)).data
+    if(result) {
+      context.commit("setUser", {result, msg});
+      cookies.set("LegitUser", {token, msg, result})
+      authUser.applyToken(token)
+      sweet({
+        title: msg,
+        text: `Welcome back ${result?.firstName}`,
+        icon: "success",
+        timer: 2000
+      })
+      router.push({name: 'home'})
+    } else {
+      sweet({
+        title: "Error",
+        text: msg,
+        icon: "error",
+        timer: 2000
+      })
+    }
+  } catch (e) {
+    context.commit("setMsg", "An error has occurred")
+  }
+},
+
+async fetchUsers(context) {
+  try {
+    const { data } = await axios.get(`${capstoneeompUrl}/users`);
+    context.commit('setUsers', data.results);
+  } catch (e) {
+    context.commit('setMsg', 'Error occurred while fetching users');
+  }
+},
 
 
 
@@ -135,16 +203,18 @@ export default createStore({
 
     async addProduct(context, payload) {
       try {
-        const response = await axios.post(`${cUrl}products`, payload);
-        const { msg, err } = response.data;
+        const response = await axios.post(`${capstoneeompUrl}/AddNewProduct`, payload);
 
+        context.commit('addProduct', payload);
+        const { msg, err } = response.data;
+    
         if (msg) {
           context.commit('setMsg', msg);
         } else if (err) {
           console.log(err);
           context.commit('setMsg', err);
         }
-
+    
         await context.dispatch('fetchProducts');
       } catch (error) {
         console.error(error);
@@ -152,6 +222,27 @@ export default createStore({
         throw error;
       }
     },
+
+    async updateProduct(context, updatedProduct) {
+      try {
+        // Make sure to use the correct URL for updating a product
+        const response = await axios.patch(`${capstoneeompUrl}/products/${updatedProduct.productID}`, updatedProduct);
+    
+        // Check if the update was successful
+        if (response.status === 200) {
+          context.commit('setMsg', 'Product updated successfully');
+        } else {
+          context.commit('setMsg', 'Product update failed');
+        }
+    
+        return response.data; // You can return data if needed
+      } catch (error) {
+        console.error(error);
+        context.commit('setMsg', 'An error occurred while updating the product');
+        throw error; // Rethrow the error for further handling, if necessary
+      }
+    },
+    
 
     async fetchProductsByCategory(context, categoryName) {
       try {
@@ -166,8 +257,11 @@ export default createStore({
     addToCart(product) {
       axios.post('http://your-api-url/cart/add', { product }).then((response) => {
         this.$store.commit('addToCart', product);
-      });
+    
+      }
+      )
     },
+    
 
     removeFromCart(productId) {
       axios.delete(`http://your-api-url/cart/remove/${productId}`).then(() => {
@@ -175,10 +269,11 @@ export default createStore({
       });
     },
 
-
-  },
+  
 
   modules: {
 
   },
-});
+}},
+)
+

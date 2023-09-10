@@ -46,7 +46,7 @@ const routes = [
   component: () => import('../views/CheckoutView.vue'),
   beforeEnter() {
     if(!cookies.get('LegitUser')) {
-      router.push({name: 'login'})
+      router.push({name: 'signIn'})
     }
   }
 },
@@ -63,10 +63,10 @@ const routes = [
   component: () => import('../components/SingleView.vue')
 },
 {
-  path: '/login',
-  name: 'login',
+  path: '/signIn',
+  name: 'signIn',
  
-  component: () => import('../views/LoginView.vue')
+  component: () => import('../views/SignInView.vue')
 },
 {
   path: '/register',
@@ -74,6 +74,18 @@ const routes = [
  
   component: () => import('../views/RegisterView.vue')
 },
+{
+  path: '/addProduct',
+  name: 'addProduct',
+ 
+  component: () => import('../views/AddProductView.vue')
+},
+{
+  path: '/editProduct/:id',
+  name: 'editProduct',
+  component: () => import('../views/EditProductView.vue')
+}
+
 ];
   
   

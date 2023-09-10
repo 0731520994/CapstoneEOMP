@@ -4,11 +4,12 @@
             <h1 style="text-decoration:underline">Products</h1>
        
       <div class="sortBtns">
-        <button class="btnOne" @click="sortByProductName">Sort by Product Name</button>
-        <button class="btnTwo " @click="sortByPrice">Sort by Price</button>
+        <RouterLink to="/addProduct" class="btn btn-primary">Add Product</RouterLink>
+
+       
       </div>
     
-      <div></div>
+     
 
 
 
@@ -32,16 +33,8 @@
                   <td>{{ item.price }}</td>
                   <td><img class="adminImg" :src="item.prodUrl" alt="" /></td>
                   <td>
-                    <div class="btnGroupUser">
-                      <button
-                        type="button"
-                        class="btn btn-primary"
-                        data-bs-toggle="modal"
-                        data-bs-target="#editProductModal"
-                        @click="editProduct(item)"
-                      >
-                        EDIT
-                      </button>
+                    <div class="btnGroupUser"> 
+                      <router-link :to="'/editProduct/' + item.prodID" class="btn btn-primary">Edit</router-link>
                       <button class="btn btn-danger" @click="deleteProduct(item.prodID)">Delete</button>
                     </div>
                   </td>
@@ -114,9 +107,8 @@
   
   <script>
   import { mapState, mapActions } from 'vuex';
-  import AddProductComp from '@/components/AddProductComp.vue';
+ 
   import AddUserComp from '@/components/AddUserComp.vue';
-  import EditProductComp from '@/components/EditProductComp.vue';
   import EditUserComp from '@/components/EditUserComp.vue';
   
   export default {
@@ -152,9 +144,7 @@
     },
 
     components: {
-      AddProductComp,
       AddUserComp,
-      EditProductComp,
       EditUserComp,
     }
   };

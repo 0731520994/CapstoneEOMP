@@ -49,6 +49,8 @@
         <!-- USER TABLE -->
        
             <h1 style="text-decoration:underline">Users</h1>
+        
+            <RouterLink to="/register" class="btn btn-primary">Add User</RouterLink>
          
 <div class="adminUser_container">
     <table class="table-bordered">
@@ -107,48 +109,34 @@
   
   <script>
   import { mapState, mapActions } from 'vuex';
- 
+  
   import AddUserComp from '@/components/AddUserComp.vue';
   import EditUserComp from '@/components/EditUserComp.vue';
   
   export default {
     computed: {
-      ...mapState(['products', 'users']),
-
+      ...mapState(['products', 'users', 'adminData']), // Add 'adminData' to the computed properties
+  
       sortedProducts() {
-      const sorted = [...this.product];
 
-      sorted.sort((a, b) => {
-        if (this.sortKey === "prodName") {
-          return this.ascending
-            ? a.prodName.localeCompare(b.prodName)
-            : b.prodName.localeCompare(a.prodName);
-        } else if (this.sortKey === "amount") {
-          return this.ascending ? a.price - b.price : b.price - a.price;
-        }
-        return 0;
-      });
-
-      return sorted;
+      },
     },
-  },
-
-    
+  
     mounted() {
       this.fetchProducts();
       this.fetchUsers();
     },
     methods: {
       ...mapActions(['fetchProducts', 'fetchUsers']),
-      
     },
-
+  
     components: {
       AddUserComp,
       EditUserComp,
-    }
+    },
   };
   </script>
+  
   
   <style>
 

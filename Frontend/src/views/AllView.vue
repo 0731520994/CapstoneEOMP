@@ -13,7 +13,7 @@
             <div class="card-footer">
               <div class="card-footer-buttons">
                 <button @click="single(product?.prodID)" class="allbtn">See more</button>
-                <button @click="Cart(product?.prodID)" class="allbtn">Add to cart</button>
+                <button @click="addToCart(product?.prodID)" class="allbtn">Add to cart</button>
               </div>
             </div>
           </div>
@@ -28,6 +28,7 @@
 
 
 import SingleView from '@/components/SingleView.vue';
+import AddToCartView from '@/components/AddToCartView.vue';
 
 export default {
   computed: {
@@ -47,14 +48,20 @@ export default {
     this.$router.push({ name:"single",params:{prodID:prodID}
     })
   },
-
-
-
+  addToCart(prodID) {
+    const viewProd= this.products.find(
+      (products)=> products.prodID===prodID
+    );
+    this.$store.commit("setViewCart", viewProd)
+    this.$router.push({ name:"addToCart",params:{prodID:prodID}
+    })
+  },
+  },
   components: {
       SingleView,
-     
+     AddToCartView,
   }
-  }
+  
 };
 
 

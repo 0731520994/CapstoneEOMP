@@ -13,6 +13,8 @@ export default createStore({
     products: [],
     product: null,
     adminData: [], 
+    cart: [],
+      total:0,
     newProduct: {
       prodID: '',
       prodName: '',
@@ -23,7 +25,7 @@ export default createStore({
     orders: null,
     order: null,
     categories: null,
-    addToCart: [],
+
     ViewItem: null,
     category: null,
     spinner: false,
@@ -36,8 +38,8 @@ export default createStore({
     },
   },
   getters: {
-    getProductById: (state) => (productID) => {
-      return state.products.find((product) => product.id ===productID);
+    getCartItemById: (state) => (productId) => {
+      return state.cart.find((item) => item.prodID === productId);
     },
   },
   mutations: {
@@ -77,11 +79,8 @@ export default createStore({
     setViewItem(state, ViewItem) {
       state.ViewItem = ViewItem;
     },
-    setAddToCart(state, product) {
-      if (!state.cart) {
-        state.cart = [];
-      }
-      state.cart.push(product);
+    setViewCart(state, ViewCart ) {
+      state.ViewCart =ViewCart;
     },
       addProduct(state, newProduct) {
     state.products.push(newProduct);
@@ -90,7 +89,35 @@ export default createStore({
     state.adminData.push(userData);
   },
 
-  },
+  addToCart(state, product) {
+  const existingCartItem = state.cart.find((item) => item.prodID === product.prodID);
+
+  if (existingCartItem) {
+    
+    existingCartItem.quantity += 1;
+  } else {
+   
+    state.cart.push({
+      prodID: product.prodID,
+      prodName: product.prodName,
+      quantity: 1, 
+    });
+  }
+},
+removeFromCart(state, productId) {
+
+  const index = state.cart.findIndex((item) => item.prodID === productId);
+  if (index !== -1) {
+    state.cart.splice(index, 1);
+  }
+},
+clearCart(state) {
+
+  state.cart = [];
+},
+},
+
+  
   
   actions: {
 
@@ -265,23 +292,20 @@ async login(context, payload) {
         context.commit('setMsg', 'Error occurred while fetching products by category');
       }
     },
-    
-    addToCart(product) {
-      axios.post('http://your-api-url/cart/add', { product }).then((response) => {
-        this.$store.commit('addToCart', product);
-      });
+
+    async fetchCartData(context, cartID) {
+      try {
+        const response = await axios.get(`/cart/${id}`); 
+        const { data } = response;
+        context.commit('setCart', data.results); 
+      } catch (error) {
+        console.error(error);
+        context.commit('setMsg', 'Error fetching cart data'); 
+      }
     },
-
-    removeFromCart(productId) {
-      axios.delete(`http://your-api-url/cart/remove/${productId}`).then(() => {
-        this.$store.commit('removeFromCart', productId);
-      });
-    },
-
-
-  },
 
   modules: {
 
   },
+}
 });

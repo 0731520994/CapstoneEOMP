@@ -43,82 +43,85 @@ export default {
       }
     };
   },
-  methods:{
-    addProduct(){
-          axios.post('https://capstoneconnection.onrender.com/AddNewProduct', this.product)
-          .then(res =>{
-            console.log(res.data)
-            alert(res.data.msg);
-            this.product={
-      prodID: "",
-      prodName: "",
-      categoryID: "",
-      price: "",
-      prodUrl: "",
-      err: [], // Initialize an error array
-      }
-          })
-          .catch(function(error){
-            if(error.response){
-              console.log(error.response.data)
-              console.log(error.response.status)
-              console.log(error.response.headers)
-            } else if(error.request){
-              console.log(error.request);
-            } else{
-              console.log('Error', error.msg);
-            }
-          })
-        }
-      }
+
+  methods: {
+
+  
+async addProduct() {
+  
+  if (!this.prodName || !this.categoryID || !this.price || !this.prodUrl) {
+    this.err = ["Please fill in all fields"];
+    return; 
+  }
+
+  try {
+    const payload = {
+      prodID: this.prodID,
+      prodName: this.prodName,
+      categoryID: this.categoryID,
+      price: this.price,
+      prodUrl: this.prodUrl,
+    };
+
+    const response = await axios.post("https://capstoneconnection.onrender.com/AddNewProduct", payload);
+
+  
+    if (response.data) {
+     
+      this.prodID = "";
+      this.prodName = "";
+      this.categoryID = "";
+      this.price = "";
+      this.prodUrl = "";
+      this.err = [];
+
+      this.$router.push("/admin");
+      alert("Product added successfully");
+    } else {
+     
+      this.err = ["An error occurred"];
+    }
+  } catch (err) {
+   
+    this.err = [err.response?.data?.msg || "An error occurred"];
+    console.error(err);
+  }
+},
+},
+ 
+  // methods:{
+  //   addProduct(){
+  //         axios.post('https://capstoneconnection.onrender.com/AddNewProduct', this.product)
+  //         .then(res =>{
+  //           console.log(res.data)
+  //           alert(res.data.msg);
+  //           this.product={
+  //     prodID: "",
+  //     prodName: "",
+  //     categoryID: "",
+  //     price: "",
+  //     prodUrl: "",
+  //     err: [], // Initialize an error array
+  //     }
+  //         })
+  //         .catch(function(error){
+  //           if(error.response){
+  //             console.log(error.response.data)
+  //             console.log(error.response.status)
+  //             console.log(error.response.headers)
+  //           } else if(error.request){
+  //             console.log(error.request);
+  //           } else{
+  //             console.log('Error', error.msg);
+  //           }
+  //         })
+  //       }
+  //     }
 
 };
 </script>
 
 
 <!-- 
-   methods: {
-
-  
-    async addProduct() {
-      // Validate the fields
-      if (!this.prodName || !this.categoryID || !this.price || !this.prodUrl) {
-        this.err = ["Please fill in all fields"];
-        return; // Stop execution if there are validation errors
-      }
-
-      try {
-        const payload = {
-          prodID: this.prodID,
-          prodName: this.prodName,
-          categoryID: this.categoryID,
-          price: this.price,
-          prodUrl: this.prodUrl,
-        };
-
-        const response = await axios.post("https://capstoneconnection.onrender.com/AddNewProduct", payload);
-
-      
-        if (response.data) {
-         
-          this.prodID = "";
-          this.prodName = "";
-          this.categoryID = "";
-          this.price = "";
-          this.prodUrl = "";
-          this.err = [];
-
-          this.$router.push("/admin");
-          alert("Product added successfully");
-        } else {
-         
-          this.err = ["An error occurred"];
-        }
-      } catch (err) {
-       
-        this.err = [err.response?.data?.msg || "An error occurred"];
-        console.error(err);
-      }
-    },
-  },
+   
  -->

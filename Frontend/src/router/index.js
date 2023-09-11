@@ -63,6 +63,12 @@ const routes = [
   component: () => import('../components/SingleView.vue')
 },
 {
+  path: '/cart/:prodID',
+  name: 'addTocart',
+ 
+  component: () => import('../components/AddToCartView.vue')
+},
+{
   path: '/signIn',
   name: 'signIn',
  

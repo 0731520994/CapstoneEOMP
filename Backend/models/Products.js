@@ -55,12 +55,12 @@ class Products{
     // }
   
 addProduct(req, res) {
-  const { prodName, categoryID, price, prodUrl } = req.body; // Assuming these are the columns in your table
+  const { prodID,prodName, categoryID, price, prodUrl } = req.body; // Assuming these are the columns in your table
   const query = `
     INSERT INTO Products (prodName, categoryID, price, prodUrl)
     VALUES (?, ?, ?, ?)
   `;
-  db.query(query, [prodName, categoryID, price, prodUrl], (err) => {
+  db.query(query, [prodID,prodName, categoryID, price, prodUrl], (err) => {
     if (!err) {
       res.json({
         status: res.statusCode,

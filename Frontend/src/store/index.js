@@ -235,21 +235,21 @@ async login(context, payload) {
 
     async updateProduct(context, updatedProduct) {
       try {
-        // Make sure to use the correct URL for updating a product
+       
         const response = await axios.patch(`${capstoneeompUrl}/products/${updatedProduct.productID}`, updatedProduct);
     
-        // Check if the update was successful
+    
         if (response.status === 200) {
           context.commit('setMsg', 'Product updated successfully');
         } else {
           context.commit('setMsg', 'Product update failed');
         }
     
-        return response.data; // You can return data if needed
+        return response.data; 
       } catch (error) {
         console.error(error);
         context.commit('setMsg', 'An error occurred while updating the product');
-        throw error; // Rethrow the error for further handling, if necessary
+        throw error; 
       }
     },
     

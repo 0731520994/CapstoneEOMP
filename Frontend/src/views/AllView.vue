@@ -1,9 +1,27 @@
 <template>
   <div class="container-fluid" style="width: 75rem; height: 70rem">
+    <label>Filter</label>
+    <select v-model="selectedFilter">
+      <option value="all">All</option>
+      <option value="Beauty">Beauty</option>
+      <option value="Accessories">Accessories</option>
+      <option value="Perfumes">Perfumes</option>
+    </select>
+
+    <label>Sort</label>
+    <select v-model="selectedFilter">
+      <option value="alphabetically">alphabetically</option>
+      <option value="Beauty">price-high</option>
+      <option value="Accessories">price-low</option>
+    </select>
+
+    <label>Search</label>
+    <input v-model="searchTerm" type="text" placeholder="Search for a product..." />
+
+
     <div class="card-body">
-      <h2>All Products</h2>
       <div class="row">
-        <div class="col-md-3" v-for="product in products" :key="product?.prodID">
+        <div class="col-md-3" v-for="product in filteredAndSortedProducts" :key="product?.prodID">
           <div class="card">
             <img :src="product?.prodUrl" class="card-img-top img-fluid" :alt="product?.name" style="width: 15rem; height: 14rem; padding: 2rem; margin:auto">
             <div class="card-inner-body">
@@ -22,49 +40,61 @@
     </div>
   </div>
 </template>
-<!-- :to="{name:'single', params: {id: product?.prodID}  } -->
 
 <script>
-
-
+import { mapState, mapActions } from 'vuex';
 import SingleView from '@/components/SingleView.vue';
 import AddToCartView from '@/components/AddToCartView.vue';
 
 export default {
+  data() {
+    return {
+      selectedFilter: 'all', 
+      selectedSort: 'options', 
+      searchTerm: '',
+    };
+  },
   computed: {
-    products() {
-      return this.$store.state.products;
+    ...mapState(['products']), 
+    filteredAndSortedProducts() {
+     
+      let filteredProducts = this.products;
+
+    
+      if (this.selectedFilter !== 'all') {
+        filteredProducts = filteredProducts.filter(product => product.category === this.selectedFilter);
+      }
+
+  
+      if (this.searchTerm.trim() !== '') {
+        const searchTermLower = this.searchTerm.toLowerCase();
+        filteredProducts = filteredProducts.filter(product => product.prodName.toLowerCase().includes(searchTermLower));
+      }
+
+  
+      if (this.selectedSort === 'alphabetically') {
+        filteredProducts.sort((a, b) => a.prodName.localeCompare(b.prodName));
+      } else if (this.selectedSort === 'price-high') {
+        filteredProducts.sort((a, b) => b.price - a.price);
+      } else if (this.selectedSort === 'price-low') {
+        filteredProducts.sort((a, b) => a.price - b.price);
+      }
+
+      return filteredProducts;
     },
   },
-  mounted() {
-    this.$store.dispatch('fetchProducts');
-  },
   methods: {
-  single(prodID) {
-    const viewProd= this.products.find(
-      (products)=> products.prodID===prodID
-    );
-    this.$store.commit("setViewItem", viewProd)
-    this.$router.push({ name:"single",params:{prodID:prodID}
-    })
-  },
-  addToCart(prodID) {
-    const viewProd= this.products.find(
-      (products)=> products.prodID===prodID
-    );
-    this.$store.commit("setViewCart", viewProd)
-    this.$router.push({ name:"addToCart",params:{prodID:prodID}
-    })
-  },
+    ...mapActions(['fetchProducts']), 
+   
   },
   components: {
-      SingleView,
-     AddToCartView,
-  }
-  
+    SingleView,
+    AddToCartView,
+  },
+  mounted() {
+    this.$store.dispatch('fetchProducts'); 
+  },
 };
-
-
 </script>
 
 <style>

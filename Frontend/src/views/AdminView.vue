@@ -108,18 +108,15 @@
   </template>
   
   <script>
+  import axios from 'axios';
   import { mapState, mapActions } from 'vuex';
   
-  import AddUserComp from '@/components/AddUserComp.vue';
-  import EditUserComp from '@/components/EditUserComp.vue';
   
   export default {
     computed: {
       ...mapState(['products', 'users', 'adminData']), 
   
-      sortedProducts() {
-
-      },
+     
     },
   
     mounted() {
@@ -127,14 +124,26 @@
       this.fetchUsers();
     },
     methods: {
-      ...mapActions(['fetchProducts', 'fetchUsers']),
-    },
-  
-    components: {
-      AddUserComp,
-      EditUserComp,
-    },
-  };
+  ...mapActions(['fetchProducts', 'fetchUsers']),
+
+  async deleteProduct(prodID) {
+    console.log(prodID);
+    if (confirm('Are you sure you want to delete?')) {
+      try {
+        const response = await axios.delete(`https://capstoneconnection.onrender.com/product/${prodID}`);
+        alert(response.data.msg);
+        this.getProducts();
+      } catch (error) {
+        if (error.response && error.response.status === 404) {
+          alert(error.response.data.msg);
+        } else {
+          console.error(error);
+        }
+      }
+    }
+  },
+},
+  }
   </script>
   
   

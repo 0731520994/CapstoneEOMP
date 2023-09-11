@@ -74,7 +74,7 @@ export default {
       return this.$store.state.user ||
       cookies.get('LegitUser')
         },
-        result() {
+          result() {
           return this.user?.result
         },
         isAdmin() {

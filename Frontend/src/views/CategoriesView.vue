@@ -3,13 +3,16 @@
     <nav id="navbar-example2" class="navbar bg-body-tertiary px-3 mb-3">
       <ul class="nav nav-pills">
         <li class="nav-item">
-          <a class="nav-link" @click="showSection('Perfumes')">Perfumes</a>
+            <router-link id="linkName" class="nav-link active" aria-current="page" to="/about">About</router-link>
+          </li>
+        <li class="nav-item">
+          <router-link class="nav-link"  to="/showSection('Perfumes')">Perfumes</router-link >
         </li>
         <li class="nav-item">
-          <a class="nav-link" @click="showSection('Accessories')">Accessories</a>
+          <router-link  class="nav-link" to="/showSection('Accessories')">Accessories</router-link >
         </li>
         <li class="nav-item">
-          <a class="nav-link" @click="showSection('Beauty')">Beauty</a>
+          <router-link  class="nav-link" to="/showSection('Beauty')">Beauty</router-link >
         </li>
       </ul>
     </nav>

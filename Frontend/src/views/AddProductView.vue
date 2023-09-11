@@ -8,19 +8,19 @@
       </ul>
 
       <label>ID</label>
-      <input type="number" placeholder="Enter productID" v-model="product.prodID" />
+      <input type="number" placeholder="Enter productID" v-model="prodID" />
 
       <label>Name</label>
-      <input type="text" placeholder="Enter product name" v-model="product.prodName" />
+      <input type="text" placeholder="Enter product name" v-model="prodName" />
 
       <label>categoryID</label>
-      <input type="text" placeholder="Bea(1), Per(2), acce(3)" v-model="product.categoryID" />
+      <input type="text" placeholder="Bea(1), Per(2), acce(3)" v-model="categoryID" />
 
       <label>Price</label>
-      <input type="number" placeholder="Enter the price" v-model="product.price" />
+      <input type="number" placeholder="Enter the price" v-model="price" />
 
       <label>Image</label>
-      <input type="text" placeholder="Enter the product link" v-model="product.prodUrl" />
+      <input type="text" placeholder="Enter the product link" v-model="prodUrl" />
 
       <button @click="addProduct" class="btn-submit">Submit</button>
     </div>
@@ -30,98 +30,57 @@
 <script>
 import axios from "axios";
 export default {
-  name:'addProduct',
   data() {
-    return { 
-      product: {
+    return {
       prodID: "",
       prodName: "",
       categoryID: "",
       price: "",
       prodUrl: "",
       err: [], // Initialize an error array
-      }
     };
   },
-
   methods: {
+    async addProduct() {
+      // Validate the fields
+      if (!this.prodName || !this.categoryID || !this.price || !this.prodUrl) {
+        this.err = ["Please fill in all fields"];
+        return; // Stop execution if there are validation errors
+      }
 
-  
-async addProduct() {
-  
-  if (!this.prodName || !this.categoryID || !this.price || !this.prodUrl) {
-    this.err = ["Please fill in all fields"];
-    return; 
-  }
+      try {
+        const payload = {
+          prodID: this.prodID,
+          prodName: this.prodName,
+          categoryID: this.categoryID,
+          price: this.price,
+          prodUrl: this.prodUrl,
+        };
 
-  try {
-    const payload = {
-      prodID: this.prodID,
-      prodName: this.prodName,
-      categoryID: this.categoryID,
-      price: this.price,
-      prodUrl: this.prodUrl,
-    };
+        const response = await axios.post("https://capstoneconnection.onrender.com/AddNewProduct", payload);
 
-    const response = await axios.post("https://capstoneconnection.onrender.com/AddNewProduct", payload);
+        // Check if the response contains data property
+        if (response.data) {
+          // Clear the form and error messages
+          this.prodID = "";
+          this.prodName = "";
+          this.categoryID = "";
+          this.price = "";
+          this.prodUrl = "";
+          this.err = [];
 
-  
-    if (response.data) {
-     
-      this.prodID = "";
-      this.prodName = "";
-      this.categoryID = "";
-      this.price = "";
-      this.prodUrl = "";
-      this.err = [];
-
-      this.$router.push("/admin");
-      alert("Product added successfully");
-    } else {
-     
-      this.err = ["An error occurred"];
-    }
-  } catch (err) {
-   
-    this.err = [err.response?.data?.msg || "An error occurred"];
-    console.error(err);
-  }
-},
-},
- 
-  // methods:{
-  //   addProduct(){
-  //         axios.post('https://capstoneconnection.onrender.com/AddNewProduct', this.product)
-  //         .then(res =>{
-  //           console.log(res.data)
-  //           alert(res.data.msg);
-  //           this.product={
-  //     prodID: "",
-  //     prodName: "",
-  //     categoryID: "",
-  //     price: "",
-  //     prodUrl: "",
-  //     err: [], // Initialize an error array
-  //     }
-  //         })
-  //         .catch(function(error){
-  //           if(error.response){
-  //             console.log(error.response.data)
-  //             console.log(error.response.status)
-  //             console.log(error.response.headers)
-  //           } else if(error.request){
-  //             console.log(error.request);
-  //           } else{
-  //             console.log('Error', error.msg);
-  //           }
-  //         })
-  //       }
-  //     }
-
+          this.$router.push("/admin");
+          alert("Product added successfully");
+        } else {
+          // Handle the case where the response does not contain data
+          this.err = ["An error occurred"];
+        }
+      } catch (err) {
+        // Handle any errors that occur during the request
+        this.err = [err.response?.data?.msg || "An error occurred"];
+        console.error(err);
+      }
+    },
+  },
 };
 </script>
-
-
-<!-- 
-   
- -->

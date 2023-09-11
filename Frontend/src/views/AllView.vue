@@ -7,14 +7,13 @@
       <option value="Accessories">Accessories</option>
       <option value="Perfumes">Perfumes</option>
     </select>
-
+    
     <label>Sort</label>
-    <select v-model="selectedFilter">
-      <option value="alphabetically">alphabetically</option>
-      <option value="Beauty">price-high</option>
-      <option value="Accessories">price-low</option>
-    </select>
-
+  <select v-model="selectedSort">
+    <option value="alphabetically">Alphabetically</option>
+    <option value="price-high">Price High to Low</option>
+    <option value="price-low">Price Low to High</option>
+  </select>
     <label>Search</label>
     <input v-model="searchTerm" type="text" placeholder="Search for a product..." />
 
@@ -31,7 +30,7 @@
             <div class="card-footer">
               <div class="card-footer-buttons">
                 <button @click="single(product?.prodID)" class="allbtn">See more</button>
-                <button @click="addToCart(product?.prodID)" class="allbtn">Add to cart</button>
+                <button @click="addToCart(product)">Add to cart</button>
               </div>
             </div>
           </div>
@@ -42,9 +41,10 @@
 </template>
 
 <script>
+import sweet from 'sweetalert'
 import { mapState, mapActions } from 'vuex';
 import SingleView from '@/components/SingleView.vue';
-import AddToCartView from '@/components/AddToCartView.vue';
+
 
 export default {
   data() {
@@ -85,11 +85,37 @@ export default {
   },
   methods: {
     ...mapActions(['fetchProducts']), 
-   
+
+    single(prodID) {
+    const viewProd= this.products.find(
+      (products)=> products.prodID===prodID
+    );
+    this.$store.commit("setViewItem", viewProd)
+    this.$router.push({ name:"single",params:{prodID:prodID}
+    })
   },
+  addToCart(product) {
+    if (product) {
+      this.$store.commit('addToCart', product);
+
+      // Pass the cart data as a query parameter to the checkout view
+      this.$router.push({ name: 'checkout', query: { cart: JSON.stringify(this.$store.state.cart) } });
+    } else {
+      // Handle the case where no product is selected
+      sweet({
+        title: "",
+        text: "",
+        type: "",
+        timer: 2000
+      });
+    }
+  },
+
+  },
+
   components: {
     SingleView,
-    AddToCartView,
+   
   },
   mounted() {
     this.$store.dispatch('fetchProducts'); 

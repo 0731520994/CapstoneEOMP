@@ -1,5 +1,19 @@
 <template>
-    <input
+  <div>
+
+  </div>
+</template>
+
+<script>
+  export default {
+    
+  }
+</script>
+
+<style lang="scss" scoped>
+
+</style>
+    <!-- <input
       class="m-2"
       v-model="searchTerm"
       placeholder="Search for a product..."
@@ -13,6 +27,7 @@
           <option value="price-high">Sort by Price (High to Low)</option>
           <option value="price-low">Sort by Price (Low to High)</option>
         </select>
+
         <button
           type="button"
           class="filter-btn"
@@ -61,8 +76,8 @@
     <SpinnerComp v-else />
   </template>
   
-  <script>
-  import CardComp from "@/components/ProductComp.vue";
+  <scrip>
+
   import SpinnerComp from "@/components/SpinnerComp.vue";
   export default {
     data() {
@@ -112,5 +127,5 @@
     },
   
     components: { CardComp, SpinnerComp },
-  };
-  </script>
+  }; -->
+  

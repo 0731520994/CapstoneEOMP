@@ -90,7 +90,13 @@ const routes = [
   path: '/editProduct/:id',
   name: 'editProduct',
   component: () => import('../views/EditProductView.vue')
+},
+{
+  path: '/buttons',
+  name: 'buttons',
+  component: () => import('../views/ButtonsView.vue')
 }
+
 
 ];
   

@@ -54,6 +54,28 @@ class Products{
       });
     }
   
+// addProduct(req, res) {
+//   const { prodID,prodName, categoryID, price, prodUrl } = req.body; // Assuming these are the columns in your table
+//   const query = `
+//     INSERT INTO Products (prodName, categoryID, price, prodUrl)
+//     VALUES (?, ?, ?, ?)
+//   `;
+//   db.query(query, [prodID,prodName, categoryID, price, prodUrl], (err) => {
+//     if (!err) {
+//       res.json({
+//         status: res.statusCode,
+//         msg: "Product Added",
+//       });
+//     } else {
+//       res.json({
+//         status: res.statusCode,
+//         msg: "An error occurred",
+//         err: err,
+//       });
+//     }
+//   });
+// }
+
 
    
       updateProduct(req, res) {

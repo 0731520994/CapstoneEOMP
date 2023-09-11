@@ -84,34 +84,27 @@ class Users{
             }
         })
     }
-    async register(req, res){
+//register a user
+   async register(req,res){
         const data = req.body
-        //encryption
-        data.userPass = await hash(data.userPass,15)
+        data.userPass = await hash(data.uPassword,10)
         const user = {
             emailAdd:data.emailAdd,
             userPass:data.userPass
         }
         const query = `
-        INSERT  INTO  Users
-        SET ?;
+        INSERT INTO Users
+        SET ?
         `
-        db.query(query, [data],(err) => {
-            if (err) throw err
-
-            //token 
-
+        db.query(query,[data],(err) => {
+            if(err) throw err
             let token = createToken(user)
-            res.cookie("Actual.User", token,
-            {
-                maxAge: 360000,
-                httpOnly: true
-            });
-            res.json({
-                msg: "You are now registered."
+            res.json ({
+                status: res.statusCode,
+                msg: "You are now registered"
             })
         })
-    }
+    };
     updateUser(req, res) {
         const data = req.body
         if (data.userPass) {

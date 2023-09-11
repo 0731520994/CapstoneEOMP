@@ -36,7 +36,9 @@ export default createStore({
     },
   },
   getters: {
-
+    getProductById: (state) => (productID) => {
+      return state.products.find((product) => product.id ===productID);
+    },
   },
   mutations: {
     setUsers(state, users) {
@@ -236,7 +238,7 @@ async login(context, payload) {
     async updateProduct(context, updatedProduct) {
       try {
        
-        const response = await axios.patch(`${capstoneeompUrl}/products/${updatedProduct.productID}`, updatedProduct);
+        const response = await axios.patch(`${capstoneeompUrl}/products/${updatedProduct.prodID}`, updatedProduct);
     
     
         if (response.status === 200) {

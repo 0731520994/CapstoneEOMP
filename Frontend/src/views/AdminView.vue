@@ -115,7 +115,7 @@
   
   export default {
     computed: {
-      ...mapState(['products', 'users', 'adminData']), // Add 'adminData' to the computed properties
+      ...mapState(['products', 'users', 'adminData']), 
   
       sortedProducts() {
 

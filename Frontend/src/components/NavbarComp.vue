@@ -35,11 +35,7 @@
           <li class="nav-item">
             <router-link id="linkName" class="nav-link active" aria-current="page" to="/contact">Contact</router-link>
           </li>
-        </ul>
-        <form class="d-flex" role="search">
-          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" >
-        </form> 
-        <li class="nav-item dropdown">
+          <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               Login
             </a>
@@ -52,6 +48,11 @@
               </li>
             </ul>
           </li>
+        </ul>
+        <form class="d-flex" role="search">
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" >
+        </form> 
+       
   
       </div>
     </div>
@@ -64,18 +65,23 @@
 
 <script>
 import { useCookies } from 'vue3-cookies'
-const {cookies} = useCookies();
-
+const {cookies} = useCookies()
 
 
 export default {
-  methods: {
-    openLoginModal() {
-      // Toggle the Bootstrap modal using jQuery
-      $('#loginModal').modal('show');
-    },
-  },
-};
+    computed: {
+      user() {
+      return this.$store.state.user ||
+      cookies.get('LegitUser')
+        },
+        result() {
+          return this.user?.result
+        },
+        isAdmin() {
+          return this.result?.userRole?.toLowerCase() === "admin"
+        }
+        },
+    }
 </script>
 
 <style>

@@ -103,4 +103,18 @@ export default {
   color: black;
   background:  rgb(238, 216, 248);
 }
+
+@media (max-width: 650px) {
+
+.card-body {
+width: 15rem;
+}
+
+@media (max-width: 1108px) {
+.card-body{
+  width: 20rem;
+}
+}
+}
+
 </style>

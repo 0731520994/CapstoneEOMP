@@ -1,9 +1,10 @@
 import { createStore } from 'vuex';
 import axios from 'axios';
-import sweet from 'sweetalert2'; 
-import cookies from 'js-cookie'; 
-
+import sweet from 'sweetalert'
+import {useCookies} from 'vue3-cookies'
+import router from '@/router'
 const capstoneeompUrl = "https://capstoneconnection.onrender.com"
+const {cookies} = useCookies()
 
 export default createStore({
   state: {
@@ -11,6 +12,7 @@ export default createStore({
     user: null,
     products: [],
     product: null,
+    adminData: [], 
     newProduct: {
       prodID: '',
       prodName: '',
@@ -82,18 +84,21 @@ export default createStore({
       addProduct(state, newProduct) {
     state.products.push(newProduct);
   },
+  addUserToAdmin(state, userData) {
+    state.adminData.push(userData);
+  },
 
   },
   
   actions: {
 
-
+    
     async register(context, payload) {
       try {
-        const {msg}  = (await axios.post (`${capstoneeompUrl}user`, payload)).data
+        const { msg } = (await axios.post(`${capstoneeompUrl}/user`, payload)).data
           if (msg) {
             sweet({
-              title: "Registering",
+              title: "Registration",
               text: msg,
               icon: "success",
               timer: 2000,
@@ -117,11 +122,11 @@ export default createStore({
 
 async login(context, payload) {
   try {
-    const { msg, token, result } = (await axios.post(`${caps}login`, payload)).data
+    const { msg, token, result } = (await axios.post(`${apstoneeompUrl}login`, payload)).data
     if(result) {
       context.commit("setUser", {result, msg});
       cookies.set("LegitUser", {token, msg, result})
-      authUser.applyToken(token)
+      AuthenticateUser.applyToken(token)
       sweet({
         title: msg,
         text: `Welcome back ${result?.firstName}`,
@@ -142,16 +147,16 @@ async login(context, payload) {
   }
 },
 
-async fetchUsers(context) {
-  try {
-    const { data } = await axios.get(`${capstoneeompUrl}/users`);
-    context.commit('setUsers', data.results);
-  } catch (e) {
-    context.commit('setMsg', 'Error occurred while fetching users');
-  }
-},
 
 
+    async fetchUsers(context) {
+      try {
+        const { data } = await axios.get(`${capstoneeompUrl}/users`);
+        context.commit('setUsers', data.results);
+      } catch (e) {
+        context.commit('setMsg', 'Error occurred while fetching users');
+      }
+    },
 
 
     async updateUser(context, updatedUser) {
@@ -165,7 +170,6 @@ async fetchUsers(context) {
         throw error;
       }
     },
-
     async getUser(context) {
       try {
         const response = await axios.get(`${cUrl}users`);
@@ -176,6 +180,12 @@ async fetchUsers(context) {
       }
     },
 
+
+    async pushDataToAdmin({ commit }, userData) {
+      commit('addUserToAdmin', userData);
+    },
+  
+   
     async fetchProducts(context) {
       try {
         const { data } = await axios.get(`${capstoneeompUrl}/products`); 
@@ -257,11 +267,8 @@ async fetchUsers(context) {
     addToCart(product) {
       axios.post('http://your-api-url/cart/add', { product }).then((response) => {
         this.$store.commit('addToCart', product);
-    
-      }
-      )
+      });
     },
-    
 
     removeFromCart(productId) {
       axios.delete(`http://your-api-url/cart/remove/${productId}`).then(() => {
@@ -269,11 +276,10 @@ async fetchUsers(context) {
       });
     },
 
-  
+
+  },
 
   modules: {
 
   },
-}},
-)
-
+});

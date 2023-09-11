@@ -59,9 +59,9 @@ export default {
 
         const response = await axios.post("https://capstoneconnection.onrender.com/AddNewProduct", payload);
 
-        // Check if the response contains data property
+      
         if (response.data) {
-          // Clear the form and error messages
+         
           this.prodID = "";
           this.prodName = "";
           this.categoryID = "";
@@ -72,11 +72,11 @@ export default {
           this.$router.push("/admin");
           alert("Product added successfully");
         } else {
-          // Handle the case where the response does not contain data
+         
           this.err = ["An error occurred"];
         }
       } catch (err) {
-        // Handle any errors that occur during the request
+       
         this.err = [err.response?.data?.msg || "An error occurred"];
         console.error(err);
       }

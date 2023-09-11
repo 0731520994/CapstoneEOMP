@@ -1,7 +1,8 @@
 
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
-
+import { useCookies } from 'vue3-cookies'
+const { cookies } = useCookies()
 
 
 const routes = [
@@ -42,31 +43,26 @@ const routes = [
 {
   path: '/checkout',
   name: 'checkout',
- 
+ props: true,
   component: () => import('../views/CheckoutView.vue'),
-  beforeEnter() {
+  
+},
+{
+  path: '/contact',
+  name: 'contact',
+ 
+  component: () => import('../views/ContactView.vue'),
+  afterEnter() {
     if(!cookies.get('LegitUser')) {
       router.push({name: 'signIn'})
     }
   }
 },
 {
-  path: '/contact',
-  name: 'contact',
- 
-  component: () => import('../views/ContactView.vue')
-},
-{
   path: '/single/:prodID',
   name: 'single',
  
   component: () => import('../components/SingleView.vue')
-},
-{
-  path: '/cart/:prodID',
-  name: 'addTocart',
- 
-  component: () => import('../components/AddToCartView.vue')
 },
 {
   path: '/signIn',
@@ -87,7 +83,7 @@ const routes = [
   component: () => import('../views/AddProductView.vue')
 },
 {
-  path: '/editProduct/:id',
+  path: '/editProduct/:prodID',
   name: 'editProduct',
   component: () => import('../views/EditProductView.vue')
 },

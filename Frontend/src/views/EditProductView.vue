@@ -1,75 +1,80 @@
 <template>
   <div>
     <div class="container flex-container">
-      <ul class="alert alert-warning" v-if="err && err.length > 0">
-        <li class="mb-0 ms-3" v-for="(error, index) in err" :key="index">
+      <ul class="alert alert-warning" v-if="this.err && this.err.length > 0">
+        <li class="mb-0 ms-3" v-for="(error, index) in this.err" :key="index">
           {{ error }}
         </li>
       </ul>
-      <div v-if="productData">
-        <label>ID</label>
-        <input type="number" placeholder="Enter productID" v-model="productData.prodID" />
 
-        <label>Name</label>
-        <input type="text" placeholder="Enter product name" v-model="productData.prodName" />
+      <label>ID</label>
+      <input type="number" placeholder="Enter productID" v-model="prodID" />
 
-        <label>categoryID</label>
-        <input type="text" placeholder="Bea(1), Per(2), acce(3)" v-model="productData.categoryID" />
+      <label>Name</label>
+      <input type="text" placeholder="Enter product name" v-model="prodName" />
 
-        <label>Price</label>
-        <input type="number" placeholder="Enter the price" v-model="productData.price" />
+      <label>categoryID</label>
+      <input type="text" placeholder="Bea(1), Per(2), acce(3)" v-model="categoryID" />
 
-        <label>Image</label>
-        <input type="text" placeholder="Enter the product link" v-model="productData.prodUrl" />
+      <label>Price</label>
+      <input type="number" placeholder="Enter the price" v-model="price" />
 
-        <button @click="updateProductData" class="btn-submit">Update</button>
-      </div>
+      <label>Image</label>
+      <input type="text" placeholder="Enter the product link" v-model="prodUrl" />
+
+      <button @click="updateProduct" class="btn-submit">Submit</button>
     </div>
   </div>
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex';
+import axios from "axios";
+
 
 export default {
+  name: 'editProduct',
   data() {
     return {
       err: [], 
-    }
+      product: {
+        prodID: "",
+        categoryID: "",
+        price: "",
+        prodUrl: "",
+        prodName: "",
+      },
+    };
   },
-  computed: {
-    ...mapGetters(['getProductById']),
-    productData() {
-      return this.getProductById(this.$route.params.id);
-    },
+
+  mounted() {
+   
+
+    this.getProductData();
   },
+
   methods: {
-    ...mapActions(['updateProduct']),
-    async updateProductData() {
-      if (!this.productData.prodName || !this.productData.categoryID || !this.productData.price || !this.productData.prodUrl) {
-        this.err = ["Please fill in all fields"];
-        return;
-      }
+    getProductData() {
+      axios.get('https://capstoneconnection.onrender.com/product/{id}')
+        .then(res => {
+          console.log(res.data.product);
+          this.product = res.data.product; 
+        })
+        .catch(err => {
+          this.err = [err.response?.data?.msg || "An error occurred"];
+          console.error(err);
+        });
+    },
 
-      try {
-        const payload = {
-          prodID: this.$route.params.id,
-          changes: {
-            prodName: this.productData.prodName,
-            categoryID: this.productData.categoryID,
-            price: this.productData.price,
-            prodUrl: this.productData.prodUrl,
-          },
-        };
-
-        await this.updateProduct(payload);
-
-        this.$router.push("/admin");
-        alert("Product updated successfully");
-      } catch (err) {
-        this.err = [err.response?.data?.msg || "An error occurred"];
-        console.error(err);
-      }
+    async updateProduct() {
+      axios.post("https://capstoneconnection.onrender.com/product/{id}", this.product)
+        .then(res => {
+          console.log(res.data.msg);
+          this.err = []; 
+        })
+        .catch(err => {
+          this.err = [err.response?.data?.msg || "An error occurred"];
+          console.error(err);
+        });
     },
   },
 };

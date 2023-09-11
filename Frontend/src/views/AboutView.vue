@@ -1,6 +1,6 @@
 <template>
 <div>
- <div class="card mb-3" style="max-width:100 80rem; height: 35rem;">
+ <div class="card-about mb-3" style="max-width:100 80rem; height: 35rem;">
   <div class="row g-0">
     <div class="col-md-4">
         
@@ -9,7 +9,7 @@
     <div class="col-md-8">
       <div class="card-body">
         <h1 class="card-title">About Us</h1>
-        <p class="card-text">At JoyfulGif---ts, we believe in the magic of personal touch. When you choose a product, you're not just selecting an item; you're crafting a moment. Our unique personalization feature allows you to choose a color that resonates with your intent. Every gift is carefully wrapped and adorned with a sweet message, a motivational quote, or words of inspiration. It's a reminder that your gesture goes beyond the gift itself – it's a heartfelt connection that transcends distance and time.</p>
+        <p class="card-text">At Joyful Gifts, we believe in the magic of personal touch. When you choose a product, you're not just selecting an item; you're crafting a moment. Our unique personalization feature allows you to choose a color that resonates with your intent. Every gift is carefully wrapped and adorned with a sweet message, a motivational quote, or words of inspiration. It's a reminder that your gesture goes beyond the gift itself – it's a heartfelt connection that transcends distance and time.</p>
         <h4>Our Vision</h4>
         <p class="card-text">Our vision is simple yet profound – to be a beacon of joy in a world that sometimes feels overwhelming. We aspire to remind you that every moment, no matter how small, is an opportunity to create happiness. </p>
         <h4>Our Mission</h4>
@@ -53,7 +53,7 @@
 </script>
 
 <style >
-.card{
+.card-about{
     background-color: purple;
    
 }
@@ -110,9 +110,9 @@ h4{
 }
 
 @media (max-width: 576px) {
-  .card{
+  .card-about{
     background-color: purple;
-    height:fit-content
+  
 }
 }
 

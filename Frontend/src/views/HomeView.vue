@@ -18,14 +18,14 @@
   <div class="carousel-inner"  style="width: 99%">
         <div class="carousel-item active">
           <div class="carousel-text">
-            <h3>👨🏽Sam Due</h3>
+            <h3 class="h-home">👨🏽Sam Due</h3>
             <p class="corouselp">Very nice collection. Price , I find it very reasonable. <br>All the items are displayed in good order. It is really a pleasure to visit this shop</p>
           </div>
         </div>
 
         <div class="carousel-item">
           <div class="carousel-text">
-            <h3>👩‍🦰Ellain Matthews</h3>
+            <h3 class="h-home">👩‍🦰Ellain Matthews</h3>
             <p class="corouselp">Excellent product ✔️
               Very quick delivery ✔️
               Very pleased 😊</p>
@@ -34,8 +34,8 @@
 
         <div class="carousel-item">
           <div class="carousel-text ">
-            <h3>👩🏽Sis Lina</h3>
-            <p class="corouselp">I have bought the watch for my husband's birthday. He loved love it.<br> Beautiful presentation and packaging.</p>
+            <h3 class="h-home">👩🏽Sis Lina</h3>
+            <p class="corouselp">I bought the watch for my husband's birthday. He loved love it.<br> Beautiful presentation and packaging.</p>
           </div>
         </div>
       </div>
@@ -63,36 +63,36 @@
 
     <div class="row row-cols-1 row-cols-md-3 g-4">
       <div class="col">
-        <div class="card h-100 ">
+        <div class="card-home h-100 ">
           <img src="https://i.postimg.cc/QCN38RtB/images.jpg" class="card-img-top" alt="" style="width: 15rem; height: 14rem; padding: 2rem; margin:auto">
-          <div class="card-body">
-            <h5 class="card-title">Noise Champ</h5>
+          <div class="card-hbody">
+            <h5 class="cardh-title">Noise Champ</h5>
           </div>
-          <div class="card-footer">
+          <div class="card-homefooter">
             <RouterLink to="/products" class="see more">See more</RouterLink>
           </div>
         </div>
       </div>
 
       <div class="col">
-        <div class="card h-100">
+        <div class="card-home h-100">
           <img src="https://i.postimg.cc/nrJZ3FGM/about-img.png" class="card-img-top" alt="" style="width: 15rem; height: 14rem; padding: 2rem; margin:auto">
-          <div class="card-body">
-            <h5 class="card-title">Bracelet</h5>
+          <div class="card-hbody">
+            <h5 class="cardh-title">Bracelet</h5>
           </div>
-          <div class="card-footer">
+          <div class="card-homefooter">
             <RouterLink to="/products" class="see more">See more</RouterLink>
           </div>
         </div>
       </div>
 
       <div class="col">
-        <div class="card h-100">
+        <div class="card-home h-100">
           <img src="https://i.postimg.cc/jS3rdrLh/versace-pour-homme-dylan-blue-eau-de-toilette.webp" class="card-img-top" alt="" style="width: 15rem; height: 14rem; padding: 2rem; margin:auto">
-          <div class="card-body">
-            <h5 class="card-title">Versace Pour Home Dylan</h5>
+          <div class="card-hbody">
+            <h5 class="cardh-title">Versace Pour Home Dylan</h5>
           </div>
-          <div class="card-footer">
+          <div class="card-homefooter">
     
             <RouterLink to="/products" class="see more">See more</RouterLink>
            
@@ -140,14 +140,14 @@ function validate(event) {
 <style >
 
 
-.card {
+.card-home{
   margin: 7%;
   border-radius: 90%;
   width: 80%;
  
 }
 
-.card-body {
+.card-hbody {
   background-color: rgba(128, 0, 128, 0.277);
   color: black;
   height: 70%;
@@ -155,19 +155,19 @@ function validate(event) {
  
 }
 
-.card-title {
+.cardh-title {
   text-align: center;
  text-shadow: 3px 3px white;
 }
 
-.card-footer {
+.card-homefooter {
   display: none;
 }
 
-.card-footer-button{
+.card-homefooter-button{
   margin-right: 10px;
 }
-.card:hover .card-footer{
+.card:hover .card-homefooter{
   display: block;
  
 }
@@ -205,7 +205,7 @@ text-decoration: solid;
 }
 
 
-h3{
+.h-home{
   background-color: whitesmoke;
   width: fit-content;
   margin: 1%;
@@ -414,7 +414,7 @@ text-decoration: solid;
 
 
 }
-.card-footer{
+.card-homefooter{
   margin: auto;
   background-color: white;
   color: white;
@@ -480,8 +480,12 @@ background-color: white;
   width: 70%;
   box-shadow: 4p 4px white;
   background-color:rgba(255, 255, 255, 0.062);
-  margin-left: 4rem;
-  margin-top: 7rem;
+  font-size: 4px;
+  margin: 1rem;
+}
+
+.h-home{
+  font-size: 4px;
 }
 }
 

@@ -33,27 +33,49 @@ class Products{
         });
     }
     
-    addProduct(req, res) {
-      const query = `
-              INSERT INTO Products 
-              SET ?
-          `;
-      db.query(query, [req.body], (err) => {
-        if (!err) {
-          res.json({
-            status: res.statusCode,
-            msg: "Product Added ",
-          });
-        } else {
-          res.json({
-            status: res.statusCode,
-            msg: "An error occured",
-            err:err
-          });
-        }
+    // addProduct(req, res) {
+    //   const query = `
+    //           INSERT INTO Products 
+    //           SET ?
+    //       `;
+    //   db.query(query, [req.body], (err) => {
+    //     if (!err) {
+    //       res.json({
+    //         status: res.statusCode,
+    //         msg: "Product Added ",
+    //       });
+    //     } else {
+    //       res.json({
+    //         status: res.statusCode,
+    //         msg: "An error occured",
+    //         err:err
+    //       });
+    //     }
+    //   });
+    // }
+  
+addProduct(req, res) {
+  const { prodName, categoryID, price, prodUrl } = req.body; // Assuming these are the columns in your table
+  const query = `
+    INSERT INTO Products (prodName, categoryID, price, prodUrl)
+    VALUES (?, ?, ?, ?)
+  `;
+  db.query(query, [prodName, categoryID, price, prodUrl], (err) => {
+    if (!err) {
+      res.json({
+        status: res.statusCode,
+        msg: "Product Added",
+      });
+    } else {
+      res.json({
+        status: res.statusCode,
+        msg: "An error occurred",
+        err: err,
       });
     }
-  
+  });
+}
+
 
    
       updateProduct(req, res) {

@@ -213,13 +213,10 @@ export default createStore({
 
   async addProduct(context, payload) {
     try {
-      const response = await axios.post(`${capstoneeompUrl}/AddNewProduct`, payload);
-
-      context.commit('addProduct', payload);
-      const { msg, err } = response.data;
-  
+      const {msg, err} = (await axios.post(`${capstoneeompUrl}/AddNewProduct`, payload)).data;
       if (msg) {
         context.commit('setMsg', msg);
+        context.dispatch('fetchProducts')
       } else if (err) {
         console.log(err);
         context.commit('setMsg', err);

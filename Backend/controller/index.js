@@ -7,7 +7,7 @@ const routes = express.Router()
 
 //Export all objects
 
-const {users, products, categories, orders, cart} = require('../models')
+const {users, products, orders, cart} = require('../models')
 
 
 
@@ -51,31 +51,6 @@ bodyParser.json(), (req, res)=>{
     users.login(req, res)
 })
 
-
-
-
-// =========CATEGORIES=============
-
-
-routes.get('/categories', (req, res)=>{
-    categories.fetchCategories(req, res)
-})
-routes.get('/category/:id',(req, res)=>{
-    categories.fetchCategory(req, res)
-})
-routes.post('/AddNewCategory',(req, res)=>{
-    categories.addCategory(req, res)
-})
-
-routes.patch('/category/:id', bodyParser.json(),(req, res)=>{
-    categories.addCategory(req, res)
-})
-routes.put('/category/:id',bodyParser.json(),(req, res)=>{
-    categories.updateCategory(req, res)
-})
-routes.delete('/category/:id', (req,res)=>{
-    categories.deleteCategory(req, res)
-})
 
 
 // =========PRODUCTS ROUTES=============
@@ -125,24 +100,6 @@ routes.delete('/order/:id', (req,res)=>{
     orders.deleteOrder(req, res)
 })
 
-
-// =========CATEGORIES ROUTES BY NAME=============
-
-
-routes.get('/products/category/beauty', (req, res) => {
-  categories.fetchProductsInBeautyCategory(req, res)
-});
-
-
-routes.get('/products/category/perfumes', (req, res) => {
-    categories.fetchProductsInPerfumesCategory(req, res)
-
-});
-
-routes.get('/products/category/accessories', (req, res) => {
-    categories.fetchProductsAccessoriesCategory(req, res)
-
-});
 
 
 

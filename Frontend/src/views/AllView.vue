@@ -130,6 +130,7 @@ export default {
 .card {
   margin: 6%;
   border-radius: 15%;
+  background-color: white;
 }
 
 .card-inner-body {

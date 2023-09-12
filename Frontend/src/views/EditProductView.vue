@@ -7,20 +7,11 @@
         </li>
       </ul>
 
-      <label>ID</label>
-      <input type="number" placeholder="Enter productID" v-model="prodID" />
-
-      <label>Name</label>
-      <input type="text" placeholder="Enter product name" v-model="prodName" />
-
-      <label>categoryID</label>
-      <input type="text" placeholder="Bea(1), Per(2), acce(3)" v-model="categoryID" />
-
-      <label>Price</label>
-      <input type="number" placeholder="Enter the price" v-model="price" />
-
-      <label>Image</label>
-      <input type="text" placeholder="Enter the product link" v-model="prodUrl" />
+      <input type="number" placeholder="Enter productID" v-model="product.prodID" />
+      <input type="text" placeholder="Enter product name" v-model="product.prodName" />
+      <input type="number" placeholder="Enter the price" v-model="product.price" />
+      <input type="text" placeholder="Bea(1), Per(2), acce(3)" v-model="product.category" />
+      <input type="text" placeholder="Enter the product link" v-model="product.prodUrl" />
 
       <button @click="updateProduct" class="btn-submit">Submit</button>
     </div>
@@ -38,7 +29,7 @@ export default {
       err: [], 
       product: {
         prodID: "",
-        categoryID: "",
+        category: "",
         price: "",
         prodUrl: "",
         prodName: "",
@@ -46,6 +37,10 @@ export default {
     };
   },
 
+  created(){
+       this.$store.dispatch('fetchProduct',
+        this.$route.params.id)
+    },
   mounted() {
    
 
@@ -54,28 +49,30 @@ export default {
 
   methods: {
     getProductData() {
-      axios.get('https://capstoneconnection.onrender.com/product/{id}')
-        .then(res => {
-          console.log(res.data.product);
-          this.product = res.data.product; 
-        })
-        .catch(err => {
-          this.err = [err.response?.data?.msg || "An error occurred"];
-          console.error(err);
-        });
-    },
+  const productId = this.$route.params.id; // Get the product ID from the route parameter
+  axios.get(`https://capstoneconnection.onrender.com/product/${productId}`)
+    .then(res => {
+      console.log(res.data.product);
+      this.product = res.data.product;
+    })
+    .catch(err => {
+      this.err = [err.response?.data?.msg || "An error occurred"];
+      console.error(err);
+    });
+},
 
-    async updateProduct() {
-      axios.post("https://capstoneconnection.onrender.com/product/{id}", this.product)
-        .then(res => {
-          console.log(res.data.msg);
-          this.err = []; 
-        })
-        .catch(err => {
-          this.err = [err.response?.data?.msg || "An error occurred"];
-          console.error(err);
-        });
-    },
+async updateProduct() {
+  try {
+    const productId = this.$route.params.id; 
+    const response = await axios.put(`https://capstoneconnection.onrender.com/product/${productId}`, this.product);
+    console.log(response.data.msg);
+    this.err = [];
+  } catch (err) {
+    this.err = [err.response?.data?.msg || "An error occurred"];
+    console.error(err);
+  }
+},
+
   },
 };
 </script>

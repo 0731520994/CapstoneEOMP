@@ -19,7 +19,7 @@
                 <tr>
                   <th>ID</th>
                   <th>Product Name</th>
-                  <th>Category ID</th>
+                  <th>Category</th>
                   <th>Price</th>
                   <th class="img-fluid">Image</th>
                   <th>Edit/Delete</th>
@@ -29,7 +29,7 @@
                 <tr class="tdSize" v-for="item in products" :key="item.prodID">
                   <td>{{ item.prodID }}</td>
                   <td>{{ item.prodName }}</td>
-                  <td>{{ item.categoryID }}</td>
+                  <td>{{ item.category }}</td>
                   <td>{{ item.price }}</td>
                   <td><img class="adminImg" :src="item.prodUrl" alt="" /></td>
                   <td>
@@ -126,24 +126,12 @@
     methods: {
   ...mapActions(['fetchProducts', 'fetchUsers']),
 
-  async deleteProduct(prodID) {
-    console.log(prodID);
-    if (confirm('Are you sure you want to delete?')) {
-      try {
-        const response = await axios.delete(`https://capstoneconnection.onrender.com/product/${prodID}`);
-        alert(response.data.msg);
-        this.getProducts();
-      } catch (error) {
-        if (error.response && error.response.status === 404) {
-          alert(error.response.data.msg);
-        } else {
-          console.error(error);
-        }
-      }
+   deleteProduct(productId) {
+    this.$store.dispatch('deleteProduct', productId);
     }
   },
-},
-  }
+}
+  
   </script>
   
   

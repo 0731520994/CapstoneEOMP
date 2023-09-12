@@ -13,8 +13,13 @@
       <label>Name</label>
       <input type="text" placeholder="Enter product name" v-model="prodName" />
 
-      <label>categoryID</label>
-      <input type="text" placeholder="Bea(1), Per(2), acce(3)" v-model="categoryID" />
+      <label>Category</label>
+      <select v-model="category">
+  <option value="Accessories">Accessories</option>
+  <option value="Beauty">Beauty</option>
+  <option value="Perfumes">Perfumes</option>
+</select>
+
 
       <label>Price</label>
       <input type="number" placeholder="Enter the price" v-model="price" />
@@ -34,37 +39,47 @@ export default {
     return {
       prodID: "",
       prodName: "",
-      categoryID: "",
+      category: "",
       price: "",
       prodUrl: "",
-      err: [], // Initialize an error array
+      err: [], 
+      products: [],
     };
   },
   methods: {
     async addProduct() {
-      // Validate the fields
-      if (!this.prodName || !this.categoryID || !this.price || !this.prodUrl) {
+     
+      if (!this.prodName || !this.category || !this.price || !this.prodUrl) {
         this.err = ["Please fill in all fields"];
-        return; // Stop execution if there are validation errors
+        return; 
       }
 
       try {
         const payload = {
           prodID: this.prodID,
           prodName: this.prodName,
-          categoryID: this.categoryID,
+          categoryID: this.category,
           price: this.price,
           prodUrl: this.prodUrl,
         };
 
         const response = await axios.post("https://capstoneconnection.onrender.com/AddNewProduct", payload);
 
-        // Check if the response contains data property
+
         if (response.data) {
-          // Clear the form and error messages
+
+        this.products.pus({
+
+          prodID: this.prodID = "",
+          prodName: this.prodName = "",
+          category: this.category = "",
+          price: this.price = "",
+          prodUrl: this.prodUrl = "",
+         
+        });
           this.prodID = "";
           this.prodName = "";
-          this.categoryID = "";
+          this.category = "";
           this.price = "";
           this.prodUrl = "";
           this.err = [];
@@ -72,11 +87,11 @@ export default {
           this.$router.push("/admin");
           alert("Product added successfully");
         } else {
-          // Handle the case where the response does not contain data
+         
           this.err = ["An error occurred"];
         }
       } catch (err) {
-        // Handle any errors that occur during the request
+        
         this.err = [err.response?.data?.msg || "An error occurred"];
         console.error(err);
       }

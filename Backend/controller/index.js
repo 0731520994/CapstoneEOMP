@@ -32,13 +32,13 @@ routes.put('/user/: id', bodyParser.json(),
         users.updateUser(req, res)
     })
 
-routes.patch('/user/: id', bodyParser.json(),
+routes.patch('/user/: userID', bodyParser.json(),
     (req,res) =>{
      users.updateUser(req, res)
     })
     
 
-routes.delete('/user/: id', bodyParser.json(),
+routes.delete('/user/: userID', bodyParser.json(),
     (req,res) =>{
         users.deleteUser(req, res)
     })
@@ -71,7 +71,7 @@ routes.patch('/product/:id', bodyParser.json(), (req, res) => {
 routes.put('/product/:id', bodyParser.json(), (req, res) => {
     products.updateProduct(req, res);
 });
-routes.delete('/product/:id', (req, res) => {
+routes.delete('/product/:prodID', (req, res) => {
     products.deleteProduct(req, res);
 });
 

@@ -26,13 +26,12 @@
       <label>Image</label>
       <input type="text" placeholder="Enter the product link" v-model="productData.prodUrl" />
 
-      <button @click="addProduct" class="btn-submit">Submit</button>
+      <button @click.prevent="addProduct" class="btn-submit">Submit</button>
     </div>
   </div>
 </template>
 
 <script>
-import axios from "axios";
 export default {
   data() {
     return {
@@ -49,41 +48,11 @@ export default {
   methods: {
 
      addProduct() {
-     
-        const response = await axios.post("https://capstoneconnection.onrender.com/AddNewProduct", payload);
-
-
-        if (response.data) {
-
-        this.products.pus({
-
-          prodID: this.prodID = "",
-          prodName: this.prodName = "",
-          category: this.category = "",
-          price: this.price = "",
-          prodUrl: this.prodUrl = "",
-         
-        });
-          this.prodID = "";
-          this.prodName = "";
-          this.category = "";
-          this.price = "";
-          this.prodUrl = "";
-          this.err = [];
-
-          this.$router.push("/admin");
-          alert("Product added successfully");
-        } else {
-         
-          this.err = ["An error occurred"];
-        }
-      } catch (err) {
-        
-        this.err = [err.response?.data?.msg || "An error occurred"];
-        console.error(err);
-      }
+      console.log(this.productData);
+        this.$store.dispatch('addProduct', this.productData)
+      } 
+  
     },
-  },
 };
 
 

@@ -216,23 +216,31 @@ async login(context, payload) {
 
     async addProduct(context, payload) {
       try {
-        const {} = (await axios.post(`${capstoneeompUrl}AddNewProduct`, payload)).data;
-
-        context.commit('addProduct', payload);
-        const { msg, err } = response.data;
-    
-        if (msg) {
-          context.commit('setMsg', msg);
-        } else if (err) {
-          console.log(err);
-          context.commit('setMsg', err);
+        const {msg} = (await axios.post(`${capstoneeompUrl}AddNewProduct`, payload)).data;
+        console.log(msg);
+        if(msg) {
+          context.dispatch("fetchProducts")
+          sweet({
+            title: "Success",
+            text: msg,
+            icon: "success",
+            timer: 2000
+          })
+        }else {
+          sweet({
+            title: "Error",
+            text: "An error occurred",
+            icon: "error",
+            timer: 2000
+          })
         }
-    
-        await context.dispatch('fetchProducts');
       } catch (error) {
-        console.error(error);
-        context.commit('setMsg', 'Error adding product');
-        throw error;
+        sweet({
+          title: "Error",
+          text: "Please contact the admin",
+          icon: "error",
+          timer: 2000
+        })
       }
     },
 

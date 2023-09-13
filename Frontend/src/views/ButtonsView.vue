@@ -1,19 +1,5 @@
 <template>
-  <div>
-
-  </div>
-</template>
-
-<script>
-  export default {
-    
-  }
-</script>
-
-<style lang="scss" scoped>
-
-</style>
-    <!-- <input
+    <input
       class="m-2"
       v-model="searchTerm"
       placeholder="Search for a product..."
@@ -27,7 +13,6 @@
           <option value="price-high">Sort by Price (High to Low)</option>
           <option value="price-low">Sort by Price (Low to High)</option>
         </select>
-
         <button
           type="button"
           class="filter-btn"
@@ -56,9 +41,8 @@
           type="button"
           class="filter-btn"
           :class="{ 'active-btn': selectedFilter === 'Accessories' }"
-          @click="selectFilter('Accessories')"
-        >
-          Beverages
+          @click="selectFilter('Accessories')">
+      
         </button>
       </div>
     </div>
@@ -76,8 +60,8 @@
     <SpinnerComp v-else />
   </template>
   
-  <scrip>
-
+  <script>
+  import CardComp from "@/components/ProductComp.vue";
   import SpinnerComp from "@/components/SpinnerComp.vue";
   export default {
     data() {
@@ -127,5 +111,5 @@
     },
   
     components: { CardComp, SpinnerComp },
-  }; -->
-  
+  };
+  </script>

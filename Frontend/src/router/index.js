@@ -91,7 +91,9 @@ const routes = [
   path: '/buttons',
   name: 'buttons',
   component: () => import('../views/ButtonsView.vue')
-}
+},
+
+
 
 
 ];

@@ -98,10 +98,9 @@ export default {
     if (product) {
       this.$store.commit('addToCart', product);
 
-      // Pass the cart data as a query parameter to the checkout view
       this.$router.push({ name: 'checkout', query: { cart: JSON.stringify(this.$store.state.cart) } });
     } else {
-      // Handle the case where no product is selected
+    
       sweet({
         title: "",
         text: "",

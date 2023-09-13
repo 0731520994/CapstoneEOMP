@@ -27,18 +27,18 @@ routes.post('/register', bodyParser.json(),
     })
     
 
-routes.put('/user/: id', bodyParser.json(),
+routes.put('/user/:id', bodyParser.json(),
     (req,res) =>{
         users.updateUser(req, res)
     })
 
-routes.patch('/user/: userID', bodyParser.json(),
+routes.patch('/user/:userid', bodyParser.json(),
     (req,res) =>{
      users.updateUser(req, res)
     })
     
 
-routes.delete('/user/: userID', bodyParser.json(),
+routes.delete('/user/:id', bodyParser.json(),
     (req,res) =>{
         users.deleteUser(req, res)
     })

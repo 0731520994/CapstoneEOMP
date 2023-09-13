@@ -95,7 +95,6 @@ class Products{
       updateProduct(req, res) {
         const query = `
                 UPDATE Products
-                SET ? 
                 WHERE prodID = ${req.params.prodID};
             `;
         db.query(query, [req.body], (err) => {

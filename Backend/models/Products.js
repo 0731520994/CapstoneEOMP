@@ -75,39 +75,13 @@ class Products{
       })  
       })
   }
-  
-
-//   addProduct(req, res) {
-//     const data = req.body;
-//     const query = `
-//     INSERT INTO Products
-//     SET ?;
-//     `;
-//     db.query(query, [data], (err) => {
-//         if (err) {
-//             console.error("Error Adding New product:", err);
-//             return res.status(500).json({
-//                 status: 500,
-//                 error: "error Adding new product"
-//             });
-//         }
-//         res.json({
-//             status: res.statusCode,
-//             msg: "Product Added"
-//         });
-//     });
-// }
     
-
-  
   addProduct(req, res) {
-    const { prodID, prodName, category, price, prodUrl } = req.body; 
     const query = `
-      INSERT INTO Products (prodID, prodName, category, price, prodUrl)
-      VALUES (?, ?, ?, ?, ?);
+      INSERT INTO Products
+      SET ?;
     `;
-    const values = [prodID, prodName, category, price, prodUrl];
-    db.query(query, values, (err) => {
+    db.query(query, (err) => {
       if (!err) {
         res.json({
           status: res.statusCode,
@@ -116,8 +90,7 @@ class Products{
       } else {
         res.json({
           status: res.statusCode,
-          msg: "An error occurred",
-          err: err,
+          ërr: "An error occurred",
         });
       }
     });

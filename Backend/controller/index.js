@@ -61,7 +61,7 @@ routes.get('/products', (req, res) => {
 routes.get('/product/:id', (req, res) => {
     products.fetchProduct(req, res);
 });
-routes.post('/AddNewProduct', (req, res) => {
+routes.post('/AddNewProduct', bodyParser.json(), (req, res) => {
     products.addProduct(req, res);
 });
 
@@ -86,7 +86,7 @@ routes.get('/orders', (req, res)=>{
 routes.get('/order/:id',(req, res)=>{
     orders.fetchOrder(req, res)
 })
-routes.post('/AddNewOrder',(req, res)=>{
+routes.post('/AddNewOrder',bodyParser.json(),(req, res)=>{
     orders.addOrder(req, res)
 })
 
@@ -108,7 +108,7 @@ routes.delete('/order/:id', (req,res)=>{
 routes.get('/cart/:id',(req, res)=>{
     cart.fetchCart(req, res)
 })
-routes.post('/AddNewCart',(req, res)=>{
+routes.post('/AddNewCart',bodyParser.json(),(req, res)=>{
     cart.addCart(req, res)
 });
 

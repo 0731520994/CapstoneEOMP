@@ -76,25 +76,19 @@ class Products{
       })
   }
     
-  addProduct(req, res) {
-    const query = `
-      INSERT INTO Products
-      SET ?;
-    `;
-    db.query(query, (err) => {
-      if (!err) {
+    addProduct(req, res) {
+      const query = `
+        INSERT INTO Products
+        SET ?;
+      `;
+      db.query(query, (err) => {
+        if (err) throw err 
         res.json({
-          status: res.statusCode,
-          msg: "Product Added",
-        });
-      } else {
-        res.json({
-          status: res.statusCode,
-          ërr: "An error occurred",
-        });
-      }
-    });
-  }
+            status: res.statusCode,
+            msg: "Product Added",
+          })
+      });
+    }
 
 
    

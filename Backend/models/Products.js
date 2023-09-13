@@ -114,22 +114,43 @@ class Products{
         });
       }
     
-
-deleteProduct(req,res){
-    const query = `
-    DELETE FROM Products
-    WHERE prodID = ?;
-    `
-    const id = req.params.id
-    db.query(query, [id],
-        (err, )=>{
-            if (err) throw err
+      deleteProduct(req, res) {
+        const query = `
+                DELETE FROM Products
+                WHERE prodID = ${req.params.prodID};
+            `;
+        db.query(query, [req.body], (err) => {
+          if (!err) {
             res.json({
-              status:  res.statusCode,
-              msg: 'Product was deleted'
-             })
-        })
- }
-}
+              status: res.statusCode,
+              msg: "Product was deleted! ",
+            });
+          } else {
+            res.json({
+              status: res.statusCode,
+              msg: "An error occured",
+              err:err
+            });
+          }
+        });
+      }
+    
+
+// deleteProduct(req,res){
+//     const query = `
+//     DELETE FROM Products
+//     WHERE prodID = ?;
+//     `
+//     const id = req.params.id
+//     db.query(query, [id],
+//         (err, )=>{
+//             if (err) throw err
+//             res.json({
+//               status:  res.statusCode,
+//               msg: 'Product was deleted'
+//              })
+//         })
+//  }
+// }
 
 module.exports = Products

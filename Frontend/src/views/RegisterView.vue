@@ -3,17 +3,17 @@
     <form @submit.prevent="register">
       <div class="mb-3">
         <label for="exampleInputfirstName1" class="form-label">firstName</label>
-        <input type="text" class="form-control" id="exampleInputfirstName1" aria-describedby="emailHelp" v-model="payload.firstName" required/>
+        <input type="text" class="form-control" id="exampleInputfirstName1" aria-describedby="emailHelp" v-model="userData.firstName" required/>
     </div>
 
     <div class="mb-3">
       <label for="exampleInputlastName1" class="form-label">lastName</label>
-      <input type="text" class="form-control" id="exampleInputlastName1" aria-describedby="emailHelp" v-model="payload.lastName" required/>
+      <input type="text" class="form-control" id="exampleInputlastName1" aria-describedby="emailHelp" v-model="userData.lastName" required/>
     </div>
 
     <div class="mb-3"> 
       <label for="exampleInputgender1" class="form-label">gender</label>
-      <input type="text" class="form-control" id="exampleInputgender1" aria-describedby="emailHelp" v-model="payload.gender" required/>
+      <input type="text" class="form-control" id="exampleInputgender1" aria-describedby="emailHelp" v-model="userData.gender" required/>
     </div>
     <div class="mb-3">
       <label for="exampleInputEmail1" class="form-label">Email address</label>
@@ -22,7 +22,7 @@
         class="form-control"
         id="exampleInputEmail1"
         aria-describedby="emailHelp"
-        v-model="payload.emailAdd"
+        v-model="userData.emailAdd"
         required
       />
     </div>
@@ -33,7 +33,7 @@
         class="form-control"
         id="exampleInputPassword1"
         minlength="4"
-        v-model="payload.userPass"
+        v-model="userData.userPass"
         required
       />
     </div>
@@ -43,10 +43,10 @@
         type="text"
         class="form-control"
         id="exampleInputuserProfile1"
-        v-model="payload.profileUrl"
+        v-model="userData.profileUrl"
         required
       />
-      <p v-if="registrationMessage">{{ registrationMessage }}</p>
+    
     </div>
    
     <button type="submit" class="btn btn-primary">Register</button>
@@ -58,7 +58,7 @@
 export default {
   data() {
     return {
-      payload: {
+      userData: {
         firstName: "",
         lastName: "",
         gender: "",
@@ -66,50 +66,20 @@ export default {
         userPass: "",
         profileUrl: "",
       },
-      registrationMessage: "", 
+      
     };
   },
+
+
+ 
   methods: {
-    async register() {
-  try {
- 
-    if (
-      !this.payload.firstName ||
-      !this.payload.lastName ||
-      !this.payload.gender ||
-      !this.payload.emailAdd ||
-      !this.payload.userPass ||
-      !this.payload.profileUrl
-    ) {
-      window.alert("Please fill in all fields.");
-      return;
+
+    register() {
+   
+      this.$store.dispatch('register', this.userData)
     }
 
-    console.log("Register method called");
-    console.log("Payload:", this.payload);
-
-    const response = await this.$store.dispatch("register", this.payload);
-
- 
-    if (response && response.result) {
-      
-      this.$store.dispatch("pushDataToAdmin", response.result);
-
-      this.registrationMessage = response.msg || "Registration successful"; 
-
-    
-      window.alert("User added successfully!");
-    } else {
-  
-      this.registrationMessage = "Registration failed";
-      window.alert("Error occurred while registering user.");
-    }
-  } catch (error) {
-    console.error("Registration error:", error);
-    window.alert("Error occurred while registering user.");
   }
-},
-  },
-
 }
+
 </script>

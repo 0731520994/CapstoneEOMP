@@ -7,7 +7,6 @@
         </li>
       </ul>
 
-      <input type="number" placeholder="Enter productID" v-model="product.prodID" />
       <input type="text" placeholder="Enter product name" v-model="product.prodName" />
       <input type="number" placeholder="Enter the price" v-model="product.price" />
       <input type="text" placeholder="Bea(1), Per(2), acce(3)" v-model="product.category" />
@@ -19,7 +18,7 @@
 </template>
 
 <script>
-import axios from "axios";
+
 
 
 export default {
@@ -37,42 +36,15 @@ export default {
     };
   },
 
-  created(){
-       this.$store.dispatch('fetchProduct',
-        this.$route.params.id)
-    },
   mounted() {
-   
 
-    this.getProductData();
+    const prodID = this.$route.params.prodID;
+    this.$store.dispatch('fetchProduct', prodID);
   },
-
   methods: {
-    getProductData() {
-  const productId = this.$route.params.id; // Get the product ID from the route parameter
-  axios.get(`https://capstoneconnection.onrender.com/product/${productId}`)
-    .then(res => {
-      console.log(res.data.product);
-      this.product = res.data.product;
-    })
-    .catch(err => {
-      this.err = [err.response?.data?.msg || "An error occurred"];
-      console.error(err);
-    });
-},
-
-async updateProduct() {
-  try {
-    const productId = this.$route.params.id; 
-    const response = await axios.put(`https://capstoneconnection.onrender.com/product/${productId}`, this.product);
-    console.log(response.data.msg);
-    this.err = [];
-  } catch (err) {
-    this.err = [err.response?.data?.msg || "An error occurred"];
-    console.error(err);
-  }
-},
-
+    editProduct() {
+      this.$store.dispatch('editProduct', this.product);
+    },
   },
-};
+}
 </script>

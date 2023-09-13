@@ -65,15 +65,15 @@ export default {
         filteredProducts = filteredProducts.filter(product => product.category === this.selectedFilter);
       }
 
-  
       if (this.searchTerm.trim() !== '') {
-        const searchTermLower = this.searchTerm.toLowerCase();
-        filteredProducts = filteredProducts.filter(product => product.prodName.toLowerCase().includes(searchTermLower));
+      const searchTermLower = this.searchTerm.toLowerCase();
+      filteredProducts = filteredProducts.filter(product => product?.prodName?.toLowerCase().includes(searchTermLower));
       }
+
 
   
       if (this.selectedSort === 'alphabetically') {
-        filteredProducts.sort((a, b) => a.prodName.localeCompare(b.prodName));
+        filteredProducts.sort((a, b) => a.prodName?.localeCompare(b.prodName));
       } else if (this.selectedSort === 'price-high') {
         filteredProducts.sort((a, b) => b.price - a.price);
       } else if (this.selectedSort === 'price-low') {

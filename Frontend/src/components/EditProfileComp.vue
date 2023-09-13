@@ -98,7 +98,7 @@
     },
     methods: {
       async editForm() {
-        this.$store.dispatch("editUser", this.edUser);
+        this.$store.dispatch("UpdateUser", this.updateUser);
       },
     },
   };

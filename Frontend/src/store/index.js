@@ -4,7 +4,7 @@ import sweet from 'sweetalert';
 import { useCookies } from 'vue3-cookies';
 import router from '@/router';
 
-const capstoneeompUrl = "https://capstoneconnection.onrender.com";
+const capstoneeompUrl = "https://capstoneconnection.onrender.com/";
 const { cookies } = useCookies();
 
 export default createStore({
@@ -169,7 +169,7 @@ async login(context, payload) {
 
     async fetchUsers(context) {
       try {
-        const { data } = await axios.get(`${capstoneeompUrl}/users`);
+        const { data } = await axios.get(`${capstoneeompUrl}users`);
         context.commit('setUsers', data.results);
       } catch (e) {
         context.commit('setMsg', 'Error occurred while fetching users');
@@ -187,26 +187,11 @@ async login(context, payload) {
       } catch (error) {
         throw error;
       }
-    },
-    async getUser(context) {
-      try {
-        const response = await axios.get(`${cUrl}users`);
-        context.commit('setUsers', response.data.results);
-        context.commit('setSpinner', false);
-      } catch (err) {
-        console.log(err);
-      }
-    },
-
-
-    async pushDataToAdmin({ commit }, userData) {
-      commit('addUserToAdmin', userData);
-    },
-  
+    },  
    
     async fetchProducts(context) {
       try {
-        const { data } = await axios.get(`${capstoneeompUrl}/products`); 
+        const { data } = await axios.get(`${capstoneeompUrl}products`); 
         context.commit('setProducts', data.results);
       } catch (err) {
         console.log(err);
@@ -231,7 +216,7 @@ async login(context, payload) {
 
     async addProduct(context, payload) {
       try {
-        const response = await axios.post(`${capstoneeompUrl}/AddNewProduct`, payload);
+        const {} = (await axios.post(`${capstoneeompUrl}AddNewProduct`, payload)).data;
 
         context.commit('addProduct', payload);
         const { msg, err } = response.data;
@@ -254,7 +239,7 @@ async login(context, payload) {
     async updateProduct(context, updatedProduct) {
       try {
        
-        const response = await axios.patch(`${capstoneeompUrl}/products/${updatedProduct.productID}`, updatedProduct);
+        const response = await axios.patch(`${capstoneeompUrl}products/${updatedProduct.productID}`, updatedProduct);
     
     
         if (response.status === 200) {
@@ -274,7 +259,7 @@ async login(context, payload) {
 
     async fetchProductsByCategory(context, categoryName) {
       try {
-        const { data } = await axios.get(`${capstoneeompUrl}/products/category/${categoryName}`);
+        const { data } = await axios.get(`${capstoneeompUrl}products/category/${categoryName}`);
         context.commit('setProducts', data.results);
       } catch (err) {
         console.log(err);

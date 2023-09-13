@@ -7,14 +7,13 @@
         </li>
       </ul>
 
-      <label>ID</label>
-      <input type="number" placeholder="Enter productID" v-model="prodID" />
+     
 
       <label>Name</label>
-      <input type="text" placeholder="Enter product name" v-model="prodName" />
+      <input type="text" placeholder="Enter product name" v-model="productData.prodName" />
 
       <label>Category</label>
-      <select v-model="category">
+      <select v-model="productData.category">
   <option value="Accessories">Accessories</option>
   <option value="Beauty">Beauty</option>
   <option value="Perfumes">Perfumes</option>
@@ -22,10 +21,10 @@
 
 
       <label>Price</label>
-      <input type="number" placeholder="Enter the price" v-model="price" />
+      <input type="number" placeholder="Enter the price" v-model="productData.price" />
 
       <label>Image</label>
-      <input type="text" placeholder="Enter the product link" v-model="prodUrl" />
+      <input type="text" placeholder="Enter the product link" v-model="productData.prodUrl" />
 
       <button @click="addProduct" class="btn-submit">Submit</button>
     </div>
@@ -37,32 +36,20 @@ import axios from "axios";
 export default {
   data() {
     return {
-      prodID: "",
-      prodName: "",
-      category: "",
-      price: "",
-      prodUrl: "",
+      productData: {
+        prodName: "",
+        category: "",
+        price: "",
+        prodUrl: ""
+      },
       err: [], 
       products: [],
     };
   },
   methods: {
-    async addProduct() {
+
+     addProduct() {
      
-      if (!this.prodName || !this.category || !this.price || !this.prodUrl) {
-        this.err = ["Please fill in all fields"];
-        return; 
-      }
-
-      try {
-        const payload = {
-          prodID: this.prodID,
-          prodName: this.prodName,
-          categoryID: this.category,
-          price: this.price,
-          prodUrl: this.prodUrl,
-        };
-
         const response = await axios.post("https://capstoneconnection.onrender.com/AddNewProduct", payload);
 
 
@@ -98,4 +85,11 @@ export default {
     },
   },
 };
+
+
+
+
+
+
+
 </script>

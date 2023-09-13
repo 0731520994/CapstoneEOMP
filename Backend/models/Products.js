@@ -76,45 +76,52 @@ class Products{
       })
   }
   
-        
 
-        addProduct(req, res) {
-    const data = req.body;
-    const query = `
-        INSERT INTO Products
-        SET ?;
-        `
-    db.query(query, [data], (err) => {
-      if (err) throw err;
-      res.json({
-        status: res.statusCode,
-        msg: "New Product added!",
-      });
-    })
-}
+//   addProduct(req, res) {
+//     const data = req.body;
+//     const query = `
+//     INSERT INTO Products
+//     SET ?;
+//     `;
+//     db.query(query, [data], (err) => {
+//         if (err) {
+//             console.error("Error Adding New product:", err);
+//             return res.status(500).json({
+//                 status: 500,
+//                 error: "error Adding new product"
+//             });
+//         }
+//         res.json({
+//             status: res.statusCode,
+//             msg: "Product Added"
+//         });
+//     });
+// }
+    
 
   
-// addProduct(req, res) {
-//   const { prodID,prodName, categoryID, price, prodUrl } = req.body; // Assuming these are the columns in your table
-//   const query = `
-//     INSERT INTO Products (prodName, categoryID, price, prodUrl)
-//     VALUES (?, ?, ?, ?)
-//   `;
-//   db.query(query, [prodID,prodName, categoryID, price, prodUrl], (err) => {
-//     if (!err) {
-//       res.json({
-//         status: res.statusCode,
-//         msg: "Product Added",
-//       });
-//     } else {
-//       res.json({
-//         status: res.statusCode,
-//         msg: "An error occurred",
-//         err: err,
-//       });
-//     }
-//   });
-// }
+  addProduct(req, res) {
+    const { prodID, prodName, category, price, prodUrl } = req.body; 
+    const query = `
+      INSERT INTO Products (prodID, prodName, category, price, prodUrl)
+      VALUES (?, ?, ?, ?, ?);
+    `;
+    const values = [prodID, prodName, category, price, prodUrl];
+    db.query(query, values, (err) => {
+      if (!err) {
+        res.json({
+          status: res.statusCode,
+          msg: "Product Added",
+        });
+      } else {
+        res.json({
+          status: res.statusCode,
+          msg: "An error occurred",
+          err: err,
+        });
+      }
+    });
+  }
 
 
    

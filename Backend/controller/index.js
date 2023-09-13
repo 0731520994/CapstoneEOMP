@@ -71,7 +71,7 @@ routes.patch('/product/:id', bodyParser.json(), (req, res) => {
 routes.put('/product/:id', bodyParser.json(), (req, res) => {
     products.updateProduct(req, res);
 });
-routes.delete('/product/:prodID', (req, res) => {
+routes.delete('/product/:id', (req, res) => {
     products.deleteProduct(req, res);
 });
 

@@ -33,11 +33,13 @@ class Users{
                 })
             })
                 }
-    register(req, res) {
+
+                
+    login(req, res) {
         const {emailAdd, userPass} = req.body
         // query
         const query =`
-        SELECT firstName, lastName,
+        SELECT userID, firstName, lastName,
         gender, emailAdd, userPass,
         profileUrl
         FROM Users
@@ -85,7 +87,7 @@ class Users{
         })
     }
 //register a user
-   async login(req,res){
+   async register(req,res){
         const data = req.body
         data.userPass = await hash(data.uPassword,10)
         const user = {
@@ -104,7 +106,8 @@ class Users{
                 msg: "You are now registered"
             })
         })
-    };
+    }
+
     updateUser(req, res) {
         const data = req.body
         if (data.userPass) {

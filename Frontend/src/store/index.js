@@ -91,10 +91,6 @@ export default createStore({
     removeFromCart(state, productIndex) {
       state.cart.splice(productIndex, 1);
     },
-
-    addProduct(state, newProduct) {
-      state.products.push(newProduct);
-    },
     setPerfumes(state, perfumes) {
       state.perfumes = perfumes;
     },

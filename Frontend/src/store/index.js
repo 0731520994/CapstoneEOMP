@@ -222,6 +222,7 @@ async login(context, payload) {
             icon: "success",
             timer: 2000
           })
+          router.push({name: 'all'})
         }else {
           sweet({
             title: "Error",

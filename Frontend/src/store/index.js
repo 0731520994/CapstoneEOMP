@@ -15,18 +15,15 @@ export default createStore({
     product: null,
     adminData: [],
     newProduct: {
-      prodID: '',
-      prodName: '',
-      categoryID: '',
-      price: '',
-      prodUrl: '',
+    prodID: '',
+    prodName: '',
+    category: '',
+    price: '',
+    prodUrl: '',
     orders: null,
     order: null,
-    categories: null,
-    cart: storedCart,
     removeFromCart: null,
     ViewItem: null,
-    category: null,
     spinner: false,
     token: null,
     msg: null,
@@ -73,7 +70,7 @@ export default createStore({
       state.spinner = value;
     },
     setToken(state, token) {
-      state.token = token; // Fixed the typo here
+      state.token = token; 
     },
     setMsg(state, msg) {
       state.msg = msg;

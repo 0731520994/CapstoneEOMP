@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
     <input
       class="m-2"
       v-model="searchTerm"
@@ -61,7 +61,7 @@
   </template>
   
   <script>
-  import CardComp from "@/components/ProductComp.vue";
+ 
   import SpinnerComp from "@/components/SpinnerComp.vue";
   export default {
     data() {
@@ -112,4 +112,20 @@
   
     components: { CardComp, SpinnerComp },
   };
+  </script> -->
+
+  <template>
+    <div>
+  
+    </div>
+  </template>
+  
+  <script>
+    export default {
+      
+    }
   </script>
+  
+  <style lang="scss" scoped>
+  
+  </style>

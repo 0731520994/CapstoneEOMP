@@ -14,28 +14,29 @@
  
  
 
- <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
-      <div class="carousel-inner">
+ <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel" style="height: 22rem" >
+  <div class="carousel-inner"  style="width: 99%">
         <div class="carousel-item active">
           <div class="carousel-text">
-            <h3>Sam Due</h3>
-            <p class="corouselp">This is a good gift shop, very nice collection. Price , I find very reasonable. All the items are displayed in good order. It is really a pleasure to visit this shop</p>
+            <h3 class="h-home">👨🏽Sam Due</h3>
+            <p class="corouselp">Very nice collection. Price , I find it very reasonable. <br>All the items are displayed in good order. It is really a pleasure to visit this shop</p>
           </div>
-          <img src="" id ="" class="d-block w-100" style="height: 12rem" alt="Testimonial 1"/>
         </div>
+
         <div class="carousel-item">
           <div class="carousel-text">
-            <p class="corouselp">I have bought the watch for my husband's birthday. He loved love it. Beautiful presentation and packaging.</p>
-          </div>
-          <img src="" class="d-block w-100" style="height: 12rem"  alt="Testimonial 2" />
-        </div>
-        <div class="carousel-item">
-          <div class="carousel-text">
+            <h3 class="h-home">👩‍🦰Ellain Matthews</h3>
             <p class="corouselp">Excellent product ✔️
               Very quick delivery ✔️
               Very pleased 😊</p>
           </div>
-          <img src="" class="d-block w-100" style="height: 12rem" alt="Testimonial 3"/>
+        </div>
+
+        <div class="carousel-item">
+          <div class="carousel-text ">
+            <h3 class="h-home">👩🏽Sis Lina</h3>
+            <p class="corouselp">I bought the watch for my husband's birthday. He loved love it.<br> Beautiful presentation and packaging.</p>
+          </div>
         </div>
       </div>
       <button
@@ -62,35 +63,38 @@
 
     <div class="row row-cols-1 row-cols-md-3 g-4">
       <div class="col">
-        <div class="card h-100 w-7">
-          <img src="https://i.postimg.cc/QCN38RtB/images.jpg" class="card-img-top" alt="">
-          <div class="card-body">
-            <h5 class="card-title">Noise Champ</h5>
+        <div class="card-home h-100 ">
+          <img src="https://i.postimg.cc/QCN38RtB/images.jpg" class="card-img-top" alt="" style="width: 15rem; height: 14rem; padding: 2rem; margin:auto">
+          <div class="card-hbody">
+            <h5 class="cardh-title">Noise Champ</h5>
           </div>
-          <div class="card-footer">
-            <a href="./AllView.vue" class="see more">See more</a>
-          </div>
-        </div>
-      </div>
-      <div class="col">
-        <div class="card h-100">
-          <img src="https://i.postimg.cc/nrJZ3FGM/about-img.png" class="card-img-top" alt="">
-          <div class="card-body">
-            <h5 class="card-title">Bracelet</h5>
-          </div>
-          <div class="card-footer">
-            <a href="./AllView.vue" class="see more">See more</a>
+          <div class="card-homefooter">
+            <RouterLink to="/products" class="see more">See more</RouterLink>
           </div>
         </div>
       </div>
+
       <div class="col">
-        <div class="card h-100">
-          <img src="https://i.postimg.cc/jS3rdrLh/versace-pour-homme-dylan-blue-eau-de-toilette.webp" class="card-img-top" alt="">
-          <div class="card-body">
-            <h5 class="card-title">Versace Pour Home Dylan</h5>
+        <div class="card-home h-100">
+          <img src="https://i.postimg.cc/nrJZ3FGM/about-img.png" class="card-img-top" alt="" style="width: 15rem; height: 14rem; padding: 2rem; margin:auto">
+          <div class="card-hbody">
+            <h5 class="cardh-title">Bracelet</h5>
           </div>
-          <div class="card-footer">
-            <a href="./AllView.vue" class="see more">See more</a>
+          <div class="card-homefooter">
+            <RouterLink to="/products" class="see more">See more</RouterLink>
+          </div>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="card-home h-100">
+          <img src="https://i.postimg.cc/jS3rdrLh/versace-pour-homme-dylan-blue-eau-de-toilette.webp" class="card-img-top" alt="" style="width: 15rem; height: 14rem; padding: 2rem; margin:auto">
+          <div class="card-hbody">
+            <h5 class="cardh-title">Versace Pour Home Dylan</h5>
+          </div>
+          <div class="card-homefooter">
+    
+            <RouterLink to="/products" class="see more">See more</RouterLink>
            
           </div>
         </div>
@@ -134,6 +138,83 @@ function validate(event) {
 </script>
 
 <style >
+
+
+.card-home{
+  margin: 7%;
+  border-radius: 90%;
+  width: 80%;
+ 
+}
+
+.card-hbody {
+  background-color: rgba(128, 0, 128, 0.277);
+  color: black;
+  height: 70%;
+  margin: 4%;
+ 
+}
+
+.cardh-title {
+  text-align: center;
+ text-shadow: 3px 3px white;
+}
+
+.card-homefooter {
+  display: none;
+}
+
+.card-homefooter-button{
+  margin-right: 10px;
+}
+.card:hover .card-homefooter{
+  display: block;
+ 
+}
+
+.see {
+
+font-family: Georgia, 'Times New Roman', Times, serif;
+text-align: center;
+border: 3px solid white;
+padding: 5px 5px;
+background: purple;
+color: white;
+border-radius: 24px;
+transition: 0.25px;
+cursor: pointer ;
+text-decoration: solid; 
+}
+
+
+.see:hover{
+ color: black;
+ background:  rgb(238, 216, 248);
+}
+
+.carousel-item {
+  width: 60%;
+  box-shadow: 4p 4px white;
+  background-color:rgba(255, 255, 255, 0.062);
+  margin-left: 4rem;
+  margin-top: 7rem;
+}
+
+.arousel-inner{
+  margin-left: 4rem;
+}
+
+
+.h-home{
+  background-color: whitesmoke;
+  width: fit-content;
+  margin: 1%;
+}
+
+
+
+
+
 .box{
   width:300px;
   padding:30px;
@@ -237,7 +318,7 @@ function validate(event) {
   text-shadow: 4px 6px #edd7d7;
   text-align: center;
   position: absolute;
-  top: 27%;
+  top: 35%;
   left: 35%;
   transform: translate(-50%, -50%);
   color: purple
@@ -251,21 +332,20 @@ function validate(event) {
   text-shadow: 4px 6px white;
   text-align: center;
   position: absolute;
-  top: 41%;
+  top: 48%;
   left: 35%;
   transform: translate(-50%, -50%);
   color: purple;
-  
-
 
   
 }
+
 .homep1 {
   font-size: 2rem;
  
   text-align: center;
   position: absolute;
-  top: 49%;
+  top: 59%;
   left: 35%;
   transform: translate(-50%, -50%);
   color: purple;
@@ -276,7 +356,7 @@ function validate(event) {
 
 .submit-home{
  position: absolute;
- top: 57%;
+ top: 69%;
  right: 62%;
 font-family: Georgia, 'Times New Roman', Times, serif;
 text-align: center;
@@ -334,7 +414,7 @@ text-decoration: solid;
 
 
 }
-.card-footer{
+.card-homefooter{
   margin: auto;
   background-color: white;
   color: white;
@@ -355,6 +435,60 @@ text-decoration: solid;
   text-align: center;
   font-size: 2rem;
 }
+
+@media (max-width: 576px) {
+    #kid {
+
+margin-left: 24%; 
+
+
+}
+
+.homep1 {
+  font-size: 25px;
+  font-weight:bold;
+  text-align:center;
+  top: 60%;
+  left: 35%;
+  transform: translate(-50%, -50%);
+  color: purple;
+ 
+}
+
+
+
+
+.home{
+  font-size: 3rem;
+  text-align:start;
+
+  }
+
+  .homeP {
+  font-size: 1rem;
+  text-align: center;
+ font-weight: bold;
+  top: 53%;
+  left: 34%;
+background-color: white;
+
+  
+}
+
+
+.carousel-item {
+  width: 70%;
+  box-shadow: 4p 4px white;
+  background-color:rgba(255, 255, 255, 0.062);
+  font-size: 4px;
+  margin: 1rem;
+}
+
+.h-home{
+  font-size: 4px;
+}
+}
+
 
 /*Testimonials*/
 

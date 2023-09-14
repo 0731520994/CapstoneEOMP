@@ -3,13 +3,16 @@
     <nav id="navbar-example2" class="navbar bg-body-tertiary px-3 mb-3">
       <ul class="nav nav-pills">
         <li class="nav-item">
-          <a class="nav-link" @click="showSection('Perfumes')">Perfumes</a>
+            <router-link id="linkName" class="nav-link active" aria-current="page" to="/about">About</router-link>
+          </li>
+        <li class="nav-item">
+          <router-link class="nav-link"  to="/showSection('Perfumes')">Perfumes</router-link >
         </li>
         <li class="nav-item">
-          <a class="nav-link" @click="showSection('Accessories')">Accessories</a>
+          <router-link  class="nav-link" to="/showSection('Accessories')">Accessories</router-link >
         </li>
         <li class="nav-item">
-          <a class="nav-link" @click="showSection('Beauty')">Beauty</a>
+          <router-link  class="nav-link" to="/showSection('Beauty')">Beauty</router-link >
         </li>
       </ul>
     </nav>
@@ -67,32 +70,27 @@
     </div>
   </div>
 </template>
-
 <script>
 export default {
-  data() {
-    return {
-      activeSection: 'Perfumes',
-    };
-  },
   computed: {
-  filteredProducts() {
-    return (categoryName) => {
-      return this.$store.state.products.filter(
-        (product) => product.category === categoryName
-      );
-    };
-  },
-},
-
-  methods: {
-    showSection(section) {
-      this.activeSection = section;
+    activeSection() {
+      // Assuming you have a way to determine the active section or category
+      // For example, you could use a data property or route parameter.
+      return this.$route.params.section; // Replace with your actual logic.
     },
+    filteredProducts() {
+      return (category) => {
+        // Assuming your products are stored in state as an array
+        // Replace 'state.products' with the actual state property.
+        return this.$store.state[category] || [];
+      };
+    },
+  },
+  mounted() {
+    // You can dispatch actions to fetch products for each category here if needed.
+    // this.$store.dispatch('fetchAccessories');
+    // this.$store.dispatch('fetchBeauty');
+    // this.$store.dispatch('fetchPerfumes');
   },
 };
 </script>
-
-<style>
-
-</style>

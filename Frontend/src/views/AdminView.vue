@@ -4,17 +4,22 @@
             <h1 style="text-decoration:underline">Products</h1>
        
       <div class="sortBtns">
-        <button class="btnOne" @click="sortByProductName">Sort by Product Name</button>
-        <button class="btnTwo " @click="sortByPrice">Sort by Price</button>
+        <RouterLink to="/addProduct" class="btn btn-primary">Add Product</RouterLink>
+
+       
       </div>
-  
+    
+     
+
+
+
       <div class="admin_container ">
          <table class="table table-bordered ">
               <thead>
                 <tr>
                   <th>ID</th>
                   <th>Product Name</th>
-                  <th>Category ID</th>
+                  <th>Category</th>
                   <th>Price</th>
                   <th class="img-fluid">Image</th>
                   <th>Edit/Delete</th>
@@ -24,20 +29,12 @@
                 <tr class="tdSize" v-for="item in products" :key="item.prodID">
                   <td>{{ item.prodID }}</td>
                   <td>{{ item.prodName }}</td>
-                  <td>{{ item.categoryID }}</td>
+                  <td>{{ item.category }}</td>
                   <td>{{ item.price }}</td>
                   <td><img class="adminImg" :src="item.prodUrl" alt="" /></td>
                   <td>
-                    <div class="btnGroupUser">
-                      <button
-                        type="button"
-                        class="btn btn-primary"
-                        data-bs-toggle="modal"
-                        data-bs-target="#editProductModal"
-                        @click="editProduct(item)"
-                      >
-                        EDIT
-                      </button>
+                    <div class="btnGroupUser"> 
+                      <router-link :to="'/editProduct/' + item.prodID" class="btn btn-primary">Edit</router-link>
                       <button class="btn btn-danger" @click="deleteProduct(item.prodID)">Delete</button>
                     </div>
                   </td>
@@ -52,6 +49,8 @@
         <!-- USER TABLE -->
        
             <h1 style="text-decoration:underline">Users</h1>
+        
+            <RouterLink to="/register" class="btn btn-primary">Add User</RouterLink>
          
 <div class="adminUser_container">
     <table class="table-bordered">
@@ -109,41 +108,32 @@
   </template>
   
   <script>
+  import axios from 'axios';
   import { mapState, mapActions } from 'vuex';
+  
   
   export default {
     computed: {
-      ...mapState(['products', 'users']),
-
-      sortedProducts() {
-      const sorted = [...this.product];
-
-      sorted.sort((a, b) => {
-        if (this.sortKey === "prodName") {
-          return this.ascending
-            ? a.prodName.localeCompare(b.prodName)
-            : b.prodName.localeCompare(a.prodName);
-        } else if (this.sortKey === "amount") {
-          return this.ascending ? a.price - b.price : b.price - a.price;
-        }
-        return 0;
-      });
-
-      return sorted;
+      ...mapState(['products', 'users', 'adminData']), 
+  
+     
     },
-  },
-
-    
+  
     mounted() {
       this.fetchProducts();
       this.fetchUsers();
     },
     methods: {
-      ...mapActions(['fetchProducts', 'fetchUsers']),
-      
-    },
-  };
+  ...mapActions(['fetchProducts', 'fetchUsers']),
+
+   deleteProduct(productId) {
+    this.$store.dispatch('deleteProduct', productId);
+    }
+  },
+}
+  
   </script>
+  
   
   <style>
 

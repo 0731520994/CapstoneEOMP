@@ -31,9 +31,9 @@ class Orders {
             })
     };
 
-    updateBookAuthor(req, res) {
+    updateOrder(req, res) {
         const query =`
-        UPDATE Order
+        UPDATE Orders
         SET?
         WHERE id = ?;
         `
@@ -48,7 +48,7 @@ class Orders {
             }
             )
     };
-    deleteBookAuthor(req, res){
+    deleteOrder(req, res){
         const query = `
         DELETE FROM Orders
         WHERE orderID= ${req.params.id};

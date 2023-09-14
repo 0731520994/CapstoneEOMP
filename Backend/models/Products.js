@@ -1,7 +1,7 @@
 const db = require('../config');
 
 
-class Products{
+class Products {
     fetchProducts(req, res) {
        
         const query = ` 
@@ -133,23 +133,5 @@ class Products{
           }
         });
       }
-    
-
-// deleteProduct(req,res){
-//     const query = `
-//     DELETE FROM Products
-//     WHERE prodID = ?;
-//     `
-//     const id = req.params.id
-//     db.query(query, [id],
-//         (err, )=>{
-//             if (err) throw err
-//             res.json({
-//               status:  res.statusCode,
-//               msg: 'Product was deleted'
-//              })
-//         })
-//  }
-// }
-
+}
 module.exports = Products

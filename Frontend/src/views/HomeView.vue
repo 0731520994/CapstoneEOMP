@@ -6,7 +6,6 @@
       <p class="homep1">Discover our Latest...</p>
       <p class="homeP"> Glam Collection</p>
       <img src="https://i.postimg.cc/4x1xzk73/slider-img.png" id="kid" class="d-block w-10" style="height: 30rem" alt="Kids Profile"/>
-      
       <a href="./AllView.vue" class="submit-home">Shop now</a>
     </div>
   </div>
@@ -64,7 +63,7 @@
 
     <div class="row row-cols-1 row-cols-md-3 g-4">
       <div class="col">
-        <div class="card-home h-100 ">
+        <div class="card h-100 ">
           <img src="https://i.postimg.cc/QCN38RtB/images.jpg" class="card-img-top" alt="" style="width: 15rem; height: 14rem; padding: 2rem; margin:auto">
           <div class="card-hbody">
             <h5 class="cardh-title">Noise Champ</h5>
@@ -76,7 +75,7 @@
       </div>
 
       <div class="col">
-        <div class="card-home h-100">
+        <div class="card h-100">
           <img src="https://i.postimg.cc/nrJZ3FGM/about-img.png" class="card-img-top" alt="" style="width: 15rem; height: 14rem; padding: 2rem; margin:auto">
           <div class="card-hbody">
             <h5 class="cardh-title">Bracelet</h5>
@@ -88,7 +87,7 @@
       </div>
 
       <div class="col">
-        <div class="card-home h-100">
+        <div class="card h-100">
           <img src="https://i.postimg.cc/jS3rdrLh/versace-pour-homme-dylan-blue-eau-de-toilette.webp" class="card-img-top" alt="" style="width: 15rem; height: 14rem; padding: 2rem; margin:auto">
           <div class="card-hbody">
             <h5 class="cardh-title">Versace Pour Home Dylan</h5>
@@ -139,19 +138,25 @@ function validate(event) {
 </script>
 
 <style >
-
+.card {
+  margin: 6%;
+  border-radius: 15%;
+  background-color: white;
+}
 
 .card-home{
   margin: 7%;
-  border-radius: 90%;
-  width: 80%;
+  border-radius: 30%;
+  height: 80%;
+  width: 70%;
+  background-color: white;
  
 }
 
 .card-hbody {
   background-color: rgba(128, 0, 128, 0.277);
   color: black;
-  height: 70%;
+  height: 20%;
   margin: 4%;
  
 }
@@ -343,6 +348,7 @@ text-decoration: solid;
 
 .homep1 {
   font-size: 2rem;
+ 
   text-align: center;
   position: absolute;
   top: 50%;
@@ -356,7 +362,7 @@ text-decoration: solid;
 
 .submit-home{
  position: absolute;
- top: 55%;
+ top: 56%;
  right: 62%;
 font-family: Georgia, 'Times New Roman', Times, serif;
 text-align: center;
@@ -448,7 +454,7 @@ margin-left: 24%;
   font-size: 25px;
   font-weight:bold;
   text-align:center;
-  top: 60%;
+  top: 5%;
   left: 35%;
   transform: translate(-50%, -50%);
   color: purple;
@@ -487,6 +493,14 @@ background-color: white;
 .h-home{
   font-size: 4px;
 }
+.corouselp{
+ 
+  font-size: 1rem;
+  margin-top: 4rem;;
+}
+
+
+
 }
 
 

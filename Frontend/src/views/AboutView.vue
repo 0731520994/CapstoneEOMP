@@ -4,7 +4,7 @@
   <div class="row g-0">
     <div class="col-md-4">
         
-      <img src="https://i.postimg.cc/T1zvw6X9/istockphoto-1432773286-612x612-removebg-preview.png" class="img-fluid rounded-start" alt="" width="100%">
+      <img id="bounce" src="https://i.postimg.cc/T1zvw6X9/istockphoto-1432773286-612x612-removebg-preview.png" class="img-fluid rounded-start" alt="" width="100%">
     </div>
     <div class="col-md-8">
       <div class="card-body">
@@ -21,25 +21,15 @@
 
 <div class="container-fluid">
 <div class="icons">
-  <img src="https://i.postimg.cc/kGjZZcjP/fast-delivery-icon-removebg-preview.png" alt="" style="width: 17rem; height:17rem">
-  <img src="https://i.postimg.cc/3JRzGsR8/quality-icon-removebg-preview.png" alt="" style="width: 12rem; height:12rem">
-  <img src="https://i.postimg.cc/J7K9GrRY/wrapped-gift-removebg-preview.png" alt="" style="width: 15rem; height:15rem">
-<div>
-  <h2 class="delivery">Fast Delivery </h2>
+  <img  src="https://i.postimg.cc/kGjZZcjP/fast-delivery-icon-removebg-preview.png" alt="" style="width: 17rem; height:17rem">
+  <img  src="https://i.postimg.cc/3JRzGsR8/quality-icon-removebg-preview.png" alt="" style="width: 12rem; height:12rem">
+  <img  src="https://i.postimg.cc/J7K9GrRY/wrapped-gift-removebg-preview.png" alt="" style="width: 15rem; height:15rem">
 </div>
 
-<div>
-  <h2 class="quality">Quality Products</h2>
-</div>
-
-
-  <div>
-    <h2 class="wrapped">Wrapped gifts</h2>
-  </div>
 </div>
 </div>
 
-    </div>
+
 </template>
 
 <script>
@@ -93,20 +83,34 @@ h4{
   margin-left: 15%;
 }
 
-
-.delivery{
-  margin-left: 15%;
  
+
+
+
+.icons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.quality{
-  margin-left: 41%;
+#bounce {
 
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  animation: bounce 0.5s infinite alternate; 
 }
 
-.wrapped{
-  margin-left: 70%;
- 
+img:hover {
+  transform: scale(1.1);
+  opacity: 0.8;
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px); 
+  }
 }
 
 @media (max-width: 576px) {

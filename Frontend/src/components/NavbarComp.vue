@@ -131,7 +131,27 @@ width: fit-content;
 }
 .navMoving{
 margin-left: 70%;
-
-  
 }
+
+
+.menu-toggle {
+  display: none; /* Initially hide the menu toggle button */
+}
+
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: block; /* Show the menu toggle button for small screens */
+  }
+
+  .nav-links {
+    display: none; /* Initially hide the navigation links for small screens */
+  }
+
+  .show .nav-links {
+    display: block; /* Show the navigation links when the menu is open */
+  }
+
+}
+
+
 </style>

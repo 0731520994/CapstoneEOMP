@@ -18,7 +18,10 @@ export default createStore({
     prodID: '',
     prodName: '',
     category: '',
+<<<<<<< HEAD
     
+=======
+>>>>>>> 504050df0201e4f76bda94989a526a98b2e98e1d
     price: '',
     prodUrl: '',
     orders: null,

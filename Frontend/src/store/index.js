@@ -3,10 +3,8 @@ import axios from 'axios';
 import sweet from 'sweetalert';
 import { useCookies } from 'vue3-cookies';
 import router from '@/router';
-
 const capstoneeompUrl = "https://capstoneconnection.onrender.com/";
 const { cookies } = useCookies();
-
 export default createStore({
   state: {
     users: null,
@@ -36,10 +34,8 @@ export default createStore({
       },
     },
   },
-
 },
   getters: {
-
   },
   mutations: {
     setUsers(state, users) {
@@ -84,7 +80,6 @@ export default createStore({
     setDeleteUser(state, data) {
       state.users = data;
     },
-
     addToCart(state, product) {
        state.cart.push(product)
     },
@@ -104,7 +99,6 @@ export default createStore({
   },
  
   actions: {
-
     
     async register(context, payload) {
       try {
@@ -116,7 +110,6 @@ export default createStore({
               icon: "success",
               timer: 2000,
             });
-
             context.dispatch("fetchUsers"); 
             router.push({ name: "login" });
           } else {
@@ -131,8 +124,6 @@ export default createStore({
           context.commit("setMsg", "An error has occured, please try again");
         }
   },
-
-
 async login(context, payload) {
   try {
     const { msg, token, result } = (await axios.post(`${capstoneeompUrl}login`, payload)).data
@@ -160,9 +151,6 @@ async login(context, payload) {
     context.commit("setMsg", "An error has occurred")
   }
 },
-
-
-
     async fetchUsers(context) {
       try {
         const { data } = await axios.get(`${capstoneeompUrl}users`);
@@ -171,8 +159,6 @@ async login(context, payload) {
         context.commit('setMsg', 'Error occurred while fetching users');
       }
     },
-
-
     async updateUser(context, updatedUser) {
       try {
         const response = await axios.patch(
@@ -195,7 +181,6 @@ async login(context, payload) {
       }
     },
     
-
     async fetchProduct(context, id) {
       try {
         const response = await axios.get(`${cUrl}product/${id}`);
@@ -209,7 +194,6 @@ async login(context, payload) {
         console.log(err);
       }
     },
-
     async addProduct(context, payload) {
       try {
         const {msg} = (await axios.post(`${capstoneeompUrl}AddNewProduct`, payload)).data;
@@ -240,7 +224,6 @@ async login(context, payload) {
         })
       }
     },
-
     async updateProduct(context, updatedProduct) {
       try {
        
@@ -261,7 +244,6 @@ async login(context, payload) {
       }
     },
     
-
     async fetchProductsByCategory(context, categoryName) {
       try {
         const { data } = await axios.get(`${capstoneeompUrl}products/category/${categoryName}`);
@@ -279,8 +261,6 @@ async login(context, payload) {
     async removeFromCartAction(context, productIndex) {
       context.commit('removeFromCart', productIndex);
     },
-
-
     async fetchAccessories(context) {
       try{
         const {data} = await axios.get(`${capstoneeompUrl}accessories`)
@@ -289,7 +269,6 @@ async login(context, payload) {
         console.log(e)
       }
     },
-
     async fetchBeauty(context) {
       try{
         const {data} = await axios.get(`${capstoneeompUrl}beauty`)
@@ -298,7 +277,6 @@ async login(context, payload) {
         console.log(e)
       }
     },
-
     async fetchPerfumes(context) {
       try{
         const {data} = await axios.get(`${capstoneeompUrl}perfumes`)
@@ -307,13 +285,8 @@ async login(context, payload) {
         console.log(e)
       }
     },
-
   },
-
   modules: {
-
   },
 },
-
-
 );

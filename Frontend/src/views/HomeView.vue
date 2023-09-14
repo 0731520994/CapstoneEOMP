@@ -6,6 +6,7 @@
       <p class="homep1">Discover our Latest...</p>
       <p class="homeP"> Glam Collection</p>
       <img src="https://i.postimg.cc/4x1xzk73/slider-img.png" id="kid" class="d-block w-10" style="height: 30rem" alt="Kids Profile"/>
+      
       <a href="./AllView.vue" class="submit-home">Shop now</a>
     </div>
   </div>
@@ -318,7 +319,7 @@ text-decoration: solid;
   text-shadow: 4px 6px #edd7d7;
   text-align: center;
   position: absolute;
-  top: 35%;
+  top: 30%;
   left: 35%;
   transform: translate(-50%, -50%);
   color: purple
@@ -332,7 +333,7 @@ text-decoration: solid;
   text-shadow: 4px 6px white;
   text-align: center;
   position: absolute;
-  top: 48%;
+  top: 40%;
   left: 35%;
   transform: translate(-50%, -50%);
   color: purple;
@@ -342,10 +343,9 @@ text-decoration: solid;
 
 .homep1 {
   font-size: 2rem;
- 
   text-align: center;
   position: absolute;
-  top: 59%;
+  top: 50%;
   left: 35%;
   transform: translate(-50%, -50%);
   color: purple;
@@ -356,7 +356,7 @@ text-decoration: solid;
 
 .submit-home{
  position: absolute;
- top: 69%;
+ top: 55%;
  right: 62%;
 font-family: Georgia, 'Times New Roman', Times, serif;
 text-align: center;

@@ -65,6 +65,12 @@ const routes = [
   component: () => import('../components/SingleView.vue')
 },
 {
+  path: '/logout/:prodID',
+  name: 'logout',
+ 
+  component: () => import('../views/ProfileView.vue')
+},
+{
   path: '/signIn',
   name: 'signIn',
  

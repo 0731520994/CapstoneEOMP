@@ -5,8 +5,8 @@
       <button class="navbar-toggler" type="button" @click="toggleNavbar" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse justify-content-end" :class="{ show: isNavbarOpen }" id="navbarSupportedContent">
-        <ul class="navbar-nav ">
+      <div class="collapse navbar-collapse" :class="{ show: isNavbarOpen }" id="navbarSupportedContent">
+        <ul class="navbar-nav navMoving ">
           <li class="nav-item justify-content-end" >
             <router-link id="linkName" class="nav-link active" aria-current="page" to="/">Home</router-link>
           </li>
@@ -35,9 +35,11 @@
           <li class="nav-item">
             <router-link id="linkName" class="nav-link active" aria-current="page" to="/contact">Contact</router-link>
           </li>
+        </ul>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Login
+              <img src="https://i.postimg.cc/nztzQT9F/user.png" alt="user" style="border-radius: 50%; width: 60px; height: 60px;">
+
             </a>
             <ul class="dropdown-menu">
               <li>
@@ -46,13 +48,19 @@
               <li>
                 <router-link class="dropdown-item" to="/signIn">Sign In</router-link>
               </li>
+              <li>
+                <router-link class="dropdown-item" to="/profile">Profile</router-link>
+              </li>
+              <li>
+                <a class="dropdown-item" href="#" @click="logout">Logout</a>
+              </li>
             </ul>
           </li>
-        </ul>
+<!--         
         <form class="d-flex" role="search">
           <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" >
-        </form> 
-       
+        </form>  -->
+      
   
       </div>
     </div>
@@ -70,16 +78,22 @@ const {cookies} = useCookies()
 
 export default {
     computed: {
-      user() {
-      return this.$store.state.user ||
-      cookies.get('LegitUser')
-        },
-          result() {
-          return this.user?.result
-        },
-        isAdmin() {
-          return this.result?.userRole?.toLowerCase() === "admin"
-        }
+      data() {
+    return {
+      isNavbarOpen: false, 
+    };
+  },
+  computed: {
+    user() {
+      return this.$store.state.user || cookies.get('LegitUser');
+    },
+    result() {
+      return this.user?.result;
+    },
+    isAdmin() {
+      return this.result?.userRole?.toLowerCase() === "admin";
+    },
+  },
         },
     }
 </script>
@@ -97,10 +111,11 @@ width: fit-content;
 }
 
 .nav-link{
-  color: white;
+  background-color: white;
 }
 
 .nav-link:hover{
+ 
   background-color: purple;
   border-radius: 50%;
   color: white;
@@ -113,5 +128,10 @@ width: fit-content;
   outline: white;
   color:white;
   border: 3px solid purple;
+}
+.navMoving{
+margin-left: 70%;
+
+  
 }
 </style>

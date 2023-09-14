@@ -8,7 +8,7 @@
     <h5 class="card-title">ID: {{ user.userID }}</h5>
     <h5 class="card-title">{{ user.firstName }} {{ user.lastName }}</h5>
     <h5 class="card-text">userRole </h5>
-    <button class="btn" id="btn-btnp" @click="logOut">Log Out</button>
+    <button @click="logOut(product?.prodID)" class="btnp">Log Out</button>
   </div>
 </div>
 </div>
@@ -48,8 +48,7 @@
 <script>
 import { useCookies } from "vue3-cookies";
 const { cookies } = useCookies();
-import EditProfile from '@/components/EditProfile.vue'
-import ChangePass from '@/components/ChangePass.vue'
+
     export default {
       components: {
         EditProfile,
@@ -86,3 +85,19 @@ import ChangePass from '@/components/ChangePass.vue'
         
     }
 </script>''
+
+<!-- <template>
+  <div>
+
+  </div>
+</template>
+
+<script>
+  export default {
+    
+  }
+</script>
+
+<style lang="scss" scoped>
+
+</style> -->

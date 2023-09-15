@@ -94,21 +94,17 @@ export default {
         gender: "",
         emailAdd: "",
         userPass: "",
+        userRole: "",
         userUrl: "",
       },
-      
+      err: [],
     };
   },
-
-
-
-
   methods: {
-
-    register() {
+    addUser() {
       console.log(this.userData);
-      this.$store.dispatch('register', this.userData)
-    }
-  }
-}
+
+    },
+  },
+};
 </script>

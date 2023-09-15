@@ -4,7 +4,7 @@
               <h1 style="text-decoration:underline">Products</h1>
          
         <div class="sortBtns">
-          <RouterLink to="/addProduct" class="btn btn-primary">Add Product</RouterLink>
+          <RouterLink to="/register" class="btn btn-primary">Add Product</RouterLink>
   
          
         </div>
@@ -23,13 +23,14 @@
           <th>Edit/Delete</th>
         </tr>
       </thead>
-      <tbody>
+      <tbody >
+   
         <tr class="tdSize" v-for="item in products" :key="item.prodID">
           <td>{{ item.prodID }}</td>
           <td>{{ item.prodName }}</td>
           <td>{{ item.category }}</td>
           <td>{{ item.price }}</td>
-          <td><img class="adminImg" :src="item.prodUrl" alt="" /></td>
+          <td><img class="adminImg" :src="item.prodUrl" alt="" loading="lazy"/></td>
           <td>
             <div class="btnGroupUser"> 
               <router-link :to="'/editProduct/' + item.prodID" class="btn btn-primary">Edit</router-link>
@@ -38,6 +39,7 @@
           </td>
         </tr>
       </tbody>
+    
     </table>
   </div>
   </div>
@@ -45,7 +47,7 @@
           <!-- USER TABLE -->
           <h1 style="text-decoration: underline">Users</h1>
   
-  <router-link to="/register" class="btn btn-primary">Add User</router-link>
+  <router-link to="/addUser" class="btn btn-primary">Add User</router-link>
   
   <div class="adminUser_container">
     <div class="table-responsive">
@@ -64,6 +66,7 @@
         </tr>
       </thead>
       <tbody>
+
         <tr v-for="item in users" :key="item.userID">
           <td>{{ item.userID }}</td>
           <td>{{ item.firstName }}</td>
@@ -72,7 +75,7 @@
           <td>{{ item.emailAdd }}</td>
           <td>{{ item.userPass }}</td>
           <td>{{ item.role }}</td> 
-          <td><img class="tableImg" :src="item.profileUrl" alt="" /></td>
+          <td><img class="tableImg" :src="item.profileUrl" alt="" loading="lazy"/></td>
           <td>
             <div class="btnGroupUser">
              
@@ -88,30 +91,26 @@
             </div>
           </td>
         </tr>
-      </tbody>
+      </tbody >
     </table>
   </div>
   </div>
   </div>
-  
-  
-  
-     
-  
-  
-  
-  
    
     </template>
+
+  <script>
     
-    <script>
-  
     import { mapState, mapActions } from 'vuex';
-    
-    
+    import SpinnerComp from '@/components/SpinnerComp.vue';
     export default {
+
+      components: {
+        SpinnerComp,
+      },
+
       computed: {
-        ...mapState(['products', 'users', 'adminData']), 
+        ...mapState(['products', 'users']), 
     
        
       },
@@ -123,13 +122,13 @@
       methods: {
     ...mapActions(['fetchProducts', 'fetchUsers']),
   
-     deleteProduct(productId) {
-      this.$store.dispatch('deleteProduct', productId);
+     deleteProduct(prodID) {
+      this.$store.dispatch('deleteProduct', prodID);
       }
     },
   }
     
-    </script>
+</script>
     
     
     <style>

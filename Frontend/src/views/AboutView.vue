@@ -3,7 +3,7 @@
     <div class="card-about mb-3">
       <div class="row g-0">
         <div class="col-md-6">
-          <img src="https://i.postimg.cc/T1zvw6X9/istockphoto-1432773286-612x612-removebg-preview.png" class="img-fluid rounded-start" alt="" width="100%">
+          <img src="https://i.postimg.cc/T1zvw6X9/istockphoto-1432773286-612x612-removebg-preview.png" id="bounce"   alt="" width="76%" loading="lazy">
         </div>
         <div class="col-md-6">
           <div class="card-body">
@@ -21,15 +21,15 @@
     <div class="container-fluid">
       <div class="icons">
         
-        <img src="https://i.postimg.cc/kGjZZcjP/fast-delivery-icon-removebg-preview.png" alt="" class="icon" id="fast-delivery-icon">
+        <img src="https://i.postimg.cc/kGjZZcjP/fast-delivery-icon-removebg-preview.png" alt="" class="icon" id="fast-delivery-icon" loading="lazy">
         <h2 class="icon-label">Fast Delivery</h2>
         
       
-        <img src="https://i.postimg.cc/3JRzGsR8/quality-icon-removebg-preview.png" alt="" class="icon" id="quality-icon">
+        <img src="https://i.postimg.cc/3JRzGsR8/quality-icon-removebg-preview.png" alt="" class="icon" id="quality-icon" loading="lazy">
         <h2 class="icon-label">Quality Products</h2>
         
      
-        <img src="https://i.postimg.cc/J7K9GrRY/wrapped-gift-removebg-preview.png" alt="" class="icon" id="wrapped-gift-icon">
+        <img src="https://i.postimg.cc/J7K9GrRY/wrapped-gift-removebg-preview.png" alt="" class="icon" id="wrapped-gift-icon" loading="lazy">
         <h2 class="icon-label">Wrapped Gifts</h2>
       </div>
     </div>
@@ -37,6 +37,26 @@
 </template>
 
 <style scoped>
+
+#bounce {
+
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  animation: bounce 0.5s infinite alternate; 
+}
+
+.bounce:hover {
+  transform: scale(1.1);
+  opacity: 0.8;
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px); 
+  }
+}
 .card-about {
   background-color: purple;
   padding: 2rem;

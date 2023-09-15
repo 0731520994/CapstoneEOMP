@@ -34,70 +34,71 @@ const routes = [
    
     component: () => import('../views/AllView.vue')
   },
+ 
   {
-  path: '/categories',
-  name: 'categories',
- 
-  component: () => import('../views/CategoriesView.vue')
-},
-{
-  path: '/checkout',
-  name: 'checkout',
- props: true,
-  component: () => import('../views/CheckoutView.vue'),
+    path: '/checkout',
+    name: 'checkout',
+   props: true,
+    component: () => import('../views/CheckoutView.vue'),
+
+  },
+  {
+    path: '/contact',
+    name: 'contact',
   
-},
-{
-  path: '/contact',
-  name: 'contact',
- 
-  component: () => import('../views/ContactView.vue'),
-  afterEnter() {
-    if(!cookies.get('LegitUser')) {
-      router.push({name: 'signIn'})
+    component: () => import('../views/ContactView.vue'),
+    afterEnter() {
+      if(!cookies.get('LegitUser')) {
+        router.push({name: 'signIn'})
+      }
     }
-  }
-},
-{
-  path: '/single/:prodID',
-  name: 'single',
- 
-  component: () => import('../components/SingleView.vue')
-},
-{
-  path: '/logout/:prodID',
-  name: 'logout',
- 
-  component: () => import('../views/ProfileView.vue')
-},
-{
-  path: '/signIn',
-  name: 'signIn',
- 
-  component: () => import('../views/SignInView.vue')
-},
-{
-  path: '/register',
-  name: 'register',
- 
-  component: () => import('../views/RegisterView.vue')
-},
-{
-  path: '/addProduct',
-  name: 'addProduct',
- 
-  component: () => import('../views/AddProductView.vue')
-},
-{
-  path: '/editProduct/:prodID',
-  name: 'editProduct',
-  component: () => import('../views/EditProductView.vue')
-},
-{
-  path: '/buttons',
-  name: 'buttons',
-  component: () => import('../views/ButtonsView.vue')
-},
+  },
+  {
+    path: '/single/:prodID',
+    name: 'single',
+  
+    component: () => import('../components/SingleView.vue')
+  },
+  {
+    path: '/logout/:prodID',
+    name: 'logout',
+  
+    component: () => import('../views/ProfileView.vue')
+  },
+  {
+    path: '/signIn',
+    name: 'signIn',
+  
+    component: () => import('../views/SignInView.vue')
+  },
+  {
+    path: '/register',
+    name: 'register',
+  
+    component: () => import('../views/RegisterView.vue')
+  },
+  {
+    path: '/addProduct',
+    name: 'addProduct',
+  
+    component: () => import('../views/AddProductView.vue')
+  },
+  {
+    path: '/addUser',
+    name: 'addUser',
+  
+    component: () => import('../views/AddUserView.vue')
+  },
+  {
+    path: '/editProduct/:prodID',
+    name: 'editProduct',
+    component: () => import('../views/EditProductView.vue')
+  },
+  {
+    path: '/buttons',
+    name: 'buttons',
+    component: () => import('../views/ButtonsView.vue')
+  },
 
 
 

@@ -14,6 +14,7 @@ export default createStore({
     products: [],
     product: null,
     adminData: [],
+    cart: [],
     newProduct: {
     prodID: '',
     prodName: '',
@@ -22,7 +23,8 @@ export default createStore({
     prodUrl: '',
     orders: null,
     order: null,
-    removeFromCart: null,
+    // cart: storedCart,
+//     removeFromCart: null,
     ViewItem: null,
     spinner: false,
     token: null,
@@ -39,8 +41,14 @@ export default createStore({
 
 },
   getters: {
-
+    getTotal(state) {
+      return state.cart.reduce((total, item) => {
+        const sumof = item.amount || 0;
+        return total + sumof;
+      }, 0);
+    },
   },
+
   mutations: {
     setUsers(state, users) {
       state.users = users;
@@ -100,6 +108,11 @@ export default createStore({
     setBeauty(state, beauty) {
       state.beauty= beauty;
     },
+    addToCart(state, product) {
+      state.cart.push(product);
+    },
+
+
   
   },
  
@@ -108,7 +121,7 @@ export default createStore({
     
     async register(context, payload) {
       try {
-        const { msg } = (await axios.post(`${capstoneeompUrl}user`, payload)).data
+        const { msg } = (await axios.post(`${capstoneeompUrl}register`, payload)).data
           if (msg) {
             sweet({
               title: "Registration",
@@ -260,6 +273,16 @@ async login(context, payload) {
         throw error; 
       }
     },
+
+    async deleteProduct(context, prodID){
+      try {
+        const response = await axios.delete(`${capstoneeompUrl}product/${prodID}`)
+        context.commit('setDelete', response)
+        location.reload()
+      } catch (error) {
+        console.log(error);
+      }
+    },
     
 
     async fetchProductsByCategory(context, categoryName) {
@@ -305,6 +328,16 @@ async login(context, payload) {
         context.commit("setPerfumes", data.results)
       }catch(e){
         console.log(e)
+      }
+    },
+
+    async deleteUser(context, userID){
+      try {
+        const response = await axios.delete(`${capstoneeompUrl}user/${userID}`)
+        context.commit('setDelete', response)
+        location.reload()
+      } catch (error) {
+        console.log(error);
       }
     },
 

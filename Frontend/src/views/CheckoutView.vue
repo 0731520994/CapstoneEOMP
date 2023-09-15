@@ -1,67 +1,144 @@
 <template>
-  <div class="container">
-    <h2>Checkout</h2>
-    <div class="row">
-      <div class="col-md-8">
-        <ul class="list-group">
-          <li
-            v-for="(item, index) in cart"
-            :key="item.prodID"
-            class="list-group-item d-flex justify-content-between align-items-center"
-          >
-            <div>
-              <img :src="item.prodUrl" alt="Product Image" class="img-thumbnail mr-3" />
-              {{ item.prodName }}
-            </div>
-            <div>
-              R {{ item.amount }}
-              <button @click="removeFromCart(index)" class="btn btn-danger btn-sm ml-3">Remove</button>
-            </div>
-          </li>
-        </ul>
-      </div>
-      <div class="col-md-4">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">Total</h5>
-            <p class="card-text">R {{ getTotal() }}</p>
-            <button class="btn btn-primary">Proceed to Checkout</button>
+  <div>
+    <h1>Shopping Cart</h1>
+    
+    <div class="container" v-for="item in cart" :key="item.prodID">
+      <div class="card" >
+<div class="row g-0" >
+  <div class="col-12 col-md-6">
+    <img :src="item.prodUrl">
+  </div>
+  <div class="col-12 col-md-6">
+    <div class="card-body">
+      <h5 class="card-title">{{ item.prodName }}</h5>
+      <p class="card-text" style="color: black;">R {{ item.amount }}</p>
+      <button class="btn" @click="removeFromCart(index)">Remove</button>
+      
+    </div>
+  </div>
+</div>
+</div>
+    </div>
+    <div class="container" id="total">
+      <h1 class="totals">Total : {{ getTotal }}</h1>
+    </div>
+    <h1>Enter Card Detials</h1>
+    <div class="divs">
+      <div class="form row">
+      <form action="https://formspree.io/f/mnqkqnag" method="POST">
+          <div style="display: flex; justify-content: center;">
+            <div class="mb-3 col-md-6">
+            <label for="exampleFormControlInput1" class="form-label"
+              >Name</label
+            >
+            <input
+              type="name"
+              class="form-control"
+              id="exampleFormControlInput1"
+              placeholder="Enter Name"
+              name="name"
+              required
+            />
+          </div>
+          <div class="mb-3 col-md-6" style="margin-left: 1rem;">
+            <label for="exampleFormControlInput1" class="form-label"
+              >Surname</label
+            >
+            <input
+              type="name"
+              class="form-control"
+              id="exampleFormControlInput1"
+              placeholder="Enter Surname"
+              name="surname"
+              required
+            />
           </div>
         </div>
-      </div>
+        <div style="display: flex; justify-content: center;">
+          <div class="mb-3 col-md-9">
+            <label for="exampleFormControlInput1" class="form-label"
+              >Card Number</label
+            >
+            <input
+              type="number"
+              class="form-control"
+              id="exampleFormControlInput1"
+              placeholder="xxx-xxx-xxx-xxx"
+              name="email"
+              required
+            />
+          </div>
+          <div class="mb-3 col-md-3" style="margin-left: 1rem;">
+            <label for="exampleFormControlInput1" class="form-label"
+              >CVV</label
+            >
+            <input
+              type="number"
+              class="form-control"
+              id="exampleFormControlInput1"
+              placeholder="xxx"
+              name="email"
+              required
+            />  
+          </div>
+        </div> 
+        <h5 style="color: white;">Expiry date</h5>
+        <div style="display: flex; justify-content: center;">
+          <div class="mb-3 col-md-9">
+            <label for="exampleFormControlInput1" class="form-label"
+              ></label
+            >
+            <input
+              type="number"
+              class="form-control"
+              id="exampleFormControlInput1"
+              placeholder="Month"
+              name="email"
+              required
+            />
+          </div>
+          <div class="mb-3 col-md-3" style="margin-left: 1rem;">
+            <label for="exampleFormControlInput1" class="form-label"
+              ></label
+            >
+            <input
+              type="number"
+              class="form-control"
+              id="exampleFormControlInput1"
+              placeholder="Year"
+              name="email"
+              required
+            />  
+          </div>
+        </div>   
+          <button class="btn" id="btnn" type="submit">Checkout</button>
+        </form>
+    </div>
     </div>
   </div>
 </template>
 
 <script>
-export default {
-  data() {
-    return {
-      cart: [], // Initialize cart as an empty array
-    };
-  },
-  created() {
-    // Retrieve and parse the cart data from the query parameter
-    const cartData = this.$route.query.cart;
-    if (cartData) {
-      this.cart = JSON.parse(cartData);
-    }
-  },
-  methods: {
-    removeFromCart(index) {
-      // Implement the logic to remove an item from the cart
-    },
-    getTotal() {
-      // Calculate the total amount in the cart
-      return this.cart.reduce((total, item) => total + item.amount, 0);
-    },
-  },
-};
-</script>
 
-<style scoped>
-img {
-  width: 14rem;
-  height: 18rem;
-}
-</style>
+import { mapGetters } from 'vuex';
+  export default {
+    computed: {
+  cart() {
+    return this.$store.state.cart;
+  },
+},
+computed: {
+          ...mapGetters(["getTotal"]),
+          cart() {
+              return this.$store.state.cart
+          }
+      },
+methods: {
+  removeFromCart(index) {
+    this.$store.dispatch('removeFromCartAction', index);
+    localStorage.setItem('cart', JSON.stringify(this.cart));
+  },
+ 
+},
+  }
+</script>

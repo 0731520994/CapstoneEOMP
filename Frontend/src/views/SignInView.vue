@@ -7,7 +7,7 @@
       >
         <h1>WELCOME BACK</h1>
       </div>
-      <div class="col-6">
+      
         <form >
                 <div class="mb-3">
                 <label for="exampleInputEmail1" class="form-label">Email address</label>
@@ -19,7 +19,7 @@
                 </div>
                 <button @click.prevent="login" type="button" class="btn btn-primary">Login</button>
             </form>
-      </div>
+      
     </div>
   </div>
 </template>

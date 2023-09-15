@@ -1,11 +1,13 @@
 <template>
+
+
   <nav class="navbar navbar-expand-lg ">
     <div class="container-fluid">
       <img src="https://i.postimg.cc/YqnDkQXk/Logotype_Boutique_Fashion_Neon.png" style="width:6rem; border-radius:100%">
-      <button class="navbar-toggler" type="button" @click="toggleNavbar" aria-expanded="false" aria-label="Toggle navigation">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse justify-content-end" :class="{ show: isNavbarOpen }" id="navbarSupportedContent">
+          <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
         <ul class="navbar-nav ">
           <li class="nav-item justify-content-end" >
             <router-link id="linkName" class="nav-link active" aria-current="page" to="/">Home</router-link>
@@ -96,9 +98,7 @@ width: fit-content;
 
 }
 
-.nav-link{
-  color: white;
-}
+
 
 .nav-link:hover{
   background-color: purple;

@@ -43,7 +43,7 @@ class Users{
         gender, emailAdd, userPass,
         profileUrl
         FROM Users
-        WHERE emailAdd = ?;
+        WHERE emailAdd = '${emailAdd} 
         `
         db.query(query, [emailAdd,userPass],async (err, result)=>{
             if(err) throw err
@@ -89,7 +89,7 @@ class Users{
 //register a user
    async register(req,res){
         const data = req.body
-        data.userPass = await hash(data.userPass,10)
+        data.userPass = await hash(data?.userPass,10)
         const user = {
             emailAdd:data.emailAdd,
             userPass:data.userPass

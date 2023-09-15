@@ -3,11 +3,140 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/style.css">
-    <title>Routes Description</title>
+    <title>Document</title>
+    <link rel="stylesheet" href="../CSS/style.css">
 </head>
 <body>
-    <h2>Routes Description</h2>
+    <h1>ROUTE DESCRIPTIONS</h1>
+ 
+
+<div class="userTable">
+
+ <div id="user">
+    <table>
+        <h2>USERS</h2>
+        <tr>
+            <th>HTTP METHOD</th>
+            <th>PATH</th>
+            <th>DESCRIPTION</th>
+        </tr>
+            <tr>
+                <td>GET</td>
+                <td>/users</td>
+                <td>gets all users</td>
+            </tr>
+            <tr>
+                <td>GET</td>
+                <td>/user</td>
+                <td>gets one user</td>
+            </tr>
+            <tr>
+                <td>POST</td>
+                <td>/addNewUser</td>
+                <td>add New User</td>
+            </tr>
+            <tr>
+                <td>PATCH</td>
+                <td>/user/:id</td>
+                <td>update users</td>
+            </tr>
+            <tr>
+                <td>PUT</td>
+                <td>/user/:id</td>
+                <td>update users</td>
+            </tr>
+            <tr>
+                <td>DELETE</td>
+                <td>/user/:id</td>
+                <td>delete user by ID</td>
+            </tr>
+        </div>
+
+<div class="orderTable">
+
+ <div id="orders">
+    <table>
+        <h2>ORDERS</h2>
+        <tr>
+            <th>HTTP METHOD</th>
+            <th>PATH</th>
+            <th>DESCRIPTION</th>
+        </tr>
+            <tr>
+                <td>GET</td>
+                <td>/orders</td>
+                <td>gets all orders</td>
+            </tr>
+            <tr>
+                <td>GET</td>
+                <td>/order</td>
+                <td>fetchCart</td>
+            </tr>
+            <tr>
+                <td>POST</td>
+                <td>AddNewCart</td>
+                <td>addCart</td>
+            </tr>
+
+            <tr>
+                <td>PUT</td>
+                <td>/order/:id</td>
+                <td>updateCart</td>
+            </tr>
+            <tr>
+                <td>DELETE</td>
+                <td>/order/:id</td>
+                <td>deleteCart</td>
+            </tr>
+        </div>
+
+
+    </table>
+
+<div id="prod">
+ <table >
+   <h2>PRODUCTS</h2>
+       
+        <tr>
+            <th>HTTP METHOD</th>
+            <th>PATH</th>
+            <th>DESCRIPTION</th>
+        </tr>
+            <tr>
+                <td>GET</td>
+                <td>/products</td>
+                <td>gets all products</td>
+            </tr>
+            <tr>
+                <td>GET</td>
+                <td>/product</td>
+                <td>gets one product by ID</td>
+            </tr>
+            <tr>
+                <td>POST</td>
+                <td>/addNewProduct</td>
+                <td>add New product</td>
+            </tr>
+            <tr>
+                <td>PATCH</td>
+                <td>/product/:id</td>
+                <td>update product</td>
+            </tr>
+            <tr>
+                <td>PUT</td>
+                <td>/product/:id</td>
+                <td>update product</td>
+            </tr>
+            <tr>
+                <td>DELETE</td>
+                <td>/product/:id</td>
+                <td>delete product by ID</td>
+            </tr>
+    </table>
+</div>
+
+
+</div>
     
 </body>
 </html>

@@ -7,7 +7,7 @@
       </button>
       <div class="collapse navbar-collapse" :class="{ show: isNavbarOpen }" id="navbarSupportedContent">
         <ul class="navbar-nav navMoving ">
-          <li class="nav-item justify-content-end" >
+          <li class="nav-item justify" >
             <router-link id="linkName" class="nav-link active" aria-current="page" to="/">Home</router-link>
           </li>
           <li class="nav-item">

@@ -25,7 +25,7 @@ class Cart {
       SET quantity = ?
       WHERE cartID = ?;
       `;
-      const { quantity } = req.body; // Get quantity from the request body
+      const { quantity } = req.body; 
       db.query(query, [quantity, req.params.id], (err) => {
         if (err) throw err;
         res.json({
@@ -42,7 +42,7 @@ class Cart {
       INSERT INTO Cart (prodID, quantity)
       VALUES (?, ?);
       `;
-      const { prodID, quantity } = req.body; // Get prodID and quantity from the request body
+      const { prodID, quantity } = req.body;
       db.query(query, [prodID, quantity], (err) => {
         if (err) throw err;
         res.json({

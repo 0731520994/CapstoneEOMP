@@ -89,7 +89,7 @@ class Users{
 //register a user
    async register(req,res){
         const data = req.body
-        data.userPass = await hash(data.uPassword,10)
+        data.userPass = await hash(data.userPass,10)
         const user = {
             emailAdd:data.emailAdd,
             userPass:data.userPass
@@ -103,7 +103,8 @@ class Users{
             let token = createToken(user)
             res.json ({
                 status: res.statusCode,
-                msg: "You are now registered"
+                msg: "You are now registered",
+                token
             })
         })
     }

@@ -65,7 +65,7 @@
           <th>Actions</th> 
         </tr>
       </thead>
-      <tbody v-if="item && products.length >0">
+      <tbody>
 
         <tr v-for="item in users" :key="item.userID">
           <td>{{ item.userID }}</td>
@@ -92,9 +92,6 @@
           </td>
         </tr>
       </tbody >
-      <div v-else class="row">
-        <spinnerComp/>
-        </div>
     </table>
   </div>
   </div>

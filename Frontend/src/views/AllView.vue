@@ -19,7 +19,7 @@
 
   
     <div class="card-body">
-      <div class="row"  v-if="products && products.length >0">
+      <div class="row"  v-if="products && products.length">
         <div class="col-md-3" v-for="product in filteredAndSortedProducts" :key="product?.prodID">
           <div class="card">
             <img :src="product?.prodUrl" class="card-img-top img-fluid" :alt="product?.name" style="width: 15rem; height: 14rem; padding: 2rem; margin:auto">

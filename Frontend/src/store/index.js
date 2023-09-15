@@ -197,6 +197,38 @@ async login(context, payload) {
         throw error;
       }
     },  
+
+    async addUser(context, payload) {
+      try {
+        const { msg } = (await axios.post(`${capstoneeompUrl}addUser`, payload)).data;
+        console.log(msg);
+        if (msg) {
+          context.dispatch("fetchProducts");
+          sweet({
+            title: "Success",
+            text: msg,
+            icon: "success",
+            timer: 2000
+          });
+          router.push({ name: 'all' });
+        } else {
+          sweet({
+            title: "Error",
+            text: "An error occurred",
+            icon: "error",
+            timer: 2000
+          });
+        }
+      } catch (error) {
+        sweet({
+          title: "Error",
+          text: "Please contact the admin",
+          icon: "error",
+          timer: 2000
+        });
+      }
+    },
+  
    
     async fetchProducts(context) {
       try {
@@ -283,6 +315,10 @@ async login(context, payload) {
         console.log(error);
       }
     },
+
+
+
+    
     
 
     async fetchProductsByCategory(context, categoryName) {

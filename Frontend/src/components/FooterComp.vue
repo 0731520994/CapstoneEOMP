@@ -50,11 +50,11 @@
           <div class="info_form ">
             <h5>Newsletter</h5>
 
-            <form action="">
-              <input type="email" placeholder="Enter your email">
-              <button class="subscribe">Subscribe</button>
+            <form action="https://formspree.io/f/moqoldrq" method="POST">
+              <input type="email" name="email" placeholder="Enter your email">
+              <button class="subscribe" type="submit">Subscribe</button>
             </form>
-
+            
             <div class="social_icons">
               <a href="https://www.facebook.com/" target="_blank"><i class="bi bi-facebook"></i></a>
               <a href="https://www.instagram.com/" target="_blank"><i class="bi bi-instagram"></i></a>

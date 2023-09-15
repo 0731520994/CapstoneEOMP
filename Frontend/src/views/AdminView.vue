@@ -4,7 +4,7 @@
               <h1 style="text-decoration:underline">Products</h1>
          
         <div class="sortBtns">
-          <RouterLink to="/addProduct" class="btn btn-primary">Add Product</RouterLink>
+          <RouterLink to="/register" class="btn btn-primary">Add Product</RouterLink>
   
          
         </div>
@@ -23,7 +23,8 @@
           <th>Edit/Delete</th>
         </tr>
       </thead>
-      <tbody>
+      <tbody >
+   
         <tr class="tdSize" v-for="item in products" :key="item.prodID">
           <td>{{ item.prodID }}</td>
           <td>{{ item.prodName }}</td>
@@ -38,6 +39,7 @@
           </td>
         </tr>
       </tbody>
+    
     </table>
   </div>
   </div>
@@ -45,7 +47,7 @@
           <!-- USER TABLE -->
           <h1 style="text-decoration: underline">Users</h1>
   
-  <router-link to="/register" class="btn btn-primary">Add User</router-link>
+  <router-link to="/addUser" class="btn btn-primary">Add User</router-link>
   
   <div class="adminUser_container">
     <div class="table-responsive">
@@ -63,7 +65,8 @@
           <th>Actions</th> 
         </tr>
       </thead>
-      <tbody>
+      <tbody v-if="item && products.length >0">
+
         <tr v-for="item in users" :key="item.userID">
           <td>{{ item.userID }}</td>
           <td>{{ item.firstName }}</td>
@@ -88,30 +91,29 @@
             </div>
           </td>
         </tr>
-      </tbody>
+      </tbody >
+      <div v-else class="row">
+        <spinnerComp/>
+        </div>
     </table>
   </div>
   </div>
   </div>
-  
-  
-  
-     
-  
-  
-  
-  
    
     </template>
+
+  <script>
     
-    <script>
-  
     import { mapState, mapActions } from 'vuex';
-    
-    
+    import SpinnerComp from '@/components/SpinnerComp.vue';
     export default {
+
+      components: {
+        SpinnerComp,
+      },
+
       computed: {
-        ...mapState(['products', 'users', 'adminData']), 
+        ...mapState(['products', 'users']), 
     
        
       },
@@ -129,7 +131,7 @@
     },
   }
     
-    </script>
+</script>
     
     
     <style>

@@ -17,9 +17,9 @@
     <label>Search</label>
     <input v-model="searchTerm" type="text" placeholder="Search for a product..." />
 
-
+  
     <div class="card-body">
-      <div class="row">
+      <div class="row"  v-if="products && products.length >0">
         <div class="col-md-3" v-for="product in filteredAndSortedProducts" :key="product?.prodID">
           <div class="card">
             <img :src="product?.prodUrl" class="card-img-top img-fluid" :alt="product?.name" style="width: 15rem; height: 14rem; padding: 2rem; margin:auto">
@@ -36,23 +36,31 @@
           </div>
         </div>
       </div>
+      <div v-else class="row">
+        <spinnerComp/>
+    </div>
     </div>
   </div>
 </template>
 
 <script>
+import SpinnerComp from '@/components/SpinnerComp.vue';
 import sweet from 'sweetalert'
 import { mapState, mapActions } from 'vuex';
 import SingleView from '@/components/SingleView.vue';
 
 
 export default {
+
+
   data() {
     return {
       selectedFilter: 'all', 
       selectedSort: 'options', 
       searchTerm: '',
     };
+
+    
   },
   computed: {
     ...mapState(['products']), 
@@ -116,7 +124,7 @@ export default {
 
   components: {
     SingleView,
-   
+   SpinnerComp,
   },
   mounted() {
     this.$store.dispatch('fetchProducts'); 

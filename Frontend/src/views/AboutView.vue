@@ -3,7 +3,7 @@
     <div class="card-about mb-3">
       <div class="row g-0">
         <div class="col-md-6">
-          <img src="https://i.postimg.cc/T1zvw6X9/istockphoto-1432773286-612x612-removebg-preview.png" class="img-fluid rounded-start" alt="" width="100%">
+          <img src="https://i.postimg.cc/T1zvw6X9/istockphoto-1432773286-612x612-removebg-preview.png" class="bounce" alt="" width="100%">
         </div>
         <div class="col-md-6">
           <div class="card-body">
@@ -37,6 +37,26 @@
 </template>
 
 <style scoped>
+
+#bounce {
+
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  animation: bounce 0.5s infinite alternate; 
+}
+
+.bounce:hover {
+  transform: scale(1.1);
+  opacity: 0.8;
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px); 
+  }
+}
 .card-about {
   background-color: purple;
   padding: 2rem;

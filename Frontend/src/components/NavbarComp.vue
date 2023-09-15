@@ -2,12 +2,12 @@
   <nav class="navbar navbar-expand-lg ">
     <div class="container-fluid">
       <img src="https://i.postimg.cc/YqnDkQXk/Logotype_Boutique_Fashion_Neon.png" style="width:6rem; border-radius:100%">
-      <button class="navbar-toggler" type="button" @click="toggleNavbar" aria-expanded="false" aria-label="Toggle navigation">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse" :class="{ show: isNavbarOpen }" id="navbarSupportedContent">
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav navMoving ">
-          <li class="nav-item justify-content-end" >
+          <li class="nav-item margin-left: 50px" >
             <router-link id="linkName" class="nav-link active" aria-current="page" to="/">Home</router-link>
           </li>
           <li class="nav-item">
@@ -16,18 +16,8 @@
           <li class="nav-item">
             <router-link id="linkName" class="nav-link active"  aria-current="page" to="/admin">Admin</router-link>
           </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Products
-            </a>
-            <ul class="dropdown-menu">
-              <li>
-                <router-link class="dropdown-item" to="/products">All</router-link>
-              </li>
-              <li>
-                <router-link class="dropdown-item" to="/categories">Categories</router-link>
-              </li>
-            </ul>
+          <li class="nav-item">
+            <router-link id="linkName" class="nav-link active"  aria-current="page" to="/products">Products</router-link>
           </li>
           <li class="nav-item">
             <router-link id="linkName" class="nav-link active" aria-current="page" to="/checkout">Checkout</router-link>
@@ -135,20 +125,20 @@ margin-left: 70%;
 
 
 .menu-toggle {
-  display: none; /* Initially hide the menu toggle button */
+  display: none; 
 }
 
 @media (max-width: 768px) {
   .menu-toggle {
-    display: block; /* Show the menu toggle button for small screens */
+    display: block; 
   }
 
   .nav-links {
-    display: none; /* Initially hide the navigation links for small screens */
+    display: none; 
   }
 
   .show .nav-links {
-    display: block; /* Show the navigation links when the menu is open */
+    display: block; 
   }
 
 }

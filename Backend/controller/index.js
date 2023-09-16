@@ -1,13 +1,14 @@
-const express = require('express')
-const bodyParser = require('body-parser')
-const {verifyToken} = require ('../middleware/AuthonticateUser')
-const path =require('path')
-const routes = express.Router()
+const express = require('express');
+const bodyParser = require('body-parser');
+const { verifyToken } = require('../middleware/AuthonticateUser');
+const path = require('path');
+const cors = require('cors');
+const routes = express.Router();
 
+routes.use(cors());
 
-//Export all objects
-
-const {users, products, orders, cart} = require('../models')
+// Export all objects
+const { users, products, orders, cart } = require('../models');
 
 
 

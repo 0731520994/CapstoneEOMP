@@ -36,22 +36,22 @@ class Users{
 
                 
     login(req, res) {
-        const {emailAdd, userPass} = req.body
+        const {emailAdd, userPass} = req.body;
         // query
         const query =`
         SELECT userID, firstName, lastName,
         gender, emailAdd, userPass,
         profileUrl
         FROM Users
-        WHERE emailAdd = '${emailAdd} 
-        `
-        db.query(query, [emailAdd,userPass],async (err, result)=>{
+        WHERE emailAdd = '${emailAdd}';
+        `;
+         db.query(query, async (err, result) => {
             if(err) throw err
             if(!result?.length){
                 res.json({
                     status: res.statusCode,
                     msg: "You provided a wrong email."
-                })
+                });
             }else {
                 await compare(userPass,
                     result[0].userPass,
@@ -62,7 +62,7 @@ class Users{
                         createToken({
                             emailAdd,
                             userPass
-                        })
+                        });
                         // Save a token
                         res.cookie("LegitUser",
                         token, {
@@ -88,25 +88,25 @@ class Users{
     }
 //register a user
    async register(req,res){
-        const data = req.body
+        const data = req.body;
         data.userPass = await hash(data?.userPass,10)
         const user = {
             emailAdd:data.emailAdd,
             userPass:data.userPass
-        }
-        const query = `
+        };
+         const query = `
         INSERT INTO Users
-        SET ?
-        `
+        SET ?;
+        `;
         db.query(query,[data],(err) => {
             if(err) throw err
-            let token = createToken(user)
+            let token = createToken(user);
             res.json ({
                 status: res.statusCode,
                 msg: "You are now registered",
                 token
-            })
-        })
+            });
+        });
     }
 
     updateUser(req, res) {

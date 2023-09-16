@@ -11,7 +11,7 @@
                 <label for="exampleInputPassword1" class="form-label">Password</label>
                 <input type="password" class="form-control" id="exampleInputPassword1" v-model="payload.userPass" required>
                 </div>
-                <button @click.prevent="login" type="button" class="submit">Login</button>
+                <button @click.prevent="login" type="button" class="submit-in">Login</button>
             </form>
       </div>
    </div>
@@ -72,6 +72,26 @@ h2{
   text-align: center;
   
 }
+.submit-in{
 
+background: none;
+
+text-align: center;
+border: 3px solid white;
+padding: 14px 10px;
+margin-left: 20rem;
+outline: none;
+color: white;
+border-radius: 24px;
+transition: 0.25px;
+cursor: pointer ;
+text-decoration: solid;
+}
+.submit-in:hover{
+  background: rgb(238, 216, 248);
+  color: purple;
+
+  
+}
 
 </style>

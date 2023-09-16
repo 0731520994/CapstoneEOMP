@@ -1,5 +1,6 @@
 <template>
-  <div class="container-flex-container">
+  <div class="sigUp-fluid">
+    <h2>Sign Up</h2>
     <ul class="alert alert-warning" v-if="err && err.length > 0">
       <li class="mb-0 ms-3" v-for="(error, index) in err" :key="index">
         {{ error }}
@@ -64,7 +65,7 @@
 
     <div class="mb-3">
       <label for="exampleInputRole1" class="form-label">User Role</label>
-      <select class="form-control" v-model="userData.userRole">
+      <select class="form-control">
         <option value="Admin">Admin</option>
         <option value="User">User</option>
       </select>
@@ -113,8 +114,28 @@ export default {
 }
 </script>
 
-<Style>
+<style>
 
+.sigUp-fluid{
+  width: 60%;
+  justify-content: center;
+    height:fit-content;
+    margin-left: 30%;
+    background-color: rgb(128, 0, 128);
+    border-radius: 3rem;
+    box-shadow: 10px 6px 4px 4px white;
+    padding: 3rem;
+    color: white;
+    margin-top: 3rem;
+
+    
+}
+
+h2{
+  justify-content: center;
+  text-align: center;
+  
+}
 
 
 .up-submit{
@@ -124,7 +145,7 @@ background: none;
 text-align: center;
 border: 3px solid white;
 padding: 14px 10px;
-
+margin-left: 45%;
 outline: none;
 color: white;
 border-radius: 24px;
@@ -132,11 +153,10 @@ transition: 0.25px;
 cursor: pointer ;
 text-decoration: solid;
 }
-
 .up-submit:hover{
   background: rgb(238, 216, 248);
   color: purple;
 
   
 }
-</Style>
+</style>

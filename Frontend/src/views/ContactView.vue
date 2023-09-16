@@ -1,7 +1,8 @@
 <template>
     <div>
-    <h1>Contact Us</h1>
+    
     <div class="box container-fluid">
+      <h1>Contact Us</h1>
       <div class="contact-us">
         <form action="https://formspree.io/f/moqoldrq" method="POST">
           <div class="row mb-3">
@@ -96,12 +97,13 @@ body{
 }
 
 h1{
-  background-color: white;
+  color: white;
   width: fit-content;
   margin: 5rem;
   margin-left: 40%;
   padding: 1rem;
-  color: purple;
+  background-color: purple;
+  box-shadow: 10px 6px 4px 4px white;
  
 }
 </style>

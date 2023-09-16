@@ -1,4 +1,5 @@
 <template>
+  <form @submit.prevent="addUser">
   <div class="sigUp-fluid">
     <h2>Sign Up</h2>
     <ul class="alert alert-warning" v-if="err && err.length > 0">
@@ -77,12 +78,13 @@
         type="text"
         class="form-control"
         id="exampleInputUserUrl1"
-        v-model="userData.userUrl"
+        v-model="userData.profileUrl"
       />
     </div>
-
-    <button @click.prevent="addUser" class="up-submit">Submit</button>
-  </div>
+    <button type="submit" class="up-submit">Submit</button>
+    </div>
+</form>
+  
 </template>
 
 <script>
@@ -95,22 +97,22 @@ export default {
         gender: "",
         emailAdd: "",
         userPass: "",
-        userUrl: "",
+        profileUrl: "",
       },
       
     };
   },
 
-
-
-
   methods: {
-
-    register() {
-      console.log(this.userData);
-      this.$store.dispatch('register', this.userData)
-    }
+  addUser() {
+    console.log(this.userData);
+    this.$store.dispatch('register', this.userData);
   }
+}
+
+
+
+ 
 }
 </script>
 

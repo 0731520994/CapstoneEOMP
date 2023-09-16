@@ -82,7 +82,7 @@ export default createStore({
       state.ViewItem = ViewItem;
     },
     deleteProduct(state, prodID) {
-      state.products = state.products.filter((product) => product.prodID !== proID);
+      state.products = state.products.filter((product) => product.prodID !== prodID);
     },
     deleteUser(state, userID) {
       state.users = state.users.filter((user) => user.userID !== userID);
@@ -114,9 +114,9 @@ export default createStore({
   actions: {
 
     
-    async register(context, payload) {
+    async register({commit}, userData) {
       try {
-        const { msg } = (await axios.post(`${capstoneeompUrl}register`, payload)).data
+        const { msg } = (await axios.post(`${capstoneeompUrl}register`, userData)).data
           if (msg) {
             sweet({
               title: "Registration",
@@ -124,9 +124,8 @@ export default createStore({
               icon: "success",
               timer: 400,
             });
-
-            context.dispatch("fetchUsers"); 
-            router.push({ name: "login" });
+            commit("setMsg, msg")
+           // router.push({ name: "login" });
           } else {
             sweet({
               title: "Error",

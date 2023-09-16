@@ -1,14 +1,8 @@
 <template>
-  <div>
-    <div class="row">
-      <div
-        class="col-6" id="formss"
-        style="display: flex; justify-content: center; align-items: center"
-      >
-        <h1>WELCOME BACK</h1>
-      </div>
-      <div class="col-6">
+      <div>
+      <div class="sign-fluid">
         <form >
+          <h2>Sign In</h2>
                 <div class="mb-3">
                 <label for="exampleInputEmail1" class="form-label">Email address</label>
                 <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" v-model="payload.emailAdd" required>
@@ -17,11 +11,12 @@
                 <label for="exampleInputPassword1" class="form-label">Password</label>
                 <input type="password" class="form-control" id="exampleInputPassword1" v-model="payload.userPass" required>
                 </div>
-                <button @click.prevent="login" type="button" class="btn btn-primary">Login</button>
+                <button @click.prevent="login" type="button" class="submit">Login</button>
             </form>
       </div>
-    </div>
-  </div>
+   </div>
+
+  
 </template>
 
 <script>
@@ -54,3 +49,29 @@ const { cookies } = useCookies()
         },
     }
   </script>
+
+<style>
+
+.sign-fluid{
+  width: 60%;
+  justify-content: center;
+    height:25rem;
+    margin-left: 30%;
+    background-color: rgb(128, 0, 128);
+    border-radius: 3rem;
+    box-shadow: 10px 6px 4px 4px white;
+    padding: 3rem;
+    color: white;
+    margin-top: 3rem;
+
+    
+}
+
+h2{
+  justify-content: center;
+  text-align: center;
+  
+}
+
+
+</style>

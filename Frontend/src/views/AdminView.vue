@@ -11,7 +11,7 @@
       
        
   <div class="adminUser_container">
-    <div class="table-responsive">
+    <div class="table-responsive" v-if="products">
       <table class="table table-bordered">
       <thead>
         <tr>
@@ -25,7 +25,7 @@
       </thead>
       <tbody >
    
-        <tr class="tdSize" v-for="item in products" :key="item.prodID">
+        <tr class="tdSize" :key="item.prodID"  v-for="item in products">
           <td>{{ item.prodID }}</td>
           <td>{{ item.prodName }}</td>
           <td>{{ item.category }}</td>
@@ -39,9 +39,11 @@
           </td>
         </tr>
       </tbody>
-    
     </table>
   </div>
+  <div v-else class="row">
+        <spinnerComp/>
+    </div>
   </div>
     
           <!-- USER TABLE -->
@@ -50,7 +52,7 @@
   <router-link to="/addUser" class="btn btn-primary">Add User</router-link>
   
   <div class="adminUser_container">
-    <div class="table-responsive">
+    <div class="table-responsive" v-if="users">
       <table class="table table-bordered">
       <thead>
         <tr>
@@ -94,6 +96,9 @@
       </tbody >
     </table>
   </div>
+  <div v-else class="row">
+        <spinnerComp/>
+    </div>
   </div>
   </div>
    
@@ -116,14 +121,19 @@
       },
     
       mounted() {
-        this.fetchProducts();
-        this.fetchUsers();
+      
+        this.$store.dispatch("fetchUsers");
+
+        this.$store.dispatch("fetchProducts");
       },
       methods: {
-    ...mapActions(['fetchProducts', 'fetchUsers']),
   
      deleteProduct(prodID) {
       this.$store.dispatch('deleteProduct', prodID);
+      },
+
+      deleteUser(userID) {
+        this.$store.dispatch("deleteUser", userID);
       }
     },
   }

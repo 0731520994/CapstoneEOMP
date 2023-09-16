@@ -41,12 +41,7 @@ export default createStore({
 
 },
   getters: {
-    getTotal(state) {
-      return state.cart.reduce((total, item) => {
-        const sumof = item.amount || 0;
-        return total + sumof;
-      }, 0);
-    },
+ 
   },
 
   mutations: {
@@ -86,11 +81,11 @@ export default createStore({
     setViewItem(state, ViewItem) {
       state.ViewItem = ViewItem;
     },
-    deleteProduct(state, data) {
-      state.products = data;
+    deleteProduct(state, prodID) {
+      state.products = state.products.filter((product) => product.prodID !== proID);
     },
-    deleteUser(state, data) {
-      state.users = data;
+    deleteUser(state, userID) {
+      state.users = state.users.filter((user) => user.userID !== userID);
     },
 
     addToCart(state, product) {
@@ -127,7 +122,7 @@ export default createStore({
               title: "Registration",
               text: msg,
               icon: "success",
-              timer: 2000,
+              timer: 400,
             });
 
             context.dispatch("fetchUsers"); 
@@ -137,7 +132,7 @@ export default createStore({
               title: "Error",
               text: msg,
               icon: "error",
-              timer: 2000,
+              timer: 400,
             });
           }
         } catch (e) {
@@ -158,7 +153,7 @@ async login(context, payload) {
         title: msg,
         text: `Welcome back ${result?.firstName}`,
         icon: "success",
-        timer: 2000
+        timer: 400
       })
       router.push({name: 'home'})
     } else {
@@ -166,7 +161,7 @@ async login(context, payload) {
         title: "Error",
         text: msg,
         icon: "error",
-        timer: 2000
+        timer: 400
       })
     }
   } catch (e) {
@@ -189,7 +184,7 @@ async login(context, payload) {
     async updateUser(context, updatedUser) {
       try {
         const response = await axios.patch(
-          `${cUrl}users/${updatedUser.userID}`,
+          `${capstoneeompUrl}users/${updatedUser.userID}`,
           updatedUser
         );
         return response.data;
@@ -228,8 +223,30 @@ async login(context, payload) {
         });
       }
     },
+
+
+    async deleteUsers(context, id) {
+      try {
+        const { data } = await axios.delete(`${capstoneeompUrl}user/${id}`);
+        context.commit("deleteUser", userID);
+        const { msg } = await data;
+        if (msg) {
+          context.commit("setMsg", msg);
+          sweet({
+            title: "Deleted",
+            text: msg,
+            icon: "success",
+            timer: 4000,
+          });
+        }
+      } catch (e) {
+        context.commit("setMsg", "An error has occurred");
+      }
+    },
   
    
+
+    
     async fetchProducts(context) {
       try {
         const { data } = await axios.get(`${capstoneeompUrl}products`); 
@@ -243,7 +260,7 @@ async login(context, payload) {
 
     async fetchProduct(context, id) {
       try {
-        const response = await axios.get(`${cUrl}product/${id}`);
+        const response = await axios.get(`${capstoneeompUrl}product/${id}`);
         const { results, err } = response.data;
         if (results) {
           context.commit('setProduct', results[0]);
@@ -307,32 +324,29 @@ async login(context, payload) {
     },
 
          
-        async deleteProduct(context, prodID) {
-          const result = await sweet.fire({
-            title: 'confimation',
-            text: 'Are you sure you wnt to delete ?.',
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonText: 'Yes, delete it!',
-            cancelButtonText: 'No, cancel',
+    async deleteProduct(context, prodID) {
+      const result = await swal({
+        title: 'Confirmation',
+        text: 'Are you sure you want to delete?',
+        icon: 'warning',
+        buttons: true,
+        dangerMode: true,
+      });
+    
+      if (result) {
+        axios
+          .delete(`${capstoneeompUrl}product/${prodID}`)
+          .then((res) => {
+            swal('Deleted', 'Product has been deleted!', 'success');
+            window.location.reload();
+          })
+          .catch((error) => {
+            swal('Error!', 'An error occurred while deleting the product.', 'error');
           });
-  
-          if (result.isConfirmed) {
-            axios.delete(`${capstoneeompUrl}product/${prodID}`)
-              .then(res => {
-                
-                window.location.reload();
-              })
-              .catch(error => {
-                sweet.fire('Error!', 'An error occurred while deleting the product.', 'error');
-              });
-          }
-        },
-
-
-
+      }
+    },
     
-    
+
 
     async fetchProductsByCategory(context, categoryName) {
       try {

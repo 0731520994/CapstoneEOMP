@@ -102,7 +102,7 @@ export default {
   },
   methods: {
     addUser() {
-      console.log(this.userData);
+      this.$store.dispatch("addUsers", this.userData);
 
     },
   },

@@ -80,7 +80,7 @@
       />
     </div>
 
-    <button @click.prevent="addUser" class="btn-submit">Submit</button>
+    <button @click.prevent="addUser" class="up-submit">Submit</button>
   </div>
 </template>
 
@@ -112,3 +112,31 @@ export default {
   }
 }
 </script>
+
+<Style>
+
+
+
+.up-submit{
+
+background: none;
+
+text-align: center;
+border: 3px solid white;
+padding: 14px 10px;
+
+outline: none;
+color: white;
+border-radius: 24px;
+transition: 0.25px;
+cursor: pointer ;
+text-decoration: solid;
+}
+
+.up-submit:hover{
+  background: rgb(238, 216, 248);
+  color: purple;
+
+  
+}
+</Style>

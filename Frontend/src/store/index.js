@@ -113,32 +113,35 @@ export default createStore({
  
   actions: {
 
-    
-    async register({commit}, userData) {
-      try {
-        const { msg } = (await axios.post(`${capstoneeompUrl}register`, userData)).data
-          if (msg) {
-            sweet({
-              title: "Registration",
-              text: msg,
-              icon: "success",
-              timer: 400,
-            });
-            commit("setMsg, msg")
-           // router.push({ name: "login" });
-          } else {
-            sweet({
-              title: "Error",
-              text: msg,
-              icon: "error",
-              timer: 400,
-            });
-          }
-        } catch (e) {
-          context.commit("setMsg", "An error has occured, please try again");
-        }
+
+  async register({ commit }, userData) {
+    try {
+      const response = await axios.post(`${capstoneeompUrl}register`, userData);
+      console.log(msg)
+      if (msg) {
+        context.dispatch("fetchUsers")
+        sweet({
+          title: "Registration",
+          text: msg,
+          icon: "success",
+          timer: 400,
+        });
+        commit("setMsg", msg);
+        router.push({ name: "login" });
+      } else {
+        sweet({
+          title: "Error",
+          text: msg,
+          icon: "error",
+          timer: 400,
+        });
+      }
+    } catch (e) {
+      commit("setMsg", "An error has occurred, please try again");
+    }
   },
 
+    
 
 async login(context, payload) {
   try {

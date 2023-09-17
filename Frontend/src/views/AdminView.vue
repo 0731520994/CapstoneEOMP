@@ -48,7 +48,7 @@
     
           <!-- USER TABLE -->
           <h1 style="text-decoration: underline">Users</h1>
-  
+
   <router-link to="/register" class="btn btn-primary">Add User</router-link>
   
   <div class="adminUser_container">
@@ -76,7 +76,7 @@
           <td>{{ item.gender }}</td>
           <td>{{ item.emailAdd }}</td>
           <td>{{ item.userPass }}</td>
-          <td>{{ item.role }}</td> 
+          <td></td> 
           <td><img class="tableImg" :src="item.profileUrl" alt="" loading="lazy"/></td>
           <td>
             <div class="btnGroupUser">
@@ -89,7 +89,7 @@
               >
                 EDIT
               </button>
-              <button class="btn btn-danger">Delete</button>
+              <button class="btn btn-danger" @click="deleteUser(item.userID)">Delete</button>
             </div>
           </td>
         </tr>

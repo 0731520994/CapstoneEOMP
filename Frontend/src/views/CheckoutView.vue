@@ -92,13 +92,18 @@ export default {
 }
 
 .btn-cart, .btn-cart2{
-  margin: 2rem;
-background: none;
+  margin-top: 2rem;
+  margin-right: 1rem;
+background: purple;
 
 text-align: center;
 border: 3px solid white;
 
-
+padding: 14px 10px;
+ 
+  outline: none;
+  color: white;
+  border-radius: 24px;
 outline: none;
 color: white;
 transition: 0.25px;

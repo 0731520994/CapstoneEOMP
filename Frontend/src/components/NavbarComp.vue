@@ -2,32 +2,24 @@
   <nav class="navbar navbar-expand-lg ">
     <div class="container-fluid">
       <img src="https://i.postimg.cc/YqnDkQXk/Logotype_Boutique_Fashion_Neon.png" style="width:6rem; border-radius:100%">
-      <button class="navbar-toggler" type="button" @click="toggleNavbar" aria-expanded="false" aria-label="Toggle navigation">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse justify-content-end" :class="{ show: isNavbarOpen }" id="navbarSupportedContent">
-        <ul class="navbar-nav ">
-          <li class="nav-item justify-content-end" >
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav navMoving ">
+
+          <li class="nav-item justify-content-center" >
+
             <router-link id="linkName" class="nav-link active" aria-current="page" to="/">Home</router-link>
           </li>
           <li class="nav-item">
             <router-link id="linkName" class="nav-link active" aria-current="page" to="/about">About</router-link>
           </li>
           <li class="nav-item">
-            <router-link id="linkName" class="nav-link active" aria-current="page" to="/admin">Admin</router-link>
+            <router-link id="linkName" class="nav-link active"  aria-current="page" to="/admin">Admin</router-link>
           </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Products
-            </a>
-            <ul class="dropdown-menu">
-              <li>
-                <router-link class="dropdown-item" to="/products">All</router-link>
-              </li>
-              <li>
-                <router-link class="dropdown-item" to="/categories">Categories</router-link>
-              </li>
-            </ul>
+          <li class="nav-item">
+            <router-link id="linkName" class="nav-link active"  aria-current="page" to="/products">Products</router-link>
           </li>
           <li class="nav-item">
             <router-link id="linkName" class="nav-link active" aria-current="page" to="/checkout">Checkout</router-link>
@@ -36,34 +28,66 @@
             <router-link id="linkName" class="nav-link active" aria-current="page" to="/contact">Contact</router-link>
           </li>
         </ul>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <img src="https://i.postimg.cc/nztzQT9F/user.png" alt="user" style="border-radius: 50%; width: 60px; height: 60px;">
+
+            </a>
+            <ul class="dropdown-menu">
+              <li>
+                <router-link class="dropdown-item" to="/register">Sign Up</router-link>
+              </li>
+              <li>
+                <router-link class="dropdown-item" to="/signIn">Sign In</router-link>
+              </li>
+              <li>
+                <router-link class="dropdown-item" to="/profile">Profile</router-link>
+              </li>
+              <li>
+                <a class="dropdown-item" href="#" @click="logout">Logout</a>
+              </li>
+            </ul>
+          </li>
+<!--         
         <form class="d-flex" role="search">
           <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" >
-        </form>
-        <button class="btn btn-outline-purple" type="button" @click="toggleLoginForm">
-        Login
-      </button>
+        </form>  -->
+      
+  
       </div>
     </div>
-  </nav>
+
+</nav>
+
+
+  
 </template>
 
 <script>
+import { useCookies } from 'vue3-cookies'
+const {cookies} = useCookies()
+
+
 export default {
-  data() {
+    computed: {
+      data() {
     return {
-      isNavbarOpen: false,
-      isMultiCollapseOpen: false
+      isNavbarOpen: false, 
     };
   },
-  methods: {
-    toggleNavbar() {
-      this.isNavbarOpen = !this.isNavbarOpen;
+  computed: {
+    user() {
+      return this.$store.state.user || cookies.get('LegitUser');
     },
-    toggleMultiCollapse() {
-      this.isMultiCollapseOpen = !this.isMultiCollapseOpen;
+    result() {
+      return this.user?.result;
+    },
+    isAdmin() {
+      return this.result?.userRole?.toLowerCase() === "admin";
+    },
+  },
+        },
     }
-  }
-};
 </script>
 
 <style>
@@ -79,12 +103,14 @@ width: fit-content;
 }
 
 .nav-link{
-  color: white;
+  background-color: white;
 }
 
 .nav-link:hover{
+ 
   background-color: purple;
   border-radius: 50%;
+  color: white;
  
 }
 
@@ -95,4 +121,30 @@ width: fit-content;
   color:white;
   border: 3px solid purple;
 }
+.navMoving{
+margin-left: 57%;
+
+}
+
+
+.menu-toggle {
+  display: none; 
+}
+
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: block; 
+  }
+
+  .nav-links {
+    display: none; 
+  }
+
+  .show .nav-links {
+    display: block; 
+  }
+
+}
+
+
 </style>

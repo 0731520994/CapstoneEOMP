@@ -1,7 +1,8 @@
 <template>
   <div>
-
-
+  
+  <div class="app-container">
+   
   <section class="info_section layout_padding2">
     <div class="container">
       <div class="info_logo">
@@ -50,11 +51,11 @@
           <div class="info_form ">
             <h5>Newsletter</h5>
 
-            <form action="">
-              <input type="email" placeholder="Enter your email">
-              <button class="subscribe">Subscribe</button>
+            <form action="https://formspree.io/f/moqoldrq" method="POST">
+              <input type="email" name="email" placeholder="Enter your email">
+              <button class="subscribe" type="submit">Subscribe</button>
             </form>
-
+            
             <div class="social_icons">
               <a href="https://www.facebook.com/" target="_blank"><i class="bi bi-facebook"></i></a>
               <a href="https://www.instagram.com/" target="_blank"><i class="bi bi-instagram"></i></a>
@@ -70,15 +71,18 @@
   </section>
 
  
-  <section class="footer_section">
-    <div class="container">
-      <p class="lead">Copyright &copy;{{ cyear }}. All Rights Reserved by Joyful Gifts</p>
-    </div>
-  </section>
- 
-
+    <section class="footer_section">
+      <div class="container">
+        <p class="lead">Copyright &copy;{{ cyear }}. All Rights Reserved by Joyful Gifts</p>
+      </div>
+    </section>
+  </div>
   </div>
 </template>
+
+
+
+ 
 
 <script>
   export default {
@@ -179,6 +183,9 @@
   padding: 1rem;
 }
 
-
+.app-container {
+  margin-top: 100px;
+  
+}
 
 </style>

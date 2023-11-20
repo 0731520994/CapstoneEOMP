@@ -8,5 +8,8 @@ function errorHandling(err, req, res, next){
   }
   next()
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 8dff9a0bf6d998070218dd74e2eddb0f44727af3
 module.exports = errorHandling;

@@ -1,31 +1,32 @@
 <template>
     <div>
-    <h1>Contact Us</h1>
+    
     <div class="box container-fluid">
+      <h1>Contact Us</h1>
       <div class="contact-us">
-        <form class="callBox">
+        <form action="https://formspree.io/f/moqoldrq" method="POST">
           <div class="row mb-3">
             <label for="inputName3" class="col-sm-2 col-form-label">Name</label>
             <div class="col-sm-10">
-              <input type="text" class="form-control" id="inputName3">
+              <input type="text" class="form-control" id="inputName3" name="name">
             </div>
           </div>
           <div class="row mb-3">
             <label for="inputEmail3" class="col-sm-2 col-form-label">Email</label>
             <div class="col-sm-10">
-              <input type="email" class="form-control" id="inputEmail3">
+              <input type="email" class="form-control" id="inputEmail3" name="email">
             </div>
           </div>
           <div class="row mb-3">
             <label for="inputSubject3" class="col-sm-2 col-form-label">Subject</label>
             <div class="col-sm-10">
-              <input type="text" class="form-control" id="inputSubject3">
+              <input type="text" class="form-control" id="inputSubject3" name="subject">
             </div>
           </div>
           <div class="row mb-3">
             <label for="inputMessage3" class="col-sm-2 col-form-label">Message</label>
             <div class="col-sm-10">
-              <textarea class="form-control" id="inputMessage3" rows="8"></textarea>
+              <textarea class="form-control" id="inputMessage3" rows="8" name="message"></textarea>
             </div>
           </div>
           <button type="submit" class="submit">Submit</button>
@@ -96,12 +97,13 @@ body{
 }
 
 h1{
-  background-color: white;
+  color: white;
   width: fit-content;
   margin: 5rem;
   margin-left: 40%;
   padding: 1rem;
-  color: purple;
+  background-color: purple;
+  box-shadow: 10px 6px 4px 4px white;
  
 }
 </style>

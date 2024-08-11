@@ -1,9 +1,9 @@
-<<<<<<< HEAD
-// CheckoutView.vue
+
+
 
 <template>
   <div>
-    <h2>Checkout</h2>
+    <h2 class="h2-checkout">Checkout</h2>
     <div v-if="selectedProduct">
       <h3>{{ selectedProduct.prodName }}</h3>
       <p>Price: R{{ selectedProduct.price }}</p>
@@ -80,5 +80,4 @@ export default {
 }
 </script>
 
-<
->>>>>>> 8dff9a0bf6d998070218dd74e2eddb0f44727af3
+

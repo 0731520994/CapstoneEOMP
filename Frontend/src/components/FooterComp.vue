@@ -12,13 +12,13 @@
     
         <div class="col-md-3">
           <div class="footer-logo">
-            <img src="https://i.postimg.cc/YqnDkQXk/Logotype_Boutique_Fashion_Neon.png" style="width:14rem; border-radius:100%">
+            <img src="https://i.postimg.cc/1zpbL8Kc/Logotype-Boutique-Fashion-Neon.png" style="width:14rem; border-radius:100%">
            </div> 
           </div>
 
         <div class="col-md-3">
           <div class="info_contact">
-            <h5>About Shop</h5>
+         <router-link class="nav-link" to="/about">About Shop</router-link>
             <div>
 
               <div class="img-box">
@@ -134,18 +134,16 @@
   background-color: purple;
   transition: all 0.3s;
   margin-top: 15px;
-  text-transform: uppercase;
   font-size: 15px;
-  border: 3px solid white;
-  padding: 14px 10px;
-  color: white;
-  border-radius: 24px;
+  padding: 12px 20px;
+  color:  rgb(238, 216, 248);
 
 }
 
 .subscribe:hover {
-  background-color: white;
-  color: purple;
+  background-color: transparent;
+  color:  purple;
+  border: 1px solid purple;
 }
 
 .social_icons {

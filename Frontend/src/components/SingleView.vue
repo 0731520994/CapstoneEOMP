@@ -3,7 +3,7 @@
   <div class="cardSingle mb-3" style="max-width: 70%;">
       <div class="row g-0">
         <div class="col-md-4">
-          <img :src="product?.prodUrl" class="card-img-top" :alt="product?.name" style="width: 15rem; height: 14rem; padding: 2rem; margin:auto" loading="lazy">
+          <img :src="product?.prodUrl" class="card-img-top" :alt="product?.name"  loading="lazy">
         </div>
         <div class="col-md-8">
           <div class="card-body">
@@ -34,12 +34,25 @@ export default {
 
 <style >
 .single_card{
-background-color: white;
-
+background-color: transparent;
+margin:auto;
+align-self: center;
+align-items: center;
 
 }
 
 .card-title-single{
   margin-top: 20%;
+
+}
+
+
+.card-img-top{
+  width: 20rem; 
+  height: 19rem; 
+  padding: 2rem; 
+  margin: auto;
+ 
+  
 }
 </style>  

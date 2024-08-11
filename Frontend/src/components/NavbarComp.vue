@@ -1,150 +1,202 @@
 <template>
-  <nav class="navbar navbar-expand-lg ">
+  <nav class="navbar navbar-expand-lg">
     <div class="container-fluid">
-      <img src="https://i.postimg.cc/YqnDkQXk/Logotype_Boutique_Fashion_Neon.png" style="width:6rem; border-radius:100%">
+      <img src="https://i.postimg.cc/1zpbL8Kc/Logotype-Boutique-Fashion-Neon.png" style="width:6rem; border-radius:100%">
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav navMoving ">
-
-          <li class="nav-item justify-content-center" >
-
-            <router-link id="linkName" class="nav-link active" aria-current="page" to="/">Home</router-link>
+        <ul class="navbar-nav navMoving">
+          <li class="nav-item">
+            <router-link class="nav-link" to="/">Home</router-link>
           </li>
           <li class="nav-item">
-            <router-link id="linkName" class="nav-link active" aria-current="page" to="/about">About</router-link>
+            <router-link class="nav-link" to="/about">About</router-link>
           </li>
           <li class="nav-item">
-            <router-link id="linkName" class="nav-link active"  aria-current="page" to="/admin">Admin</router-link>
+            <router-link class="nav-link" to="/admin">Admin</router-link>
           </li>
           <li class="nav-item">
-            <router-link id="linkName" class="nav-link active"  aria-current="page" to="/products">Products</router-link>
+            <router-link class="nav-link" to="/products">Products</router-link>
           </li>
           <li class="nav-item">
-            <router-link id="linkName" class="nav-link active" aria-current="page" to="/checkout">Checkout</router-link>
+            <a href="#" class="nav-link" @click.prevent="showContact">Contact</a>
           </li>
           <li class="nav-item">
-            <router-link id="linkName" class="nav-link active" aria-current="page" to="/contact">Contact</router-link>
+            <button class="btn-login" @click="showLogin">Login</button>
           </li>
         </ul>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              <img src="https://i.postimg.cc/nztzQT9F/user.png" alt="user" style="border-radius: 50%; width: 60px; height: 60px;">
-
-            </a>
-            <ul class="dropdown-menu">
-              <li>
-                <router-link class="dropdown-item" to="/register">Sign Up</router-link>
-              </li>
-              <li>
-                <router-link class="dropdown-item" to="/signIn">Sign In</router-link>
-              </li>
-              <li>
-                <router-link class="dropdown-item" to="/profile">Profile</router-link>
-              </li>
-              <li>
-                <a class="dropdown-item" href="#" @click="logout">Logout</a>
-              </li>
-            </ul>
-          </li>
-<!--         
-        <form class="d-flex" role="search">
-          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" >
-        </form>  -->
-      
-  
       </div>
     </div>
-
-</nav>
-
-
-  
+    <SignIn :show="showLoginBox" @close="showLoginBox = false" @switchToSignup="switchToSignup"></SignIn>
+    <SignUp :show="showSignupBox" @close="showSignupBox = false" @switchToLogin="switchToLogin"></SignUp>
+    <ContactView :show="showContactBox" @close="showContactBox = false"></ContactView>
+  </nav>
 </template>
 
 <script>
-import { useCookies } from 'vue3-cookies'
-const {cookies} = useCookies()
-
+import SignIn from './SignIn.vue';
+import SignUp from './SignUp.vue';
+import ContactView from './ContactView.vue';
 
 export default {
-    computed: {
-      data() {
+  components: {
+    SignIn,
+    SignUp,
+    ContactView
+  },
+  data() {
     return {
-      isNavbarOpen: false, 
+      showLoginBox: false,
+      showSignupBox: false,
+      showContactBox: false
     };
   },
-  computed: {
-    user() {
-      return this.$store.state.user || cookies.get('LegitUser');
+  methods: {
+    showLogin() {
+      this.showLoginBox = true;
+      this.showSignupBox = false;
     },
-    result() {
-      return this.user?.result;
+    switchToSignup() {
+      this.showSignupBox = true;
+      this.showLoginBox = false;
     },
-    isAdmin() {
-      return this.result?.userRole?.toLowerCase() === "admin";
+    switchToLogin() {
+      this.showLoginBox = true;
+      this.showSignupBox = false;
     },
-  },
-        },
+    showContact() {
+      this.showContactBox = true;
     }
+  }
+};
 </script>
 
+
+
+
 <style>
-body{
+body {
   background-color: rgb(238, 216, 248);
 }
 
-.navbar-nav, .form{
-background-color: white;
-color:white;
-width: fit-content;
-
+.navbar-nav, .form {
+  width: fit-content;
 }
 
-.nav-link{
-  background-color: white;
+.nav-link {
+  position: relative;
+  color: purple;
+  display: inline-block;
+  z-index: 0;
 }
 
-.nav-link:hover{
- 
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 12.5%; 
+  bottom: -4%; 
+  left: 0;
   background-color: purple;
-  border-radius: 50%;
-  color: white;
+  color: rgb(238, 216, 248);
+  visibility: hidden;
+  transform: scaleX(0);
+  transition: all 0.3s ease-in-out;
+  z-index: -1;
+}
+
+.nav-link:hover {
+  z-index: 10;
+}
+
+.nav-link:hover::after {
+  visibility: visible;
+  transform: scaleX(1);
+}
+
+.btn-login {
+  background-color: purple;
+  color: rgb(238, 216, 248);
+  border: none;
+  padding: 30% 75%;
+  cursor: pointer;
  
 }
 
-.btn {
-  border:white;
-  margin: white;
-  outline: white;
-  color:white;
-  border: 3px solid purple;
+.btn-login:hover {
+  background-color: rgb(238, 216, 248);
+  border: 2px solid  purple;
+  color: purple;
 }
-.navMoving{
-margin-left: 57%;
+
+.login-box, .signup-box {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 600px;
+  padding: 20px;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 20;
 
 }
 
+.login-box h4, .signup-box h4 {
+  text-align: center;
+  margin-bottom: 15px;
+ 
+}
+
+
+.btn-submit {
+  background-color: purple;
+  color: rgb(238, 216, 248);
+  border: none;
+  padding: 3% 6%;
+  cursor: pointer;
+  margin-left: 40%;
+ 
+ 
+}
+
+.btn-submit:hover {
+  background-color: transparent;
+  color: purple;
+  border: 2px solid purple;
+}
+
+.navMoving {
+  margin-left: 64%;
+  margin-right: 1%;
+}
 
 .menu-toggle {
-  display: none; 
+  display: none;
 }
+
+p-butt {
+  display: block; 
+  text-align: center; 
+  margin-top: 10px; 
+}
+
 
 @media (max-width: 768px) {
   .menu-toggle {
-    display: block; 
+    display: block;
   }
 
   .nav-links {
-    display: none; 
+    display: none;
   }
 
   .show .nav-links {
-    display: block; 
+    display: block;
   }
-
 }
-
-
 </style>

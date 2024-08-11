@@ -73,15 +73,16 @@ export default {
   justify-content: center;
     height:fit-content;
     margin-left: 30%;
-    background-color: rgb(128, 0, 128);
-    border-radius: 3rem;
     box-shadow: 10px 6px 4px 4px ;
     padding: 3rem;
     color: white;
     margin-top: 3rem;
 
-    
+  background-color: rgb(238, 216, 248);
+  border: 0.5px solid rgb(151, 150, 150);
 }
+
+
 
 h2{
   justify-content: center;

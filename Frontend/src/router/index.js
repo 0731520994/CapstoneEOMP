@@ -42,17 +42,17 @@ const routes = [
     component: () => import('../views/CheckoutView.vue'),
 
   },
-  {
-    path: '/contact',
-    name: 'contact',
+  // {
+  //   path: '/contact',
+  //   name: 'contact',
   
-    component: () => import('../views/ContactView.vue'),
-    afterEnter() {
-      if(!cookies.get('LegitUser')) {
-        router.push({name: 'signIn'})
-      }
-    }
-  },
+  //   component: () => import('../views/ContactView.vue'),
+  //   afterEnter() {
+  //     if(!cookies.get('LegitUser')) {
+  //       router.push({name: 'signIn'})
+  //     }
+  //   }
+  // },
   {
     path: '/single/:prodID',
     name: 'single',
@@ -65,18 +65,18 @@ const routes = [
   
     component: () => import('../views/ProfileView.vue')
   },
-  {
-    path: '/signIn',
-    name: 'signIn',
+  // {
+  //   path: '/signIn',
+  //   name: 'signIn',
   
-    component: () => import('../views/SignInView.vue')
-  },
-  {
-    path: '/register',
-    name: 'register',
+  //   component: () => import('../views/SignInView.vue')
+  // },
+  // {
+  //   path: '/register',
+  //   name: 'register',
   
-    component: () => import('../views/RegisterView.vue')
-  },
+  //   component: () => import('../views/RegisterView.vue')
+  // },
   {
     path: '/addProduct',
     name: 'addProduct',
@@ -99,6 +99,7 @@ const routes = [
     name: 'buttons',
     component: () => import('../views/ButtonsView.vue')
   },
+ 
 
 
 

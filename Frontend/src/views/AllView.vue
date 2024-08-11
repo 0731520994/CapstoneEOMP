@@ -1,6 +1,6 @@
 <template>
   <div class="container-fluid" style="width: 75rem; height: 70rem">
-    <label>Filter</label>
+    <label class="filter">Filter</label>
     <select v-model="selectedFilter">
       <option value="all">All</option>
       <option value="Beauty">Beauty</option>
@@ -8,13 +8,13 @@
       <option value="Perfumes">Perfumes</option>
     </select>
     
-    <label>Sort</label>
+    <label class="sort">Sort</label>
   <select v-model="selectedSort">
     <option value="alphabetically">Alphabetically</option>
     <option value="price-high">Price High to Low</option>
     <option value="price-low">Price Low to High</option>
   </select>
-    <label>Search</label>
+    <label class="search">Search</label>
     <input v-model="searchTerm" type="text" placeholder="Search for a product..." />
 
   
@@ -39,6 +39,7 @@
       <div v-else class="row">
         <spinnerComp/>
     </div>
+    
     </div>
   </div>
 </template>
@@ -136,13 +137,12 @@ export default {
 
 .card {
   margin: 6%;
-  border-radius: 15%;
   background-color: white;
 }
 
 .card-inner-body {
   background-color: rgba(128, 0, 128, 0.277);
-  color: black;
+
 }
 
 .card-footer-buttons {
@@ -161,22 +161,39 @@ export default {
 
  font-family: Georgia, 'Times New Roman', Times, serif;
  text-align: center;
- border: 3px solid white;
- padding: 5px 5px;
+ padding: 6px 9px;
  background: purple;
- color: white;
- border-radius: 24px;
+ color: rgb(238, 216, 248);
  transition: 0.25px;
+ border: none;
  cursor: pointer ;
- text-decoration: solid; 
+
+ 
 }
 
 
 .allbtn:hover{
-  color: black;
-  background:  rgb(238, 216, 248);
+  color: purple;
+  background: transparent;
+  border: 1px solid purple;
 }
 
+.search{
+  margin-left: 2rem;
+  margin-bottom: 5rem;
+}
+
+.sort{
+  margin-left: 2rem;
+  margin-bottom: 5rem;
+ 
+}
+
+
+.filter{
+  margin-left: 2rem;
+  margin-bottom: 5rem;
+}
 @media (max-width: 650px) {
 
 .card-body {

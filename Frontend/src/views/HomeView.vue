@@ -6,7 +6,7 @@
         <p class="homep1">Boost your confidence with our Latest Glam collection made with love
           <span>Unisex | Beauty | Accessories | Perfumes</span>
         </p>
-        <img src="https://i.postimg.cc/4x1xzk73/slider-img.png" id="kid" class="d-block w-10" style="height: 30rem" alt="Kids Profile" loading="lazy"/>
+        <img src="https://i.postimg.cc/4x1xzk73/slider-img.png" id="kid" class="d-block w-10" alt="Kids Profile" loading="lazy"/>
 
         <RouterLink to="/products" class="submit-home">Shop now</RouterLink>
       </div>
@@ -121,7 +121,8 @@ function validate(event) {
  <style scoped>
 
 #kid {
-  margin-left: 65%;
+  margin-left: 67%;
+  height: 30rem
 }
 
 /* img and text */
@@ -255,32 +256,30 @@ function validate(event) {
 }
 
 /*Testimonials*/
+
+
+
 .corouselp {
   text-align: center;
   font-size: 1.4rem;
   font-weight: 200;
 }
-
-@media (max-width: 576px) {
-  #kid {
-    margin-left: 24%;
-  }
-
- 
-
-  .corouselp {
-
-    margin-top: 4rem;
-  }
+.carousel {
+  background: linear-gradient(to right, purple 65%, black 45%);
+  color: purple;
+  width: 100%;
+  height: auto; 
+  max-height: 30rem; 
 }
 
 .carousel-text {
   width: 80%;
   background-color: black;
-  margin: 3rem 8rem;
-  height: 20%;
+  margin: 3rem auto;
+  height: auto; 
   padding: 3rem;
   position: relative;
+  text-align: center;
 }
 
 .arousel-inner {
@@ -290,19 +289,17 @@ function validate(event) {
 .h-home {
   color: rgb(238, 216, 248);
   width: fit-content;
-  margin: 6% 38%;
-  position: absolute;
-  top : 55%;
-  font-weight: 00;
-
+  margin: 0 auto; 
+  position: relative;
+  bottom: 3rem;
+  font-weight: 700;
 }
 
-.carousel {
-  background: linear-gradient(to right, purple 65%, black 45%);
-  color: purple;
-  width: 100%;
-  height: 30rem;
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+ margin-top: 4rem;
 }
+
 
 .corouselp {
   color: rgb(238, 216, 248);
@@ -320,7 +317,949 @@ function validate(event) {
   color: #262626;
 }
 
+
+
+@media screen and (max-width: 259px) {
+
+  #kid{
+ height: 15rem;
+ margin-left: 13rem;
+  }
+  .home {
+  font-size: 1.2rem;
+  top: 48%;
+  left: 28%;
+  margin-left: 1rem;
+
+  }
+  /*Small text */
+.homep1 {
+  font-size: 0.6rem;
+  top: 60%;
+  left: 35%;
+}
+/*shop button */
+.submit-home {
+
+  top: 70%;
+  right: 54%;
+}
  
+/* Testi */
+.carousel-text {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 5rem;
+    bottom: 4rem;
+    padding: 2rem;
    
+  }
+
+  .h-home {
+    bottom: 9rem;
+    margin-left: 3rem;
+    font-size: 1rem;
+    
+  }
+
+  
+.h1-testi {
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: rgb(238, 216, 248);
+  margin: 1.5rem 3rem;
+}
+
+.h1-testi span {
+  font-size: 2rem;
+  color: #262626;
+}
+
+.corouselp {
+  text-align: center;
+  font-size: 1rem;
+  font-weight: 100;
  
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+ margin-bottom: 8rem;
+}
+}
+
+@media (min-width: 300px) and (max-width: 350px) {
+
+  #kid{
+ height: 15rem;
+ margin-left: 11rem;
+  }
+  .home {
+  font-size: 1.2rem;
+  top: 48%;
+  left: 28%;
+  margin-left: 1rem;
+
+  }
+  /*Small text */
+.homep1 {
+  font-size: 0.6rem;
+  top: 60%;
+  left: 35%;
+}
+/*shop button */
+.submit-home {
+
+  top: 70%;
+  right: 54%;
+}
+/* Testi */
+.carousel-text {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 5rem;
+    bottom: 4rem;
+    padding: 2rem;
+   
+  }
+
+  .h-home {
+    bottom: 9rem;
+    margin-left: 3rem;
+    font-size: 1rem;
+    
+  }
+
+  
+.h1-testi {
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: rgb(238, 216, 248);
+  margin: 1.5rem 3rem;
+}
+
+.h1-testi span {
+  font-size: 2rem;
+  color: #262626;
+}
+
+.corouselp {
+  text-align: center;
+  font-size: 1rem;
+  font-weight: 100;
+ 
+}
+
+.carousel-control-prev-icon{
+  display: none;
+}
+.carousel-control-next-icon {
+ margin-bottom: 8rem;
+
+}
+}
+
+@media (min-width: 351px) and (max-width: 400px) {
+
+  #kid{
+ height: 15rem;
+ margin-left: 14rem;
+  }
+  .home {
+  font-size: 1.4rem;
+  top: 48%;
+  left: 32%;
+  margin-left: 1rem;
+
+  }
+  /*Small text */
+.homep1 {
+  font-size: 0.6rem;
+  top: 60%;
+  left: 38%;
+}
+/*shop button */
+.submit-home {
+
+  top: 70%;
+  right: 52%;
+}
+
+/* Testi */
+.carousel-text {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 5rem;
+    bottom: 4rem;
+    padding: 2rem;
+   
+  }
+
+  .h-home {
+    bottom: 9rem;
+    margin-left: 3rem;
+    font-size: 1rem;
+    
+  }
+
+  
+.h1-testi {
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: rgb(238, 216, 248);
+  margin: 1.5rem 3rem;
+}
+
+.h1-testi span {
+  font-size: 2rem;
+  color: #262626;
+}
+
+.corouselp {
+  text-align: center;
+  font-size: 1rem;
+  font-weight: 100;
+ 
+}
+
+.carousel-control-prev-icon{
+  display: none;
+}
+.carousel-control-next-icon {
+ margin-bottom: 9rem;
+
+}
+
+}
+   
+
+@media (min-width: 401px) and (max-width: 450px) {
+
+  #kid{
+ height: 15rem;
+ margin-left: 16rem;
+  }
+  .home {
+  font-size: 1.7rem;
+  top: 47%;
+  left: 30%;
+  margin-left: 2rem;
+
+  }
+  /*Small text */
+.homep1 {
+  font-size: 0.6rem;
+  top: 60%;
+  left: 38%;
+}
+/*shop button */
+.submit-home {
+
+  top: 70%;
+  right: 52%;
+}
+
+/* Testi */
+.carousel-text {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 5rem;
+    bottom: 4rem;
+    padding: 2rem;
+   
+  }
+
+  .h-home {
+    bottom: 9rem;
+    margin-left: 3rem;
+    font-size: 1rem;
+    
+  }
+
+  
+.h1-testi {
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: rgb(238, 216, 248);
+  margin: 1.5rem 3rem;
+}
+
+.h1-testi span {
+  font-size: 2rem;
+  color: #262626;
+}
+
+.corouselp {
+  text-align: center;
+  font-size: 1rem;
+  font-weight: 100;
+ 
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+ margin-bottom: 12rem;
+
+}
+}  
+
+@media (min-width: 451px) and (max-width: 500px) {
+
+  #kid{
+ height: 15rem;
+ margin-left: 19rem;
+  }
+  .home {
+  font-size: 2rem;
+  top: 48%;
+  left: 32%;
+  margin-left: 1rem;
+
+  }
+  /*Small text */
+.homep1 {
+  font-size: 0.6rem;
+  top: 60%;
+  left: 38%;
+}
+/*shop button */
+.submit-home {
+
+  top: 70%;
+  right: 52%;
+}
+
+
+/* Testi */
+.carousel-text {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 5rem;
+    bottom: 4rem;
+    padding: 2rem;
+   
+  }
+
+  .h-home {
+    bottom: 9rem;
+    margin-left: 3rem;
+    font-size: 1rem;
+    
+  }
+
+  
+.h1-testi {
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: rgb(238, 216, 248);
+  margin: 1.5rem 3rem;
+}
+
+.h1-testi span {
+  font-size: 2rem;
+  color: #262626;
+}
+
+.corouselp {
+  text-align: center;
+  font-size: 1rem;
+  font-weight: 100;
+ 
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+ margin-bottom: 12rem;
+
+}
+}
+
+@media (min-width: 501px) and (max-width: 550px) {
+
+  #kid{
+ height: 15rem;
+ margin-left: 22rem;
+  }
+  .home {
+  font-size: 2rem;
+  top: 48%;
+  left: 34%;
+  margin-left: 1rem;
+
+  }
+  /*Small text */
+.homep1 {
+  font-size: 0.6rem;
+  top: 60%;
+  left: 38%;
+}
+/*shop button */
+.submit-home {
+
+  top: 70%;
+  right: 52%;
+}
+
+/* Testi */
+.carousel-text {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 5rem;
+    bottom: 4rem;
+    padding: 2rem;
+   
+  }
+
+  .h-home {
+    bottom: 9rem;
+    margin-left: 3rem;
+    font-size: 1rem;
+    
+  }
+
+  
+.h1-testi {
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: rgb(238, 216, 248);
+  margin: 1.5rem 3rem;
+}
+
+.h1-testi span {
+  font-size: 2.5rem;
+  color: #262626;
+}
+
+.corouselp {
+  text-align: center;
+  font-size: 1rem;
+  font-weight: 100;
+ 
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+ margin-bottom: 12rem;
+
+}
+}
+
+@media (min-width: 551px) and (max-width: 600px) {
+
+  #kid{
+ height: 15rem;
+ margin-left: 24rem;
+  }
+  .home {
+  font-size: 2.3rem;
+  top: 48%;
+  left: 32%;
+  margin-left: 1rem;
+
+  }
+  /*Small text */
+.homep1 {
+  font-size: 0.6rem;
+  top: 60%;
+  left: 34%;
+}
+/*shop button */
+.submit-home {
+
+  top: 70%;
+  right: 52%;
+}
+ 
+/* Testi */
+.carousel-text {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 5rem;
+    bottom: 4rem;
+    padding: 2rem;
+   
+  }
+
+  .h-home {
+    bottom: 9rem;
+    margin-left: 3rem;
+    font-size: 1rem;
+    
+  }
+
+  
+.h1-testi {
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: rgb(238, 216, 248);
+  margin: 1.5rem 3rem;
+}
+
+.h1-testi span {
+  font-size: 2.5rem;
+  color: #262626;
+}
+
+.corouselp {
+  text-align: center;
+  font-size: 1rem;
+  font-weight: 100;
+ 
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+ margin-bottom: 12rem;
+
+}
+}
+
+@media (min-width: 601px) and (max-width: 650px) {
+
+  #kid{
+ height: 17rem;
+ margin-left: 26rem;
+  }
+  .home {
+  font-size: 2.6rem;
+  top: 48%;
+  left: 32%;
+  margin-left: 1rem;
+
+  }
+  /*Small text */
+.homep1 {
+  font-size: 0.7rem;
+  top: 61%;
+  left: 34%;
+}
+/*shop button */
+.submit-home {
+
+  top: 70%;
+  right: 52%;
+}
+
+
+/* Testi */
+.carousel-text {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 5rem;
+    bottom: 4rem;
+    padding: 2rem;
+   
+  }
+
+  .h-home {
+    bottom: 9rem;
+    margin-left: 3rem;
+    font-size: 1rem;
+    
+  }
+
+  
+.h1-testi {
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: rgb(238, 216, 248);
+  margin: 1.5rem 3rem;
+}
+
+.h1-testi span {
+  font-size: 2.5rem;
+  color: #262626;
+}
+
+.corouselp {
+  text-align: center;
+  font-size: 1rem;
+  font-weight: 100;
+ 
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+ margin-bottom: 12rem;
+
+}
+ 
+}
+
+@media (min-width: 651px) and (max-width: 700px) {
+
+  #kid{
+ height: 17rem;
+ margin-left: 28rem;
+  }
+  .home {
+  font-size: 2.6rem;
+  top: 48%;
+  left: 38%;
+  margin-left: 1rem;
+
+  }
+  /*Small text */
+.homep1 {
+  font-size: 0.7rem;
+  top: 61%;
+  left: 40%;
+}
+/*shop button */
+.submit-home {
+
+  top: 70%;
+  right: 52%;
+}
+
+
+/* Testi */
+.carousel-text {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 5rem;
+    bottom: 4rem;
+    padding: 2rem;
+   
+  }
+
+  .h-home {
+    bottom: 9rem;
+    margin-left: 3rem;
+    font-size: 1rem;
+    
+  }
+
+  
+.h1-testi {
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: rgb(238, 216, 248);
+  margin: 1.5rem 3rem;
+}
+
+.h1-testi span {
+  font-size: 2rem;
+  color: #262626;
+}
+
+.corouselp {
+  text-align: center;
+  font-size: 1rem;
+  font-weight: 100;
+ 
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+ margin-bottom: 12rem;
+
+}
+ 
+}
+
+@media (min-width: 701px) and (max-width: 800px) {
+
+  #kid{
+ height: 18rem;
+ margin-left: 32rem;
+  }
+  .home {
+  font-size: 2.9rem;
+  top: 48%;
+  left: 38%;
+  margin-left: 1rem;
+
+  }
+  /*Small text */
+.homep1 {
+  font-size: 0.7rem;
+  top: 61%;
+  left: 40%;
+}
+/*shop button */
+.submit-home {
+
+  top: 70%;
+  right: 52%;
+}
+
+
+/* Testi */
+.carousel-text {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 5rem;
+    bottom: 4rem;
+    padding: 2rem;
+   
+  }
+
+  .h-home {
+    bottom: 9rem;
+    margin-left: 3rem;
+    font-size: 1rem;
+    
+  }
+
+  
+.h1-testi {
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: rgb(238, 216, 248);
+  margin: 2rem 3rem;
+}
+
+.h1-testi span {
+  font-size: 2.5rem;
+  color: #262626;
+}
+
+.corouselp {
+  text-align: center;
+  font-size: 1rem;
+  font-weight: 100;
+ 
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+ margin-bottom: 11rem;
+
+}
+}
+
+
+
+
+
+
+@media (min-width: 801px) and (max-width: 950px) {
+
+  #kid{
+ height: 20rem;
+ margin-left: 40rem;
+  }
+
+  .home {
+  font-size: 3.2rem;
+  top: 48%;
+  left: 40%;
+  margin-left: 1rem;
+
+  }
+  /*Small text */
+.homep1 {
+  font-size: 0.8rem;
+  top: 62%;
+  left: 40%;
+}
+/*shop button */
+.submit-home {
+
+  top: 72%;
+  right: 52%;
+}
+
+/* Testi */
+.carousel-text {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 5rem;
+    bottom: 4rem;
+    padding: 2rem;
+   
+  }
+
+  .h-home {
+    bottom: 9rem;
+    margin-left: 3rem;
+    font-size: 1rem;
+    
+  }
+
+  
+.h1-testi {
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: rgb(238, 216, 248);
+  margin: 1.5rem 3rem;
+}
+
+.h1-testi span {
+  font-size: 2rem;
+  color: #262626;
+}
+
+.corouselp {
+  text-align: center;
+  font-size: 1rem;
+  font-weight: 100;
+ 
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+ margin-bottom: 12rem;
+
+}
+}
+
+@media (min-width: 951px) and (max-width: 991px) {
+
+  #kid{
+ height: 20rem;
+ margin-left: 42rem;
+  }
+
+  .home {
+  font-size: 3.5rem;
+  top: 48%;
+  left: 40%;
+  margin-left: 1rem;
+
+  }
+  /*Small text */
+.homep1 {
+  font-size: 1rem;
+  top: 66%;
+  left: 40%;
+}
+/*shop button */
+.submit-home {
+
+  top: 76%;
+  right: 52%;
+}
+
+/* Testi */
+.carousel-text {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 5rem;
+    bottom: 4rem;
+    padding: 2rem;
+   
+  }
+
+  .h-home {
+    bottom: 9rem;
+    margin-left: 3rem;
+    font-size: 1rem;
+    
+  }
+
+  
+.h1-testi {
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: rgb(238, 216, 248);
+  margin: 1.5rem 3rem;
+}
+
+.h1-testi span {
+  font-size: 2rem;
+  color: #262626;
+}
+
+.corouselp {
+  text-align: center;
+  font-size: 1rem;
+  font-weight: 100;
+ 
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+ margin-bottom: 12rem;
+
+}
+}
+
+
+
+@media (min-width: 992px) and (max-width: 1067px) {
+
+  #kid{
+ height: 20rem;
+ margin-left: 50rem;
+  }
+
+  .home {
+  font-size: 4rem;
+  top: 48%;
+  left: 40%;
+  margin-left: 1rem;
+
+  }
+  /*Small text */
+.homep1 {
+  font-size: 1rem;
+  top: 66%;
+  left: 40%;
+}
+/*shop button */
+.submit-home {
+
+  top: 76%;
+  right: 52%;
+}
+
+/* Testi */
+.carousel-text {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 5rem;
+    bottom: 4rem;
+    padding: 2rem;
+   
+  }
+
+  .h-home {
+    bottom: 9rem;
+    margin-left: 3rem;
+    font-size: 1rem;
+    
+  }
+
+  
+.h1-testi {
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: rgb(238, 216, 248);
+  margin: 1.5rem 3rem;
+}
+
+.h1-testi span {
+  font-size: 2rem;
+  color: #262626;
+}
+
+.corouselp {
+  text-align: center;
+  font-size: 1rem;
+  font-weight: 100;
+ 
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+ margin-bottom: 12rem;
+
+}
+}
+
  </style>
